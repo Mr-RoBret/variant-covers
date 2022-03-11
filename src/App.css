@@ -1,0 +1,7 @@
+.app-header {
+    display: flex;
+    flex-direction: column;
+    margin: 5% auto 5%;
+    align-items: center;
+    justify-content: center;
+}

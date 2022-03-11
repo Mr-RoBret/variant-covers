@@ -9,12 +9,12 @@ const App = () => {
   const [singleIssueList, setSingleIssueList] = useState([]);
 
   const handleNewList = (coversList) => {
-    setSingleIssueList(coversList)
-  }
+    setSingleIssueList(coversList);
+  };
 
   return (
     <div>
-      <div className="App">
+      <div className="app-header">
         <Header onChange={handleNewList} />
         <Carousel covers={singleIssueList} />
       </div>

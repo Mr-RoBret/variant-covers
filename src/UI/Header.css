@@ -1,0 +1,32 @@
+.header-module {
+    display: flex;
+    width: 50em;
+    background-color: rgb(202, 205, 208);
+    justify-content: center;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.header-module h1 {
+    text-align: center;
+}
+
+.header-module h2 {
+    text-align: center;
+    margin: 5px 5px 15px;
+}
+
+.header-selection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header-selection__dropDown {
+    padding: 5px;
+}
+
+.submit-button {
+    display: flex;
+    justify-content: center;
+}

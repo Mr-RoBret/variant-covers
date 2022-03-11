@@ -1,7 +1,7 @@
 const Slide = (props) => {
     return (
         <div className = "cover-slide">
-            <img src={props.src}></img>
+            <img src={props.src} alt=""></img>
         </div>
     );
 }
