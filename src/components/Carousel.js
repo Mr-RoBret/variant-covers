@@ -1,10 +1,19 @@
-
+import Slide from "./Slide";
 
 const Carousel = (props) => {
     let covers = props.covers;
     console.log("Carousel component -- carousel reached");
     console.log(covers);
-    return null;
+
+    let singleIssueCovers = covers.map((img) => {
+        return (
+            <div>
+                <Slide key={img.key} src={img.src} />
+            </div>
+        );
+    });
+
+    return singleIssueCovers;
 };
 
 export default Carousel;

@@ -1,27 +1,22 @@
 import React, { useState } from 'react';
 import Carousel from './components/Carousel';
-import TitleSelector from './UI/TitleSelector';
-import Slide from './components/Slide';
+import Header from './UI/Header';
 import './App.css';
 
 //const imagesList = importAll(require.context('./images', false, /\.(png|pje?g|svg)$/));
 const App = () => {
 
-  const [coversList, setCoversList] = useState([]);
+  const [singleIssueList, setSingleIssueList] = useState([]);
 
-  const handleSelectedTitle = (props) => {
-    const retrievedImages = props.imagesList.map((img) => {
-        return <Slide key={img} img={img} />
-    });
-    setCoversList(retrievedImages);
-    console.log(`coversList (state) is currently: ${coversList}`);
+  const handleNewList = (coversList) => {
+    setSingleIssueList(coversList)
   }
 
   return (
     <div>
       <div className="App">
-        <TitleSelector onSelected={handleSelectedTitle} />
-        <Carousel covers={coversList} />
+        <Header onChange={handleNewList} />
+        <Carousel covers={singleIssueList} />
       </div>
     </div>
   );
