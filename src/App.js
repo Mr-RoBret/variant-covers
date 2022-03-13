@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Carousel from './components/Carousel';
 import Header from './UI/Header';
+import Card from './UI/Card';
 import './App.css';
 
 //const imagesList = importAll(require.context('./images', false, /\.(png|pje?g|svg)$/));
@@ -16,7 +17,9 @@ const App = () => {
     <div>
       <div className="app-header">
         <Header onChange={handleNewList} />
-        <Carousel covers={singleIssueList} />
+        <Card>
+          <Carousel covers={singleIssueList} />
+        </Card>
       </div>
     </div>
   );

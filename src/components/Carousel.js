@@ -1,4 +1,5 @@
 import Slide from "./Slide";
+import Card from '../UI/Card';
 
 const Carousel = (props) => {
     let covers = props.covers;

@@ -1,4 +1,4 @@
-
+import styles from './TitleSelector.module.css'
 import img1 from '../images/slide-1.jpeg';
 import img2 from '../images/slide-3.jpeg';
 import img3 from '../images/slide-2.jpeg';
@@ -16,8 +16,8 @@ const TitleSelector = (props) => {
     }
 
     return (
-        <div className="submit-button">
-            <button onClick={imagesHandler}>See Variants</button>
+        <div className={styles.seeVariant}>
+            <button className={styles.submitButton} onClick={imagesHandler}>See Variants</button>
         </div>
     )
 };

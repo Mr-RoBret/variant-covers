@@ -2,7 +2,7 @@
 
 const DropDownOptions = (props) => {
     return (
-        ['option1', 'option2', 'option3']
+        [<p>option1</p>, <p>option2</p>, <p>option3</p>]
     );
 };
 

@@ -1,5 +1,6 @@
-.header-module {
+.header {
     display: flex;
+    flex-direction: column;
     width: 50em;
     background-color: rgb(202, 205, 208);
     justify-content: center;
@@ -7,26 +8,22 @@
     border-radius: 15px;
 }
 
-.header-module h1 {
+.mainTitle {
     text-align: center;
 }
 
-.header-module h2 {
+.subTitle {
     text-align: center;
     margin: 5px 5px 15px;
 }
 
-.header-selection {
+.selection {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-}
-
-.header-selection__dropDown {
-    padding: 5px;
-}
-
-.submit-button {
-    display: flex;
     justify-content: center;
+}
+
+.dropDown {
+    padding: 5px;
+    margin: 5px 15px;
 }

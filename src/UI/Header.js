@@ -1,7 +1,8 @@
 import { useState } from "react";
 import TitleSelector from "./TitleSelector";
 import DropDownOptions from "./DropDownOptions";
-import './Header.css'
+import Card from './Card';
+import styles from './Header.module.css';
 
 const Header = (props) => {
 
@@ -15,18 +16,16 @@ const Header = (props) => {
     props.onChange(coversList);
 
     return (
-        <div className="header-module">
-            <div>
-                <h1>The New Variants</h1>
-                <div className="header-selection">
-                    <h2>Select a Title</h2>
-                    <select className="header-selection__dropDown">
-                        <DropDownOptions />
-                    </select>
-                </div>
-                <TitleSelector onSelected={handleSelectedTitle}/>
+        <Card className={styles.header}>
+            <h1 className={styles.mainTitle}>The New Variants</h1>
+            <div className={styles.selection}>
+                <h2 className={styles.subTitle}>Select a Title</h2>
+                <select className={styles.dropDown}>
+                    <DropDownOptions />
+                </select>
             </div>
-        </div>
+            <TitleSelector onSelected={handleSelectedTitle}/>
+        </Card>
     );
 };
 

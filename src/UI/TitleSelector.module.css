@@ -1,0 +1,9 @@
+.seeVariant {
+    display: flex;
+    justify-content: center;
+}
+
+.submitButton {
+    padding: 5px;
+    margin: 15px;
+}
