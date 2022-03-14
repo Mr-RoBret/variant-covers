@@ -1,11 +1,12 @@
-import styles from './TitleSelector.module.css'
+import styles from './SubmitButton.module.css'
 import img1 from '../images/slide-1.jpeg';
 import img2 from '../images/slide-3.jpeg';
 import img3 from '../images/slide-2.jpeg';
 
-const TitleSelector = (props) => {
+// takes selectedIssue from props and retrieves list of covers for that issue
+const SubmitButton = (props) => {
 
-    const imagesHandler = () => {
+    const imagesHandler = (event) => {
         console.log('Return Title');
         const imagesList = [
             {key: img1, src: img1}, 
@@ -22,4 +23,4 @@ const TitleSelector = (props) => {
     )
 };
 
-export default TitleSelector;
+export default SubmitButton;

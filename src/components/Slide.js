@@ -1,3 +1,5 @@
+import './Slide.css';
+
 const Slide = (props) => {
     return (
         <div className = "cover-slide">

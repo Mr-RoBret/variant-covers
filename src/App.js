@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Carousel from './components/Carousel';
-import Header from './UI/Header';
+import Header from './components/Header';
 import Card from './UI/Card';
 import './App.css';
 
@@ -18,7 +18,7 @@ const App = () => {
       <div className="app-header">
         <Header onChange={handleNewList} />
         <Card>
-          <Carousel covers={singleIssueList} />
+            <Carousel covers={singleIssueList} />
         </Card>
       </div>
     </div>
