@@ -1,20 +1,23 @@
 .header {
     display: flex;
     flex-direction: column;
-    width: 50em;
-    background-color: rgb(202, 205, 208);
+    width: 100%;
+    background-color: rgb(208, 208, 208);
     justify-content: center;
-    padding: 15px;
-    border-radius: 15px;
+    padding: 0px auto 15px;
+    /* border-radius: 15px; */
 }
 
 .mainTitle {
     text-align: center;
+    color: rgb(155, 87, 15);
+    font-size: 5rem;
+    margin: 15px auto;
 }
 
 .subTitle {
     text-align: center;
-    margin: 5px 5px 15px;
+    margin: 15px 5px;
 }
 
 .selection {

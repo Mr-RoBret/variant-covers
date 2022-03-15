@@ -3,9 +3,11 @@ import React from "react";
 
 const Option = (props) => {
     // <option className={styles.option} onClick={props.onClick}>
-    <option>
-        {props.option}    
-    </option>
+    return (
+        <option className="option">
+            {props.option}    
+        </option>
+    );
 };
 
 export default Option;

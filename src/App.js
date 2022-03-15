@@ -15,7 +15,7 @@ const App = () => {
 
   return (
     <div>
-      <div className="app-header">
+      <div>
         <Header onChange={handleNewList} />
         <Card>
             <Carousel covers={singleIssueList} />
