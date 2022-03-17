@@ -7,16 +7,15 @@ const DropDownOptions = (props) => {
     const itemTitles = props.options;
     console.log(`itemTitles is currently ${itemTitles}`);
 
-    const handleSelection = (event) => {
-        props.onSelect(event.target.value);
-    }
+    // const handleSelection = (event) => {
+    //     console.log('option selected in DropDown module');
+    //     props.onSelect(event.target);
+    // }
 
     return (
-        // <select className={styles.dropDown} >
         itemTitles.map((option) => (
-            <Option onClick={handleSelection} key={option} option={option} />
+            <Option key={option} option={option} />
         ))
-        // </select>
     );
 };
 

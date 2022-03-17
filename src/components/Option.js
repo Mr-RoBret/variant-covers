@@ -1,10 +1,10 @@
 import React from "react";
-// import styles from './Option.module.css';
+import styles from './Option.module.css';
 
 const Option = (props) => {
-    // <option className={styles.option} onClick={props.onClick}>
+
     return (
-        <option className="option">
+        <option className={styles.option}>
             {props.option}    
         </option>
     );
