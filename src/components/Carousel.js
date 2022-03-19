@@ -1,4 +1,5 @@
 import Slide from "./Slide";
+import styles from "./Carousel.module.css";
 
 const Carousel = (props) => {
     let covers = props.covers;
@@ -7,7 +8,7 @@ const Carousel = (props) => {
 
     let singleIssueCovers = covers.map((img) => {
         return (
-            <div>
+            <div className={styles.slide}>
                 <Slide key={img.key} src={img.src} />
             </div>
         );

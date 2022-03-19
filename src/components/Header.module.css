@@ -19,14 +19,14 @@
 .subTitle {
   text-align: center;
   margin: 15px 5px;
-  font-weight: 200;
+  color: azure;
 }
 
 .selection {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-bottom: 15px;
+  background-color: rgb(41, 68, 74);
 }
 
 .dropDown {
