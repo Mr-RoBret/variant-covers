@@ -20,8 +20,8 @@ const Header = (props) => {
 
     const titlesList = ['Option 1', 'Option 2', 'Option 3'];
 
-    const handleSelectedTitle = (e) => {
-        console.log(`the dropdown selection was ${e.target.value}`);
+    const handleSelectedTitle = (currentTitle) => {
+        console.log(`the dropdown selection was ${currentTitle}`);
         setCoversList(defaultList)
         console.log(`coversList is currently ${coversList}`);
         props.onChange(coversList);
@@ -32,9 +32,7 @@ const Header = (props) => {
             <h1 className={styles.mainTitle}>The New Variants</h1>
             <div className={styles.selection}>
                 <h2 className={styles.subTitle}>Select a Title</h2>
-                <select className={styles.dropDown} onChange={handleSelectedTitle}>
-                    <DropDownOptions options={titlesList} />
-                </select>
+                <DropDownOptions options={titlesList} onChange={handleSelectedTitle} />
             </div>
             {/* <SubmitButton onSelected={handleSelectedTitle}/> */}
         </div>

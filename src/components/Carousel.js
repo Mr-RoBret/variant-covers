@@ -6,15 +6,11 @@ const Carousel = (props) => {
     console.log("Carousel component -- carousel reached");
     console.log(covers);
 
-    let singleIssueCovers = covers.map((img) => {
-        return (
-            <div className={styles.slide}>
-                <Slide key={img.key} src={img.src} />
-            </div>
-        );
-    });
-
-    return singleIssueCovers;
+    return covers.map((img) => 
+        <div className={styles.slide}>
+            <Slide key={img} src={img.src} />
+        </div>
+    );
 };
 
 export default Carousel;

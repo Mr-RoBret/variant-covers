@@ -1,21 +1,31 @@
-import Option from '../components/Option';
+// import Option from '../components/Option';
+import { useState } from 'react';
 import styles from '../components/Header.module.css';
 
 
 const DropDownOptions = (props) => {
     
     const itemTitles = props.options;
-    console.log(`itemTitles is currently ${itemTitles}`);
 
-    // const handleSelection = (event) => {
-    //     console.log('option selected in DropDown module');
-    //     props.onSelect(event.target);
-    // }
+    const [currentTitle, setCurrentTitle] = useState(itemTitles[0]);
+
+    console.log(`itemTitles is currently ${itemTitles}`);
+    console.log(`currentTitle is currently ${currentTitle}`);
+
+    const handleSelection = (event) => {
+        setCurrentTitle(event.target.value)
+        console.log(`option selected in DropDown module is ${currentTitle}`);
+        props.onChange(currentTitle);
+    };
 
     return (
-        itemTitles.map((option) => (
-            <Option key={option} option={option} />
-        ))
+        <select className={styles.dropDown} onChange={handleSelection}>
+            {itemTitles.map((option) => (
+                <option className={styles.option} key={option.value} >
+                    {option}    
+                </option>
+            ))}
+        </select> 
     );
 };
 
