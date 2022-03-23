@@ -3,28 +3,13 @@ import { useState } from "react";
 import DropDownOptions from "../UI/DropDownOptions";
 import styles from './Header.module.css';
 
-import img1 from '../images/slide-1.jpeg';
-import img2 from '../images/slide-3.jpeg';
-import img3 from '../images/slide-2.jpeg';
-
 const Header = (props) => {
 
-    const defaultList = [
-        {key: img1, src: img1}, 
-        {key: img2, src: img2}, 
-        {key: img3, src: img3}
-    ];
-        console.log(`defaultList is currently ${defaultList}`);
+    const [currentTitle, setCurrentTitle] = useState(props.titlesList[0]);
 
-    const [coversList, setCoversList] = useState([]);
-
-    const titlesList = ['Option 1', 'Option 2', 'Option 3'];
-
-    const handleSelectedTitle = (currentTitle) => {
-        console.log(`the dropdown selection was ${currentTitle}`);
-        setCoversList(defaultList)
-        console.log(`coversList is currently ${coversList}`);
-        props.onChange(coversList);
+    const handleSelectedTitle = (newTitle) => {
+        setCurrentTitle(newTitle);
+        props.onChange(currentTitle);
     };
     
     return (  
@@ -32,7 +17,7 @@ const Header = (props) => {
             <h1 className={styles.mainTitle}>The New Variants</h1>
             <div className={styles.selection}>
                 <h2 className={styles.subTitle}>Select a Title</h2>
-                <DropDownOptions options={titlesList} onChange={handleSelectedTitle} />
+                <DropDownOptions options={props.titlesList} onChange={handleSelectedTitle} />
             </div>
             {/* <SubmitButton onSelected={handleSelectedTitle}/> */}
         </div>
