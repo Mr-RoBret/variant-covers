@@ -21,30 +21,37 @@ const App = () => {
         {key: img3, src: img3}
   ];
 
-  const [newTitles, setNewTitles] = useState(['Option1', 'Option2', 'Option3']); //get from API
+  //get from API
+  const [newTitles, setNewTitles] = useState(['Option1', 'Option2', 'Option3']); 
 
   const privateKey = process.env.REACT_APP_API_SECRET;
   const publicKey = process.env.REACT_APP_API_PUBLIC;
-  
-  useEffect(() => {
+
+  const parseData = (response) => {
+    console.log(response);
+    const titlesArr = response.data.results.map(item => item.title);
     
+    console.log(titlesArr);
+    setNewTitles(titlesArr);
+  }
+
+  useEffect(() => {
     const currentTimeStamp = Date.now().toString();
     const message = currentTimeStamp + privateKey + publicKey;
     const hash = md5(message);
-    console.log(hash);
-    console.log(typeof(hash));
-  //   hash.update(currentTimeStamp + privateKey + publicKey);
+    
+    // hash.update(currentTimeStamp + privateKey + publicKey);
     const requestTitles = `https://gateway.marvel.com:443/v1/public/comics?&ts=${currentTimeStamp}&format=comic&noVariants=true&dateDescriptor=thisWeek&orderBy=title&limit=25&apikey=${publicKey}&hash=${hash}`;
     
     fetch(requestTitles)
     .then(response => response.json())
-    // .then(data => setNewTitles(data.message));
+    .then(data => parseData(data));
   }, []);
 
-  // const [currentTitle, setCurrentTitle] = useState(titlesList[0]);
   const [singleIssueCovers, setSingleIssueCovers] = useState(defaultList);
 
   const handleSelectedTitle = (newTitle) => {
+    console.log(newTitle);
     // send newTitle to API and request covers
     // setCurrentTitle(newTitle);
     setSingleIssueCovers(defaultList);
