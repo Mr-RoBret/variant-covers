@@ -14,7 +14,10 @@ const Header = (props) => {
     
     return (  
         <div className={styles.header}>
-            <h1 className={styles.mainTitle}>The New Variants</h1>
+            <div className={styles.headerElements}>
+                <div className={styles.headerLine}></div>
+                <h1 className={styles.mainTitle}>The New Variants</h1>
+            </div>
             <div className={styles.selection}>
                 <h2 className={styles.subTitle}>Select a Title</h2>
                 <DropDownOptions options={props.titlesList} onChange={handleSelectedTitle} />

@@ -22,15 +22,14 @@ const App = () => {
   ];
 
   //get from API
-  const [newTitles, setNewTitles] = useState(['Option1', 'Option2', 'Option3']); 
+  const [newTitles, setNewTitles] = useState([null]); 
 
   const privateKey = process.env.REACT_APP_API_SECRET;
   const publicKey = process.env.REACT_APP_API_PUBLIC;
 
   const parseData = (response) => {
-    console.log(response);
     const titlesArr = response.data.results.map(item => item.title);
-    
+
     console.log(titlesArr);
     setNewTitles(titlesArr);
   }

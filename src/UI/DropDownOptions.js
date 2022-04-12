@@ -20,8 +20,8 @@ const DropDownOptions = (props) => {
 
     return (
         <select className={styles.dropDown} onChange={handleSelection}>
-            {itemTitles.map((option) => (
-                <option className={styles.option} key={option.value} >
+            {itemTitles.map((option, index) => (
+                <option className={styles.option} key={index} >
                     {option}    
                 </option>
             ))}
