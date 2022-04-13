@@ -22,16 +22,42 @@ const App = () => {
   ];
 
   //get from API
-  const [newTitles, setNewTitles] = useState([null]); 
+  const [newTitles, setNewTitles] = useState([]); 
+  const [singleIssueCovers, setSingleIssueCovers] = useState(defaultList);
 
   const privateKey = process.env.REACT_APP_API_SECRET;
   const publicKey = process.env.REACT_APP_API_PUBLIC;
 
+  const formatImageName = (response) => {
+    const fileName = response.data.results[0].images[0].path;
+    const fileExtension = response.data.results[0].images[0].extension;
+    const fullName = fileName + '.' + fileExtension;
+    console.log(`file's full name is ${fullName}.`);
+    return (fullName);
+  }
+
+  const getSingleVariant = (cover) => {
+    const coverImage = cover.resourceURI.split("/").pop();
+    console.log(coverImage);
+    // request API again w/ variant image ID
+    const currentTimeStamp = Date.now().toString();
+    const message = currentTimeStamp + privateKey + publicKey;
+    const hash = md5(message);
+    
+    // hash.update(currentTimeStamp + privateKey + publicKey);
+    const requestVariantImage = `https://gateway.marvel.com:443/v1/public/comics/${coverImage}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;
+    
+    return (fetch(requestVariantImage)
+    .then(response => response.json())
+    .then(data => formatImageName(data)))
+  }
+
   const parseData = (response) => {
     const titlesArr = response.data.results.map(item => item.title);
-
+    const coversArr = response.data.results[0].variants.map(cover => (getSingleVariant(cover)));
     console.log(titlesArr);
     setNewTitles(titlesArr);
+    setSingleIssueCovers(coversArr);
   }
 
   useEffect(() => {
@@ -40,14 +66,12 @@ const App = () => {
     const hash = md5(message);
     
     // hash.update(currentTimeStamp + privateKey + publicKey);
-    const requestTitles = `https://gateway.marvel.com:443/v1/public/comics?&ts=${currentTimeStamp}&format=comic&noVariants=true&dateDescriptor=thisWeek&orderBy=title&limit=25&apikey=${publicKey}&hash=${hash}`;
+    const requestTitles = `https://gateway.marvel.com:443/v1/public/comics?&ts=${currentTimeStamp}&format=comic&noVariants=false&dateDescriptor=thisWeek&orderBy=title&limit=25&apikey=${publicKey}&hash=${hash}`;
     
     fetch(requestTitles)
     .then(response => response.json())
     .then(data => parseData(data));
   }, []);
-
-  const [singleIssueCovers, setSingleIssueCovers] = useState(defaultList);
 
   const handleSelectedTitle = (newTitle) => {
     console.log(newTitle);
