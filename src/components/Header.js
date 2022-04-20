@@ -8,8 +8,9 @@ const Header = (props) => {
     const [currentTitle, setCurrentTitle] = useState(props.titlesList[0]);
 
     const handleSelectedTitle = (newTitle) => {
+        console.log(`from handleSelectedTitle in Header: newTitle is ${newTitle}`);
         setCurrentTitle(newTitle);
-        props.onChange(currentTitle);
+        props.onChange(newTitle);
     };
     
     return (  
