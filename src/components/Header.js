@@ -31,13 +31,12 @@ const Header = (props) => {
     const parseData = (response) => {
 
       // map this week's titles into new array and setNewTitles to array
-        const itemsArr = response.data.results.map((item) => {
+        const itemsArr = response.data.results[0].map((item) => {
             const itemArr = [];
             return (
                 itemArr.push(item.title, item.id)
             )
-        }
-        );
+        });
         setCurrentObjects(itemsArr);
 
       const titlesArr = itemsArr.map(item => item[0]);
@@ -57,7 +56,11 @@ const Header = (props) => {
     fetch(requestTitles)
     .then(response => response.json())
     .then(data => parseData(data));
-  },[newTitles]);
+  }, []);
+
+  if (newTitles === undefined) {
+    return <p>Still loading...</p>;
+  }
 
   const handleSelectedTitle = (newTitle) => {
     console.log(`from handleSelectedTitle in Header: newTitle is ${newTitle}`);
