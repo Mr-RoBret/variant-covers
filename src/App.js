@@ -5,6 +5,8 @@ import Card from './UI/Card';
 import './App.css';
 import md5 from 'md5';
 
+import img1 from './images/slide-1.jpeg';
+
 /**
  * App Component
  * @returns ...
@@ -14,7 +16,7 @@ const App = () => {
 
   // declare useState variables
   const [newTitleArr, setNewtitleArr] = useState([]);
-  const [newTitleID, setNewTitleID] = useState('');
+  const [newTitleID, setNewTitleID] = useState('92209');
   const [variantIDs, setVariantIDs] = useState([]);
   const [variantCovers, setVariantCovers] = useState([]);
   
@@ -32,7 +34,6 @@ const App = () => {
     const message = currentTimeStamp + privateKey + publicKey;
     const hash = md5(message);
     // get ID of currently selected issue
-    const newTitleID = newTitleArr[0];
     
     // get IDs of variants
     const getIDs = (coverURI) => {
@@ -48,6 +49,8 @@ const App = () => {
       // set variant covers to images retrieved (how to retrieve images? format file name and extension and return)
       setVariantIDs(coverIDsArr);
     }
+
+    console.log(variantIDs);
 
     // hash.update(currentTimeStamp + privateKey + publicKey);
     const requestVariants = `https://gateway.marvel.com:443/v1/public/comics/${newTitleID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;
@@ -85,7 +88,7 @@ const App = () => {
 
     // maps over variants requested from api and sends to format
     const parseData = (variants) => {
-      const formattedVars = variants.map(cover => 
+      const formattedVars = variants[0].map(cover => 
         (formatImageName(cover))
       );
       setVariantCovers(formattedVars);
@@ -93,17 +96,18 @@ const App = () => {
     
     // fetch data for images (and extensions) correlating with the above array
     // ** FETCH IMAGE DATA HERE FOR FORMATTING? **
-    const requestTitles = `https://gateway.marvel.com:443/v1/public/comics?&ts=${currentTimeStamp}&format=comic&noVariants=false&dateDescriptor=thisWeek&orderBy=title&limit=25&apikey=${publicKey}&hash=${hash}`;
+    const requestVariantImages = `https://gateway.marvel.com:443/v1/public/comics/${newTitleID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;;
     
     // fetch list of titles from last week and send data to parseData function
-    fetch(requestTitles)
+    fetch(requestVariantImages)
       .then(response => response.json())
       .then(data => parseData(data));
   }, [variantIDs]);
 
   // handle selected option from Header/Dropdown
-  const handleSelectedTitle = (newTitleObj) => {
+  const handleSelectedTitle = (newTitleObj, newTitleID) => {
     setNewtitleArr(newTitleObj);
+    setNewTitleID(newTitleID);
   }
 
   return (

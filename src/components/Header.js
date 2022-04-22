@@ -8,7 +8,7 @@ import md5 from 'md5';
 const Header = (props) => {
 
     const [currentObjects, setCurrentObjects] = useState([]);
-    const [currentTitleObj, setCurrentTitleObj] = useState('');
+    const [currentTitleObj, setCurrentTitleObj] = useState([]);
     const [newTitles, setNewTitles] = useState([]); 
     const [currentTitleID, setCurrentTitleID] = useState('');
 
@@ -31,17 +31,27 @@ const Header = (props) => {
     const parseData = (response) => {
 
       // map this week's titles into new array and setNewTitles to array
-        const itemsArr = response.data.results[0].map((item) => {
-            const itemArr = [];
-            return (
-                itemArr.push(item.title, item.id)
-            )
+        // const itemsArr = response.data.results.map((item) => {
+        //     const itemArr = [];
+        //     const itemObj = {id: item.id, title: item.title};
+        //     itemArr.push(itemObj);
+        //     return itemArr;
+        // });
+        const itemsArr = response.data.results.map((item) => {
+            return {id: item.id, title: item.title};
         });
+
+        console.log(itemsArr);
         setCurrentObjects(itemsArr);
 
-      const titlesArr = itemsArr.map(item => item[0]);
+        const titlesArr = [];
+        for (let i in itemsArr) {
+            titlesArr.push(itemsArr[i].title);
+        }
+      console.log(titlesArr);
       setNewTitles(titlesArr);
-      console.log(`newTitles, after extracting from itemsArr, is: ${newTitles}.`);
+      console.log(`newTitles, after extracting from itemsArr, is: ${titlesArr}.`);
+    //   console.log(`currentObjects is currently ${currentObjects[1].id}`);
 
       // setCurrentTitleID to ID of first issue in list
     //   const titleID = response.data.results[0].id.toString();
@@ -62,15 +72,22 @@ const Header = (props) => {
     return <p>Still loading...</p>;
   }
 
+  /**
+   * Trying to set CurrentTitleObj and CurrentTitleID to correct values, to
+   * send back to App.js
+   */
+
   const handleSelectedTitle = (newTitle) => {
     console.log(`from handleSelectedTitle in Header: newTitle is ${newTitle}`);
     setCurrentTitleObj(newTitle);
     for (let item in currentObjects) {
-        if (currentObjects[item].includes(newTitle)) {
-            setCurrentTitleObj([item.id, item.title]);
+        if (currentObjects[item].title === newTitle) {
+            setCurrentTitleObj(currentObjects[item].id.toString(), currentObjects[item].title);
+            setCurrentTitleID(currentObjects[item].id);
+            console.log(currentTitleObj);
         }
     };
-    props.onChange(currentTitleObj);
+    props.onChange(currentTitleObj, currentTitleID);
   };
     
     return (  
