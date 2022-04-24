@@ -34,21 +34,23 @@ const App = () => {
     // get ID of currently selected issue
     
     // get IDs of variants
-    const getIDs = (coverURI) => {
-      const coverIdArr = coverURI.split('/');
-      return coverIdArr[coverIdArr.length-1]
+    const getIDs = (cover) => {
+      const coverID = cover.resourceURI.split('/');
+      return coverID[coverID.length-1]
     }
     
     // get Variants from response
     const getVariantIDs = (response) => {  
       // create new array from mapping fetched variants to getIDs(resoureURI).
-      const coverIDsArr = response.data.results[0].variants.map(cover => (getIDs(cover.resourceURI)));
+      const coverIDsArr = response.data.results[0].variants.map((cover) => {
+        console.log(cover.resourceURI);
+        return (getIDs(cover));
+      });
 
       // set variant covers to images retrieved (how to retrieve images? format file name and extension and return)
+      console.log(variantIDs);
       setVariantIDs(coverIDsArr);
     }
-
-    console.log(variantIDs);
 
     // hash.update(currentTimeStamp + privateKey + publicKey);
     const requestVariants = `https://gateway.marvel.com:443/v1/public/comics/${newTitleID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;
@@ -56,7 +58,7 @@ const App = () => {
     fetch(requestVariants)
     .then(response => response.json())
     .then(data => getVariantIDs(data))
-  }, [newTitleArr]);
+  }, [newTitleID]);
 
   /** 
    ********************************* UseEffect #3 *********************************
@@ -76,9 +78,7 @@ const App = () => {
     // formats image name and extension and returns to parseData
     const formatImageName = (cover) => {
       const fileName = cover.path;
-      console.log(`fileName is ${fileName}`)
       const fileExtension = cover.extension;
-      console.log(`fileExtension is ${fileExtension}`)
       const fullName = fileName + '.' + fileExtension;
 
       return (fullName);
@@ -86,12 +86,15 @@ const App = () => {
 
     // maps over variants requested from api and sends to format
     const parseData = (res) => {
-      const formattedVars = res.data.results[0].variants.map(cover => 
+      const formattedVars = res.data.results[0].images.map(cover => 
         (formatImageName(cover))
       );
+      console.log(`formattedVars is ${formattedVars}, setting variantCovers next...`);
       setVariantCovers(formattedVars);
+      console.log(`variantCovers is ${variantCovers}; sending to Carousel!`);
     }
     
+    console.log(variantIDs);
     // fetch data for images (and extensions) correlating with the above array
     // ** FETCH IMAGE DATA HERE FOR FORMATTING? **
     const requestVariantImages = `https://gateway.marvel.com:443/v1/public/comics/${newTitleID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;
@@ -100,12 +103,14 @@ const App = () => {
     fetch(requestVariantImages)
       .then(response => response.json())
       .then(data => parseData(data));
-  }, [variantIDs, newTitleID]);
+  }, [variantIDs]);
 
   // handle selected option from Header/Dropdown
-  const handleSelectedTitle = (newTitleObj, newTitleID) => {
+  const handleSelectedTitle = (newTitleObj, newTitleId) => {
     setNewtitleArr(newTitleObj);
-    setNewTitleID(newTitleID);
+    setNewTitleID(newTitleId);
+    console.log(`newTitleArr is ${newTitleArr}`);
+    console.log(`newTitleID is ${newTitleId}`);
   }
 
   return (

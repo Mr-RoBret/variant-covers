@@ -6,14 +6,7 @@ import md5 from 'md5';
 
 const Header = (props) => {
 
-    // const [currentObjects, setCurrentObjects] = useState([
-    //         {id: '24303', title: 'What!'}, 
-    //         {id: '30702', title: 'Up!'}, 
-    //         {id: '74038', title: 'Sucka!'}
-    //     ]);
-    // const [currentTitleObj, setCurrentTitleObj] = useState([{id: 'this', title: 'that'}, {id: 'other', title: 'than'}]);
     const [newTitles, setNewTitles] = useState([]); 
-    const [currentTitleID, setCurrentTitleID] = useState('');
     const itemsArr = useRef([]);
     
     /** 
@@ -39,10 +32,6 @@ const Header = (props) => {
             itemsArr.current = itemsArr.current.concat(response.data.results.map((item) => {
                 return {id: item.id, title: item.title};
             }));
-            console.log(itemsArr.current);
-
-            // setCurrentObjects(itemsArr.current);
-            // console.log(currentObjects);
 
             const titlesArr = [];
             for (let i in itemsArr.current) {
@@ -50,12 +39,8 @@ const Header = (props) => {
             }
 
         setNewTitles(titlesArr);
-        console.log(`newTitles, after extracting from itemsArr, is: ${titlesArr}.`);
+        console.log(`newTitles, after extracting from itemsArr, are: ${titlesArr}.`);
         }
-    
-    //   console.log(`currentObjects is currently ${currentObjects[1].id}`);
-
-    // hash.update(currentTimeStamp + privateKey + publicKey);
 
     // ** initial request URL **
     const requestTitles = `https://gateway.marvel.com:443/v1/public/comics?&ts=${currentTimeStamp}&format=comic&noVariants=false&dateDescriptor=thisWeek&orderBy=title&limit=25&apikey=${publicKey}&hash=${hash}`;
@@ -70,26 +55,17 @@ const Header = (props) => {
     return <p>Still loading...</p>;
   }
 
-  /**
-   * Trying to set CurrentTitleObj and CurrentTitleID to correct values, to
-   * send back to App.js
-   */
-
   const handleSelectedTitle = (newTitle) => {
-    console.log(`from handleSelectedTitle in Header: newTitle is ${newTitle}`);
+    
     const currentTitleObj = [];
     let currentTitleID = '';
-    // setCurrentTitleObj(newTitle);
-    console.log(itemsArr.current);
+    
     for (let item in itemsArr.current) {
-        console.log(itemsArr.current[item]);
         if (itemsArr.current[item].title === newTitle) {
-            console.log(`${itemsArr.current[item].title} === returned Title (${newTitle})`);
             const id = JSON.stringify(itemsArr.current[item].id);
             const title = itemsArr.current[item].title;
             currentTitleObj.push({id: id, title: title});
             currentTitleID = id;
-            console.log(currentTitleObj);
         }
     };
     props.onChange(currentTitleObj, currentTitleID);
