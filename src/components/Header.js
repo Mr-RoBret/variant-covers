@@ -4,15 +4,14 @@ import DropDownOptions from "../UI/DropDownOptions";
 import styles from './Header.module.css';
 import md5 from 'md5';
 
-
 const Header = (props) => {
 
-    const [currentObjects, setCurrentObjects] = useState([
-            {id: '24303', title: 'What!'}, 
-            {id: '30702', title: 'Up!'}, 
-            {id: '74038', title: 'Sucka!'}
-        ]);
-    const [currentTitleObj, setCurrentTitleObj] = useState([]);
+    // const [currentObjects, setCurrentObjects] = useState([
+    //         {id: '24303', title: 'What!'}, 
+    //         {id: '30702', title: 'Up!'}, 
+    //         {id: '74038', title: 'Sucka!'}
+    //     ]);
+    // const [currentTitleObj, setCurrentTitleObj] = useState([{id: 'this', title: 'that'}, {id: 'other', title: 'than'}]);
     const [newTitles, setNewTitles] = useState([]); 
     const [currentTitleID, setCurrentTitleID] = useState('');
     const itemsArr = useRef([]);
@@ -78,13 +77,18 @@ const Header = (props) => {
 
   const handleSelectedTitle = (newTitle) => {
     console.log(`from handleSelectedTitle in Header: newTitle is ${newTitle}`);
-    setCurrentTitleObj(newTitle);
+    const currentTitleObj = [];
+    let currentTitleID = '';
+    // setCurrentTitleObj(newTitle);
     console.log(itemsArr.current);
     for (let item in itemsArr.current) {
         console.log(itemsArr.current[item]);
         if (itemsArr.current[item].title === newTitle) {
-            setCurrentTitleObj([itemsArr.current[item].id.toString(), itemsArr.current[item].title]);
-            setCurrentTitleID(itemsArr.current[item].id);
+            console.log(`${itemsArr.current[item].title} === returned Title (${newTitle})`);
+            const id = JSON.stringify(itemsArr.current[item].id);
+            const title = itemsArr.current[item].title;
+            currentTitleObj.push({id: id, title: title});
+            currentTitleID = id;
             console.log(currentTitleObj);
         }
     };

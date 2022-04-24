@@ -5,8 +5,6 @@ import Card from './UI/Card';
 import './App.css';
 import md5 from 'md5';
 
-import img1 from './images/slide-1.jpeg';
-
 /**
  * App Component
  * @returns ...
@@ -87,8 +85,8 @@ const App = () => {
     }
 
     // maps over variants requested from api and sends to format
-    const parseData = (variants) => {
-      const formattedVars = variants[0].map(cover => 
+    const parseData = (res) => {
+      const formattedVars = res.data.results[0].variants.map(cover => 
         (formatImageName(cover))
       );
       setVariantCovers(formattedVars);
@@ -96,13 +94,13 @@ const App = () => {
     
     // fetch data for images (and extensions) correlating with the above array
     // ** FETCH IMAGE DATA HERE FOR FORMATTING? **
-    const requestVariantImages = `https://gateway.marvel.com:443/v1/public/comics/${newTitleID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;;
+    const requestVariantImages = `https://gateway.marvel.com:443/v1/public/comics/${newTitleID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;
     
     // fetch list of titles from last week and send data to parseData function
     fetch(requestVariantImages)
       .then(response => response.json())
       .then(data => parseData(data));
-  }, [variantIDs]);
+  }, [variantIDs, newTitleID]);
 
   // handle selected option from Header/Dropdown
   const handleSelectedTitle = (newTitleObj, newTitleID) => {
