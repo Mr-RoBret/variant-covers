@@ -27,7 +27,7 @@ const Header = (props) => {
         
         // parseData takes API data and maps week's titles into array of titles
         const parseData = (response) => {
-
+            
             // map this week's titles into new array and setNewTitles to array
             itemsArr.current = itemsArr.current.concat(response.data.results.map((item) => {
                 return {id: item.id, title: item.title};

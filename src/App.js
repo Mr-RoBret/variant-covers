@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Carousel from './components/Carousel';
 import Header from './components/Header';
 import Card from './UI/Card';
@@ -13,10 +13,12 @@ import md5 from 'md5';
 const App = () => {
 
   // declare useState variables
-  const [newTitleArr, setNewtitleArr] = useState([]);
+  const [newTitleArr, setNewTitleArr] = useState([]);
   const [newTitleID, setNewTitleID] = useState('92209');
   const [variantIDs, setVariantIDs] = useState([]);
   const [variantCovers, setVariantCovers] = useState([]);
+
+  // const variantIDs = useRef([]);
   
   /** 
    ********************************* UseEffect #2 *********************************
@@ -40,16 +42,13 @@ const App = () => {
     }
     
     // get Variants from response
-    const getVariantIDs = (response) => {  
+    const getVariantIDs = (res) => {  
       // create new array from mapping fetched variants to getIDs(resoureURI).
-      const coverIDsArr = response.data.results[0].variants.map((cover) => {
-        console.log(cover.resourceURI);
-        return (getIDs(cover));
-      });
-
-      // set variant covers to images retrieved (how to retrieve images? format file name and extension and return)
+      console.log(res.data.results[0]);
+      const newIDs = res.data.results[0].variants.map((cover) => getIDs(cover));
+      console.log(`newIDs array is ${newIDs}`);
+      setVariantIDs(newIDs);
       console.log(variantIDs);
-      setVariantIDs(coverIDsArr);
     }
 
     // hash.update(currentTimeStamp + privateKey + publicKey);
@@ -89,12 +88,11 @@ const App = () => {
       const formattedVars = res.data.results[0].images.map(cover => 
         (formatImageName(cover))
       );
-      console.log(`formattedVars is ${formattedVars}, setting variantCovers next...`);
+      console.log(`formattedVars is ${formattedVars} and formattedVars' LENGTH is ${formattedVars.length}`);
       setVariantCovers(formattedVars);
       console.log(`variantCovers is ${variantCovers}; sending to Carousel!`);
     }
     
-    console.log(variantIDs);
     // fetch data for images (and extensions) correlating with the above array
     // ** FETCH IMAGE DATA HERE FOR FORMATTING? **
     const requestVariantImages = `https://gateway.marvel.com:443/v1/public/comics/${newTitleID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;
@@ -106,11 +104,12 @@ const App = () => {
   }, [variantIDs]);
 
   // handle selected option from Header/Dropdown
-  const handleSelectedTitle = (newTitleObj, newTitleId) => {
-    setNewtitleArr(newTitleObj);
-    setNewTitleID(newTitleId);
+  const handleSelectedTitle = (titleObj, titleID) => {
+    console.log(`in handleSelectedTitle, in App, titleObj is ${titleObj} and titleID is ${titleID}`);
+    setNewTitleArr(titleObj); // setting to previous render's variables
+    setNewTitleID(titleID); // setting to previous render's variables
     console.log(`newTitleArr is ${newTitleArr}`);
-    console.log(`newTitleID is ${newTitleId}`);
+    console.log(`titleID is ${titleID}`);
   }
 
   return (
