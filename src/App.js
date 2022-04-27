@@ -19,6 +19,13 @@ const App = () => {
   const [variantCovers, setVariantCovers] = useState([]);
 
   // const variantIDs = useRef([]);
+
+  const privateKey = process.env.REACT_APP_API_SECRET;
+  const publicKey = process.env.REACT_APP_API_PUBLIC;
+
+  const currentTimeStamp = Date.now().toString();
+  const message = currentTimeStamp + privateKey + publicKey;
+  const hash = md5(message);
   
   /** 
    ********************************* UseEffect #2 *********************************
@@ -26,14 +33,6 @@ const App = () => {
    * list of this week's issues.
    */
   useEffect(() => {
-    // private and public key variables
-    const privateKey = process.env.REACT_APP_API_SECRET;
-    const publicKey = process.env.REACT_APP_API_PUBLIC;
-
-    const currentTimeStamp = Date.now().toString();
-    const message = currentTimeStamp + privateKey + publicKey;
-    const hash = md5(message);
-    // get ID of currently selected issue
     
     // get IDs of variants
     const getIDs = (cover) => {
@@ -44,11 +43,11 @@ const App = () => {
     // get Variants from response
     const getVariantIDs = (res) => {  
       // create new array from mapping fetched variants to getIDs(resoureURI).
-      console.log(res.data.results[0]);
-      const newIDs = res.data.results[0].variants.map((cover) => getIDs(cover));
+      console.log(res.data.results[0].variants);
+      let newIDs = res.data.results[0].variants.map((cover) => getIDs(cover));
+      newIDs.push(newTitleID)
       console.log(`newIDs array is ${newIDs}`);
       setVariantIDs(newIDs);
-      console.log(variantIDs);
     }
 
     // hash.update(currentTimeStamp + privateKey + publicKey);
@@ -66,14 +65,7 @@ const App = () => {
    */
 
   useEffect(() => {
-    // private and public key variables
-    const privateKey = process.env.REACT_APP_API_SECRET;
-    const publicKey = process.env.REACT_APP_API_PUBLIC;
-
-    const currentTimeStamp = Date.now().toString();
-    const message = currentTimeStamp + privateKey + publicKey;
-    const hash = md5(message);
-
+    
     // formats image name and extension and returns to parseData
     const formatImageName = (cover) => {
       const fileName = cover.path;
@@ -85,22 +77,22 @@ const App = () => {
 
     // maps over variants requested from api and sends to format
     const parseData = (res) => {
-      const formattedVars = res.data.results[0].images.map(cover => 
-        (formatImageName(cover))
+      console.log(res.data.results[0].images[0]);
+      return (res.data.results[0].images.map(cover => 
+        (formatImageName(cover)))
       );
-      console.log(`formattedVars is ${formattedVars} and formattedVars' LENGTH is ${formattedVars.length}`);
-      setVariantCovers(formattedVars);
-      console.log(`variantCovers is ${variantCovers}; sending to Carousel!`);
+      
     }
+    //trying this:
+    setVariantCovers(variantIDs.map((individualVariantID) => {
+      let requestVariantImages = `https://gateway.marvel.com:443/v1/public/comics/${individualVariantID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;
+      return (
+        // fetch list of titles from last week and send data to parseData function
+        fetch(requestVariantImages)
+          .then(response => response.json())
+          .then(data => parseData(data))
+    )}));
     
-    // fetch data for images (and extensions) correlating with the above array
-    // ** FETCH IMAGE DATA HERE FOR FORMATTING? **
-    const requestVariantImages = `https://gateway.marvel.com:443/v1/public/comics/${newTitleID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;
-    
-    // fetch list of titles from last week and send data to parseData function
-    fetch(requestVariantImages)
-      .then(response => response.json())
-      .then(data => parseData(data));
   }, [variantIDs]);
 
   // handle selected option from Header/Dropdown

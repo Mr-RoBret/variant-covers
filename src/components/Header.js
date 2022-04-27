@@ -11,7 +11,7 @@ const Header = (props) => {
     
     /** 
      ********************************* UseEffect #1 *********************************
-     * fetches latest title info and turns them into React-readable data (array?).
+     * fetches latest title info and turns them into React-readable object.
      * then sends titles to dropdown, which, upon a selection, hands the info up to 
      * App, so its variants can be selected
      */
