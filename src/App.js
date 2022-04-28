@@ -53,9 +53,18 @@ const App = () => {
     // hash.update(currentTimeStamp + privateKey + publicKey);
     const requestVariants = `https://gateway.marvel.com:443/v1/public/comics/${newTitleID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;
     
-    fetch(requestVariants)
-    .then(response => response.json())
-    .then(data => getVariantIDs(data))
+    // fetch(requestVariants)
+    // .then(response => response.json())
+    // .then(data => getVariantIDs(data))
+    const fetchData = async() => {
+      const data = await fetch(requestVariants);
+      const json = await data.json();
+      getVariantIDs(json);
+    }
+
+    fetchData()
+      .catch(console.error);;
+
   }, [newTitleID]);
 
   /** 
@@ -65,34 +74,52 @@ const App = () => {
    */
 
   useEffect(() => {
-    
+
     // formats image name and extension and returns to parseData
-    const formatImageName = (cover) => {
-      const fileName = cover.path;
-      const fileExtension = cover.extension;
-      const fullName = fileName + '.' + fileExtension;
+    const formatImageName = (data) => {
+      const fileName = data.data.results[0].images[0].path;
+      const fileExtension = data.data.results[0].images[0].extension;
+      // console.log(`fileName is ${data.data.results[0].images.path}, and fileExtension is ${fileExtension}`);
+      return (fileName + '.' + fileExtension);
+    };
 
-      return (fullName);
-    }
+    //function to dynamically replace comic ID# with ID passed in
+    const requestVariantCovers = ((individualVariantID) => {
+      return (`https://gateway.marvel.com:443/v1/public/comics/${individualVariantID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`);
+    });
+    console.log(variantIDs);
 
-    // maps over variants requested from api and sends to format
-    const parseData = (res) => {
-      console.log(res.data.results[0].images[0]);
-      return (res.data.results[0].images.map(cover => 
-        (formatImageName(cover)))
-      );
-      
-    }
-    //trying this:
-    setVariantCovers(variantIDs.map((individualVariantID) => {
-      let requestVariantImages = `https://gateway.marvel.com:443/v1/public/comics/${individualVariantID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;
-      return (
-        // fetch list of titles from last week and send data to parseData function
-        fetch(requestVariantImages)
-          .then(response => response.json())
-          .then(data => parseData(data))
-    )}));
+    /**
+     * Takes array of variant comic ID#s (['100813', '100772', '92209'], in this
+     * case) and maps to new array of request urls. 
+     * */
+    const variantURLs = variantIDs.map((item) => {
+      // console.log(requestVariantCovers(item));
+      return (requestVariantCovers(item));
+    });
     
+    /**
+     * For each url, fetch data and format as json. Then push to
+     * array 'returnedVars'. 
+     * */ 
+    async function getVariantCovers(item) {
+      const response = await fetch(item);
+      const data = await response.json();
+      console.log(formatImageName(data));
+      return formatImageName(data);
+    }
+    
+    console.log(variantURLs);
+    const returnedCovers = variantURLs.map((item) => {
+      return getVariantCovers(item)
+    });
+
+    console.log(returnedCovers);
+    Promise.allSettled(returnedCovers).then((values) => {
+      setVariantCovers(values);
+    })
+    // setVariantCovers(returnedCovers);
+
   }, [variantIDs]);
 
   // handle selected option from Header/Dropdown
