@@ -87,7 +87,6 @@ const App = () => {
     const requestVariantCovers = ((individualVariantID) => {
       return (`https://gateway.marvel.com:443/v1/public/comics/${individualVariantID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`);
     });
-    console.log(variantIDs);
 
     /**
      * Takes array of variant comic ID#s (['100813', '100772', '92209'], in this
@@ -105,18 +104,23 @@ const App = () => {
     async function getVariantCovers(item) {
       const response = await fetch(item);
       const data = await response.json();
-      console.log(formatImageName(data));
       return formatImageName(data);
     }
     
-    console.log(variantURLs);
     const returnedCovers = variantURLs.map((item) => {
       return getVariantCovers(item)
     });
-
-    console.log(returnedCovers);
-    Promise.allSettled(returnedCovers).then((values) => {
-      setVariantCovers(values);
+    console.log(typeof(returnedCovers));
+    
+    Promise.allSettled(returnedCovers).then((items) => {
+      
+      const itemsArray = [];
+      for (let item of items) {
+        itemsArray.push({key: item.index, value: item.value});
+      }
+      console.log(`itemsArray is ${itemsArray}`);
+      setVariantCovers(itemsArray); // map here??
+      console.log(`variantCovers is ${variantCovers}`);
     })
     // setVariantCovers(returnedCovers);
 
@@ -127,8 +131,6 @@ const App = () => {
     console.log(`in handleSelectedTitle, in App, titleObj is ${titleObj} and titleID is ${titleID}`);
     setNewTitleArr(titleObj); // setting to previous render's variables
     setNewTitleID(titleID); // setting to previous render's variables
-    console.log(`newTitleArr is ${newTitleArr}`);
-    console.log(`titleID is ${titleID}`);
   }
 
   return (
