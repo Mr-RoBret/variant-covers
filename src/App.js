@@ -18,8 +18,6 @@ const App = () => {
   const [variantIDs, setVariantIDs] = useState([]);
   const [variantCovers, setVariantCovers] = useState([]);
 
-  // const variantIDs = useRef([]);
-
   const privateKey = process.env.REACT_APP_API_SECRET;
   const publicKey = process.env.REACT_APP_API_PUBLIC;
 
@@ -43,19 +41,13 @@ const App = () => {
     // get Variants from response
     const getVariantIDs = (res) => {  
       // create new array from mapping fetched variants to getIDs(resoureURI).
-      console.log(res.data.results[0].variants);
       let newIDs = res.data.results[0].variants.map((cover) => getIDs(cover));
       newIDs.push(newTitleID)
-      console.log(`newIDs array is ${newIDs}`);
       setVariantIDs(newIDs);
     }
 
-    // hash.update(currentTimeStamp + privateKey + publicKey);
     const requestVariants = `https://gateway.marvel.com:443/v1/public/comics/${newTitleID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;
     
-    // fetch(requestVariants)
-    // .then(response => response.json())
-    // .then(data => getVariantIDs(data))
     const fetchData = async() => {
       const data = await fetch(requestVariants);
       const json = await data.json();
@@ -77,9 +69,8 @@ const App = () => {
 
     // formats image name and extension and returns to parseData
     const formatImageName = (data) => {
-      const fileName = data.data.results[0].images[0].path;
-      const fileExtension = data.data.results[0].images[0].extension;
-      // console.log(`fileName is ${data.data.results[0].images.path}, and fileExtension is ${fileExtension}`);
+      const fileName = data.data.results[0].thumbnail.path;
+      const fileExtension = data.data.results[0].thumbnail.extension;
       return (fileName + '.' + fileExtension);
     };
 
@@ -93,7 +84,6 @@ const App = () => {
      * case) and maps to new array of request urls. 
      * */
     const variantURLs = variantIDs.map((item) => {
-      // console.log(requestVariantCovers(item));
       return (requestVariantCovers(item));
     });
     
@@ -110,19 +100,15 @@ const App = () => {
     const returnedCovers = variantURLs.map((item) => {
       return getVariantCovers(item)
     });
-    console.log(typeof(returnedCovers));
-    
+
     Promise.allSettled(returnedCovers).then((items) => {
-      
       const itemsArray = [];
+
       for (let item of items) {
         itemsArray.push({key: item.index, value: item.value});
       }
-      console.log(`itemsArray is ${itemsArray}`);
-      setVariantCovers(itemsArray); // map here??
-      console.log(`variantCovers is ${variantCovers}`);
+      setVariantCovers(itemsArray);
     })
-    // setVariantCovers(returnedCovers);
 
   }, [variantIDs]);
 

@@ -3,8 +3,6 @@ import styles from "./Carousel.module.css";
 
 const Carousel = (props) => {
     const newCovers = props.covers;
-    console.log("Carousel component -- carousel reached");
-    console.log(typeof(newCovers));
 
     return (
         newCovers.map((image) => 
