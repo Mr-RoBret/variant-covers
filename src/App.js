@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Carousel from './components/Carousel';
 import Header from './components/Header';
 import Card from './UI/Card';
@@ -13,8 +13,8 @@ import md5 from 'md5';
 const App = () => {
 
   // declare useState variables
-  const [newTitleArr, setNewTitleArr] = useState([]);
-  const [newTitleID, setNewTitleID] = useState('92209');
+  const [initialTitleID, setInitialTitleID] = useState(null);
+  const [newTitleID, setNewTitleID] = useState(null);
   const [variantIDs, setVariantIDs] = useState([]);
   const [variantCovers, setVariantCovers] = useState([]);
 
@@ -46,18 +46,33 @@ const App = () => {
       setVariantIDs(newIDs);
     }
 
-    const requestVariants = `https://gateway.marvel.com:443/v1/public/comics/${newTitleID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;
-    
-    const fetchData = async() => {
-      const data = await fetch(requestVariants);
-      const json = await data.json();
-      getVariantIDs(json);
-    }
+    // function to construct API call url with either initial ID or new ID
 
-    fetchData()
+    const constructRequestURL = (titleID) => {
+      
+      const requestVariants = `https://gateway.marvel.com:443/v1/public/comics/${titleID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;
+      
+      const fetchData = async() => {
+        const data = await fetch(requestVariants);
+        const json = await data.json();
+        getVariantIDs(json);
+      }
+      
+      fetchData()
       .catch(console.error);;
+    }
+      
+      
 
-  }, [newTitleID]);
+    if (newTitleID === null) {
+      console.log('noTitleID yet');
+      setNewTitleID(initialTitleID)
+    }
+    constructRequestURL(newTitleID)
+    // setNewTitleID(initialTitleID);
+    // console.log(newTitleID);
+
+  }, [newTitleID, initialTitleID]);
 
   /** 
    ********************************* UseEffect #3 *********************************
@@ -112,17 +127,25 @@ const App = () => {
 
   }, [variantIDs]);
 
+  const handleInitialTitle = (titleID) => {
+    console.log(`initial title id is ${titleID}`);
+    const titleIdString = titleID.toString();
+    console.log(typeof(titleIdString));
+    setInitialTitleID(titleIdString);
+    console.log(initialTitleID);
+  }
+
   // handle selected option from Header/Dropdown
   const handleSelectedTitle = (titleObj, titleID) => {
     console.log(`in handleSelectedTitle, in App, titleObj is ${titleObj} and titleID is ${titleID}`);
-    setNewTitleArr(titleObj); // setting to previous render's variables
+    // setNewTitleArr(titleObj); // setting to previous render's variables
     setNewTitleID(titleID); // setting to previous render's variables
   }
 
   return (
     <div>
       <div>
-        <Header onChange={handleSelectedTitle} />
+        <Header onChange={handleSelectedTitle} onLoad={handleInitialTitle} />
         <Card>
             <Carousel covers={variantCovers} />
         </Card>

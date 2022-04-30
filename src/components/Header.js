@@ -7,6 +7,7 @@ import md5 from 'md5';
 const Header = (props) => {
 
     const [newTitles, setNewTitles] = useState([]); 
+    const initialTitleID = useRef('');
     const itemsArr = useRef([]);
     
     /** 
@@ -33,6 +34,8 @@ const Header = (props) => {
                 return {id: item.id, title: item.title};
             }));
 
+            initialTitleID.current = itemsArr.current[0].id;
+
             const titlesArr = [];
             for (let i in itemsArr.current) {
                 titlesArr.push(itemsArr.current[i].title);
@@ -40,6 +43,8 @@ const Header = (props) => {
 
         setNewTitles(titlesArr);
         console.log(`newTitles, after extracting from itemsArr, are: ${titlesArr}.`);
+        // console.log(`initialTitleID is ${initialTitleID.current}`);
+        props.onLoad(initialTitleID.current);
         }
 
     // ** initial request URL **
@@ -69,6 +74,7 @@ const Header = (props) => {
         }
     };
     props.onChange(currentTitleObj, currentTitleID);
+    
   };
     
     return (  
