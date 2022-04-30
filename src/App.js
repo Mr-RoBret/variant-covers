@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Carousel from './components/Carousel';
 import Header from './components/Header';
+import CarouselButton from "./UI/CarouselButton";
 import Card from './UI/Card';
 import './App.css';
+import buttonImage from './images/left_arrow_transparent.png';
 import md5 from 'md5';
 
 /**
  * App Component
- * @returns ...
  */
 
 const App = () => {
@@ -24,7 +25,6 @@ const App = () => {
   const currentTimeStamp = Date.now().toString();
   const message = currentTimeStamp + privateKey + publicKey;
   const hash = md5(message);
-  
   /** 
    ********************************* UseEffect #2 *********************************
    * this side effect will occur upon selection of single title from dropdown 
@@ -141,14 +141,17 @@ const App = () => {
     // setNewTitleArr(titleObj); // setting to previous render's variables
     setNewTitleID(titleID); // setting to previous render's variables
   }
+  console.log(buttonImage);
 
   return (
     <div>
       <div>
         <Header onChange={handleSelectedTitle} onLoad={handleInitialTitle} />
-        <Card>
+          <CarouselButton src={buttonImage}/>
+          <Card>
             <Carousel covers={variantCovers} />
-        </Card>
+          </Card>
+          <CarouselButton />
       </div>
     </div>
   );
