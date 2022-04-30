@@ -147,11 +147,13 @@ const App = () => {
     <div>
       <div>
         <Header onChange={handleSelectedTitle} onLoad={handleInitialTitle} />
-          <CarouselButton src={buttonImage}/>
+        <div className="whole-carousel">
+          <CarouselButton buttonDirection={'buttonLeft'} />
           <Card>
             <Carousel covers={variantCovers} />
           </Card>
-          <CarouselButton />
+          <CarouselButton buttonDirection={'buttonRight'} />
+        </div>
       </div>
     </div>
   );
