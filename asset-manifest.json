@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/variant-covers/static/css/main.25c048b9.css",
+    "main.js": "/variant-covers/static/js/main.1fc8d965.js",
+    "index.html": "/variant-covers/index.html",
+    "main.25c048b9.css.map": "/variant-covers/static/css/main.25c048b9.css.map",
+    "main.1fc8d965.js.map": "/variant-covers/static/js/main.1fc8d965.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.25c048b9.css",
+    "static/js/main.1fc8d965.js"
+  ]
+}
