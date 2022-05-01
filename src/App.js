@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Carousel from './components/Carousel';
 import Header from './components/Header';
-import CarouselButton from "./UI/CarouselButton";
-import Card from './UI/Card';
+
 import './App.css';
 import buttonImage from './images/left_arrow_transparent.png';
 import md5 from 'md5';
@@ -147,12 +146,12 @@ const App = () => {
     <div>
       <div>
         <Header onChange={handleSelectedTitle} onLoad={handleInitialTitle} />
-        <div className="whole-carousel">
-          <CarouselButton buttonDirection={'buttonLeft'} />
-          <Card>
+        <div >
+          {/* <CarouselButton buttonDirection={'buttonLeft'} /> */}
+          {/* <Card> */}
             <Carousel covers={variantCovers} />
-          </Card>
-          <CarouselButton buttonDirection={'buttonRight'} />
+          {/* </Card> */}
+          {/* <CarouselButton buttonDirection={'buttonRight'} /> */}
         </div>
       </div>
     </div>

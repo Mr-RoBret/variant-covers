@@ -1,6 +1,6 @@
 .card {
-  display: flex;
-  flex-direction: row;
+  /* display: flex; */
+  /* flex-direction: row; */
   width: 455px;
   background-color: rgb(202, 205, 208);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);

@@ -2,20 +2,18 @@ import styles from "./CarouselButton.module.css";
 
 const CarouselButton = (props) => {
 
+    const handleClick = (event) => {
+        props.onClick(event.target.value)
+    }
+
     if (props.buttonDirection === 'buttonLeft') {
         return (
-            <p className={styles.buttonText}>{'<'}</p>
+            <p className={styles.buttonText} onClick={handleClick}>{'<'}</p>
         );
     }
     return (
-        <p className={styles.buttonText}>{'>'}</p>
-    );
-        // <div>
-         
-        // <div className={styles.leftButton}>
-        //     <img src={props.img} alt="" />
-        // </div>
-    
+        <p className={styles.buttonText} onClick={handleClick}>{'>'}</p>
+    ); 
 }
 
 export default CarouselButton;

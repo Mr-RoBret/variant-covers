@@ -3,3 +3,11 @@
   height: 100%;
   width: auto;
 }
+
+.whole-carousel {
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+  width: 50%;
+  margin: auto;
+}
