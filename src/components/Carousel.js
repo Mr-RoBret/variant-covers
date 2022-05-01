@@ -8,8 +8,8 @@ const Carousel = (props) => {
 
     const [state, setState] = useState({
         currentIndex: 0,
-        translate: 0,
-        transition: 0.5
+        translate: 'translate(0px)',
+        transition: '0.5s'
     })
     const { currentIndex, translate, transition } = state;
 
@@ -20,51 +20,61 @@ const Carousel = (props) => {
 
     const nextSlide = () => {
         if (currentIndex === newCovers.length - 1) {
+            console.log(`currentIndex === newCovers.length - 1`);
             return (setState({
                 ...state,
-                translate: 0,
+                translate: 'translate(0px)',
                 currentIndex: 0
             }))
         }
+        console.log('currentIndex !== newCovers.length - 1');
         setState({
             ...state,
             currentIndex: currentIndex + 1,
-            translate: (currentIndex + 1) * 455
+            translate: `translate(${(currentIndex + 1) * -455}px)`
         })
+        console.log(`translate: ${translate}`);
+        // return (`translate: ${translate}px`);
     }
 
     const prevSlide = () => {
         if (currentIndex === 0) {
+            console.log(`currentIndex === 0`);
             return (setState({
                 ...state,
-                translate: (newCovers.length - 1) * 455,
-                currentIndex: newCovers.lenght - 1
+                translate: `translate(${(newCovers.length - 1) * 455}px)`,
+                currentIndex: newCovers.length - 1
             }))
         }
+        console.log('currentIndex != 0');
         setState({
             ...state,
             currentIndex: currentIndex - 1,
-            translate: (currentIndex - 1) * 455
+            translate: `translate(${(currentIndex - 1) * 455}px)`
         })
     }
 
     const moveContentLeft = () => {
-        prevSlide();
+        console.log('move to next slide');
+        nextSlide();
+        // console.log(`translate is ${translate}`);
     }
 
     const moveContentRight = () => {
-        nextSlide();
+        console.log('move to prev slide');
+        prevSlide();
+        // console.log(`translate is ${translate}`);
     }
 
     return (
         <div className="whole-carousel">
-            <CarouselButton buttonDirection={'buttonLeft'} onClick={moveContentLeft}/>
+            <CarouselButton buttonDirection={'buttonLeft'} onClick={moveContentRight}/>
                 <Card>
-                    <div className={styles.content} style={{height: '700px', width: coversWidth}}>
-                        <CarouselContent covers={newCovers} width={coversWidth} translate={translate} />
+                    <div className={styles.content} style={{height: '700px', width: coversWidth, transform: translate, transition: transition}}>
+                        <CarouselContent covers={newCovers} width={coversWidth} />
                     </div>
                 </Card>
-            <CarouselButton buttonDirection={'buttonRight'} onClick={moveContentRight} />
+            <CarouselButton buttonDirection={'buttonRight'} onClick={moveContentLeft} />
         </div>
     );
 };

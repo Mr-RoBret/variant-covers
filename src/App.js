@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Carousel from './components/Carousel';
 import Header from './components/Header';
-
 import './App.css';
-import buttonImage from './images/left_arrow_transparent.png';
 import md5 from 'md5';
 
 /**
@@ -34,14 +32,14 @@ const App = () => {
     // get IDs of variants
     const getIDs = (cover) => {
       const coverID = cover.resourceURI.split('/');
-      return coverID[coverID.length-1]
+      return coverID[coverID.length-1];
     }
     
     // get Variants from response
     const getVariantIDs = (res) => {  
       // create new array from mapping fetched variants to getIDs(resoureURI).
       let newIDs = res.data.results[0].variants.map((cover) => getIDs(cover));
-      newIDs.push(newTitleID)
+      newIDs.push(newTitleID);
       setVariantIDs(newIDs);
     }
 
@@ -65,9 +63,9 @@ const App = () => {
 
     if (newTitleID === null) {
       console.log('noTitleID yet');
-      setNewTitleID(initialTitleID)
+      setNewTitleID(initialTitleID);
     }
-    constructRequestURL(newTitleID)
+    constructRequestURL(newTitleID);
     // setNewTitleID(initialTitleID);
     // console.log(newTitleID);
 
@@ -140,18 +138,13 @@ const App = () => {
     // setNewTitleArr(titleObj); // setting to previous render's variables
     setNewTitleID(titleID); // setting to previous render's variables
   }
-  console.log(buttonImage);
 
   return (
     <div>
       <div>
         <Header onChange={handleSelectedTitle} onLoad={handleInitialTitle} />
         <div >
-          {/* <CarouselButton buttonDirection={'buttonLeft'} /> */}
-          {/* <Card> */}
             <Carousel covers={variantCovers} />
-          {/* </Card> */}
-          {/* <CarouselButton buttonDirection={'buttonRight'} /> */}
         </div>
       </div>
     </div>
