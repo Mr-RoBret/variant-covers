@@ -48,7 +48,7 @@ const Header = (props) => {
         }
 
     // ** initial request URL **
-    const requestTitles = `https://gateway.marvel.com:443/v1/public/comics?&ts=${currentTimeStamp}&format=comic&noVariants=false&dateDescriptor=thisWeek&orderBy=title&limit=25&apikey=${publicKey}&hash=${hash}`;
+    const requestTitles = `https://gateway.marvel.com:443/v1/public/comics?&ts=${currentTimeStamp}&format=comic&noVariants=false&dateDescriptor=thisMonth&orderBy=title&limit=25&apikey=${publicKey}&hash=${hash}`;
     
     // fetch list of titles from last week and send data to parseData function
     fetch(requestTitles)

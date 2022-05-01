@@ -125,16 +125,13 @@ const App = () => {
   }, [variantIDs]);
 
   const handleInitialTitle = (titleID) => {
-    console.log(`initial title id is ${titleID}`);
+    // console.log(`initial title id is ${titleID}`);
     const titleIdString = titleID.toString();
-    console.log(typeof(titleIdString));
     setInitialTitleID(titleIdString);
-    console.log(initialTitleID);
   }
 
   // handle selected option from Header/Dropdown
   const handleSelectedTitle = (titleObj, titleID) => {
-    console.log(`in handleSelectedTitle, in App, titleObj is ${titleObj} and titleID is ${titleID}`);
     // setNewTitleArr(titleObj); // setting to previous render's variables
     setNewTitleID(titleID); // setting to previous render's variables
   }

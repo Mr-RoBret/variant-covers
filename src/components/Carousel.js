@@ -12,34 +12,28 @@ const Carousel = (props) => {
         transition: '0.5s'
     })
     const { currentIndex, translate, transition } = state;
-
     const newCovers = props.covers;
     const coversWidth = (newCovers.length * 455).toString() + 'px';
 
-    // transform: translateX(-455px); to move CarouselContent over
-
-    const nextSlide = () => {
+    // function to move to next slide, or first slide if last slide has been reached
+    const moveContentLeft = () => {
         if (currentIndex === newCovers.length - 1) {
-            // console.log(`currentIndex === newCovers.length - 1`);
             return (setState({
                 ...state,
                 translate: 'translate(0px)',
                 currentIndex: 0
             }))
         }
-        // console.log('currentIndex !== newCovers.length - 1');
         setState({
             ...state,
             currentIndex: currentIndex + 1,
             translate: `translate(${(currentIndex + 1) * -455}px)`
         })
-        // console.log(`translate: ${translate}`);
-        // return (`translate: ${translate}px`);
     }
 
-    const prevSlide = () => {
+    // function to move slide to previous, unless first slide has been reached
+    const moveContentRight = () => {
         if (currentIndex === 0) {
-            // console.log(`translate: ${translate}`);
             return (setState({
                 ...state,
                 translate: `translate(${(newCovers.length - 1) * -455}px)`,
@@ -51,18 +45,6 @@ const Carousel = (props) => {
             currentIndex: currentIndex - 1,
             translate: `translate(${(currentIndex - 1) * -455}px)`
         })
-    }
-
-    const moveContentLeft = () => {
-        console.log('move to next slide');
-        nextSlide();
-        console.log(`translate is ${translate}`);
-    }
-
-    const moveContentRight = () => {
-        console.log('move to prev slide');
-        prevSlide();
-        console.log(`translate is ${translate}`);
     }
 
     return (

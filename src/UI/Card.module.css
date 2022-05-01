@@ -2,8 +2,9 @@
   /* display: flex; */
   /* flex-direction: row; */
   width: 455px;
+  height: 690px;
   background-color: rgb(202, 205, 208);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 50%);
   justify-content: center;
   padding: 0;
   margin: 4em auto 4em;
