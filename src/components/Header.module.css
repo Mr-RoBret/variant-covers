@@ -49,3 +49,76 @@
   border-radius: 10px;
   width: 15%;
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .headerElements {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .headerLine {
+    display: none;
+    height: .33em;
+    justify-self: flext-start;
+    width: 15%;
+    margin: auto 0px auto 15px;
+    background-color: rgb(155, 87, 15);
+  }
+
+  .mainTitle {
+    text-align: left;
+    width: 100%;
+    color: rgb(155, 87, 15);
+    font-size: 2.5em;
+    font-style: normal;
+    margin: 10px 15px 10px 20px;
+  }
+  
+  .subTitle {
+    text-align: center;
+    font-size: 1.25em;
+    margin: 15px 5px;
+    color: azure;
+  }
+  
+  .selection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: rgb(41, 68, 74);
+  }
+  
+  .dropDown {
+    padding: 10px auto 15px;
+    margin: 15px;
+    border-radius: 10px;
+    width: 35%;
+  }
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .buttonText {
+    font-size: 2em;
+    padding: 4px 15px 0px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .buttonText {
+    font-size: 3em;
+    padding: 4px 20px 0px;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .buttonText {
+    font-size: 3em;
+    padding: 4px 25px 0px;
+  }
+}

@@ -10,3 +10,36 @@
     border-radius: 10px;
     box-shadow: 0 2px 4px rgb(0 0 0 / 50%);
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .buttonText {
+        font-size: 2em;
+        padding: 4px 15px 0px;
+    }
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .buttonText {
+        font-size: 2em;
+        padding: 4px 15px 0px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .buttonText {
+        font-size: 3em;
+        padding: 4px 20px 0px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .buttonText {
+        font-size: 3em;
+        padding: 4px 25px 0px;
+    }
+}
