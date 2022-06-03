@@ -58,8 +58,6 @@ const App = () => {
       fetchData()
       .catch(console.error);;
     }
-      
-      
 
     if (newTitleID === null) {
       console.log('noTitleID yet');

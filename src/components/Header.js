@@ -28,11 +28,15 @@ const Header = (props) => {
         
         // parseData takes API data and maps week's titles into array of titles
         const parseData = (response) => {
-            
+
+            const variantsOnly = Array.from(response.data.results);
+            const newArray = variantsOnly.filter((item) => item.variants.length > 1);
+
             // map this week's titles into new array and setNewTitles to array
-            itemsArr.current = itemsArr.current.concat(response.data.results.map((item) => {
-                return {id: item.id, title: item.title};
-            }));
+            itemsArr.current = itemsArr.current.concat(newArray.map((item) => {
+                    return {id: item.id, title: item.title};
+                }
+            ));
 
             initialTitleID.current = itemsArr.current[0].id;
 
