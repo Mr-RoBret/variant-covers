@@ -81,7 +81,10 @@ const App = () => {
     const formatImageName = (data) => {
       const fileName = data.data.results[0].thumbnail.path;
       const fileExtension = data.data.results[0].thumbnail.extension;
-      return (fileName + '.' + fileExtension);
+      const artistName = data.data.results[0].creators.items[0].name;
+      const imageAndArtist = [fileName + '.' + fileExtension, artistName]
+      // console.log(imageAndArtist);
+      return imageAndArtist;
     };
 
     //function to dynamically replace comic ID# with ID passed in
@@ -104,18 +107,20 @@ const App = () => {
     async function getVariantCovers(item) {
       const response = await fetch(item);
       const data = await response.json();
+      // console.log(formatImageName(data));
       return formatImageName(data);
     }
     
     const returnedCovers = variantURLs.map((item) => {
+      // console.log(getVariantCovers(item));
       return getVariantCovers(item)
     });
 
     Promise.allSettled(returnedCovers).then((items) => {
       const itemsArray = [];
-
+      // console.log(items);
       for (let item of items) {
-        itemsArray.push({key: item.index, value: item.value});
+        itemsArray.push({key: item.index, value: item.value[0], artist: item.value[1]});
       }
       setVariantCovers(itemsArray);
     })
