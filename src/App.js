@@ -22,7 +22,7 @@ const App = () => {
   const currentTimeStamp = Date.now().toString();
   const message = currentTimeStamp + privateKey + publicKey;
   const hash = md5(message);
-  
+
   /** 
    ********************************* UseEffect #2 *********************************
    * this side effect will occur upon selection of single title from dropdown 
@@ -124,6 +124,7 @@ const App = () => {
         itemsArray.push({key: item.index, value: item.value[0], artist: item.value[1]});
       }
       setVariantCovers(itemsArray);
+      console.log("variantCovers set...")
     })
 
   }, [variantIDs]);
@@ -144,8 +145,11 @@ const App = () => {
     <div>
       <div>
         <Header onChange={handleSelectedTitle} onLoad={handleInitialTitle} />
-        <div >
-            <Carousel covers={variantCovers} />
+        <div>
+          {/* <div>
+            <h2 style={{fontStyle: 'italic', textAlign: 'center', width: '85%', margin: '30px auto 0 auto'}}>Select a comic from this month's releases to view all variant covers for that issue!</h2>         
+          </div> */}
+          <Carousel covers={variantCovers} />
         </div>
       </div>
     </div>

@@ -38,16 +38,20 @@
 
 .selection {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   background-color: rgb(41, 68, 74);
 }
 
 .dropDown {
-  padding: 10px auto 15px;
-  margin: 15px;
+  padding: 10px;
+  margin: 0 auto 15px auto;
   border-radius: 10px;
-  width: 15%;
+  width: 35%;
+}
+
+.option {
+  margin: 10px;
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -84,16 +88,16 @@
   
   .selection {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     background-color: rgb(41, 68, 74);
   }
   
   .dropDown {
     padding: 10px auto 15px;
-    margin: 15px;
+    margin: 0 auto 15px auto;
     border-radius: 10px;
-    width: 35%;
+    width: 45%;
   }
 
 }
@@ -112,6 +116,9 @@
     font-size: 3em;
     padding: 4px 20px 0px;
   }
+  .dropDown {
+    width: 30%;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -119,5 +126,8 @@
   .buttonText {
     font-size: 3em;
     padding: 4px 25px 0px;
+  }
+  .dropDown {
+    width: 20%;
   }
 }
