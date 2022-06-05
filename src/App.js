@@ -22,6 +22,7 @@ const App = () => {
   const currentTimeStamp = Date.now().toString();
   const message = currentTimeStamp + privateKey + publicKey;
   const hash = md5(message);
+  
   /** 
    ********************************* UseEffect #2 *********************************
    * this side effect will occur upon selection of single title from dropdown 
