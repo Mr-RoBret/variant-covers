@@ -3,3 +3,9 @@
     height: 450px;
     width: auto;
 }
+
+.slideThumbnail {
+    display: flex;
+    height: 250px;
+    width: auto;
+}

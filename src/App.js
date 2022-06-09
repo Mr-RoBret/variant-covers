@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Carousel from './components/Carousel';
 import Header from './components/Header';
 import './App.css';
+import Thumbnails from './components/Thumbnails';
 import md5 from 'md5';
 
 /**
@@ -41,11 +42,11 @@ const App = () => {
       // create new array from mapping fetched variants to getIDs(resoureURI).
       let newIDs = res.data.results[0].variants.map((cover) => getIDs(cover));
       newIDs.push(newTitleID);
+      console.log(newIDs.length);
       setVariantIDs(newIDs);
     }
 
     // function to construct API call url with either initial ID or new ID
-
     const constructRequestURL = (titleID) => {
       
       const requestVariants = `https://gateway.marvel.com:443/v1/public/comics/${titleID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;
@@ -60,13 +61,12 @@ const App = () => {
       .catch(console.error);;
     }
 
-    if (newTitleID === null) {
+    if (newTitleID == null) {
       console.log('noTitleID yet');
       setNewTitleID(initialTitleID);
+    } else {
+      constructRequestURL(newTitleID);
     }
-    constructRequestURL(newTitleID);
-    // setNewTitleID(initialTitleID);
-    // console.log(newTitleID);
 
   }, [newTitleID, initialTitleID]);
 
@@ -119,7 +119,6 @@ const App = () => {
 
     Promise.allSettled(returnedCovers).then((items) => {
       const itemsArray = [];
-      // console.log(items);
       for (let item of items) {
         itemsArray.push({key: item.index, value: item.value[0], artist: item.value[1]});
       }
@@ -137,7 +136,6 @@ const App = () => {
 
   // handle selected option from Header/Dropdown
   const handleSelectedTitle = (titleObj, titleID) => {
-    // setNewTitleArr(titleObj); // setting to previous render's variables
     setNewTitleID(titleID); // setting to previous render's variables
   }
 
@@ -146,11 +144,11 @@ const App = () => {
       <div>
         <Header onChange={handleSelectedTitle} onLoad={handleInitialTitle} />
         <div>
-          {/* <div>
-            <h2 style={{fontStyle: 'italic', textAlign: 'center', width: '85%', margin: '30px auto 0 auto'}}>Select a comic from this month's releases to view all variant covers for that issue!</h2>         
-          </div> */}
           <Carousel covers={variantCovers} />
         </div>
+      </div>
+      <div className="thumbnail-grid">
+        <Thumbnails covers={variantCovers} />
       </div>
     </div>
   );
