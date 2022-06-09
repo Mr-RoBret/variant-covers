@@ -16,11 +16,13 @@
 
 .thumbnail-grid {
     display: flex;
-    overflow-wrap: normal;
+    flex-wrap: wrap;
     column-gap: 25px;
+    row-gap: 20px;
     flex-direction: row;
-    justify-content: center;
-    width: 75vw;
+    justify-content: left;
+    width: fit-content;
+    max-width: 90vw;
     margin: 0 auto 45px auto;
 }
 
