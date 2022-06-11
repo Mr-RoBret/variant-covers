@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import CarouselContent from "./CarouselContent";
 import CarouselButton from '../UI/CarouselButton';
 import Card from '../UI/Card';
@@ -6,14 +6,42 @@ import styles from "./Carousel.module.css";
 
 const Carousel = (props) => {
 
+    const coverInd = props.coverIndex;
+    console.log(`coverIndex is ${coverInd}`);
+
     const [state, setState] = useState({
-        currentIndex: 0,
+        currentIndex: coverInd,
         translate: 'translate(0px)',
         transition: '0.5s'
     })
     const { currentIndex, translate, transition } = state;
     const newCovers = props.covers;
     const coversWidth = (newCovers.length * 296).toString() + 'px';
+
+    /**
+     * New function for incoming coverIndex that isn't 0
+     */
+    const prevIndex = useRef();
+
+    useEffect(() => {
+
+        prevIndex.current = currentIndex;
+
+        if (currentIndex !== 0) {
+            switch (currentIndex) {
+                case currentIndex > prevIndex.current:
+                    console.log('currentIndex is larger than previous index');
+                    setState({ ...state, currentIndex: currentIndex});
+                    break;
+                case currentIndex < prevIndex.current:
+                    console.log('currentIndex is smaller than previous index');
+                    setState({ ...state, currentIndex: currentIndex});
+                break;
+            default: console.log('currentIndex is still 0');        
+            }
+        }
+    }, [currentIndex]);
+
 
     // function to move to next slide, or first slide if last slide has been reached
     const moveContentLeft = () => {
