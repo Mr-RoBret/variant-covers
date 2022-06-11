@@ -16,6 +16,7 @@ const App = () => {
   const [newTitleID, setNewTitleID] = useState(null);
   const [variantIDs, setVariantIDs] = useState([]);
   const [variantCovers, setVariantCovers] = useState([]);
+  const [thumbIndex, setThumbIndex] = useState(0);
 
   const privateKey = process.env.REACT_APP_API_SECRET;
   const publicKey = process.env.REACT_APP_API_PUBLIC;
@@ -119,11 +120,13 @@ const App = () => {
 
     Promise.allSettled(returnedCovers).then((items) => {
       const itemsArray = [];
+      console.log(`type of itemsArray is currently ${typeof(itemsArray)}`);
+      let index = 0;
       for (let item of items) {
-        itemsArray.push({key: item.index, value: item.value[0], artist: item.value[1]});
+        itemsArray.push({key: index, value: item.value[0], artist: item.value[1]});
+        index++;
       }
       setVariantCovers(itemsArray);
-      console.log("variantCovers set...")
     })
 
   }, [variantIDs]);
@@ -139,16 +142,21 @@ const App = () => {
     setNewTitleID(titleID); // setting to previous render's variables
   }
 
+  const handleSelectedThumb = (index) => {
+      console.log(index);
+      setThumbIndex(index);
+  }
+
   return (
     <div>
       <div>
         <Header onChange={handleSelectedTitle} onLoad={handleInitialTitle} />
         <div>
-          <Carousel covers={variantCovers} />
+          <Carousel covers={variantCovers} coverIndex={thumbIndex}/>
         </div>
       </div>
       <div className="thumbnail-grid">
-        <Thumbnails covers={variantCovers} />
+        <Thumbnails covers={variantCovers} onThumbSelect={handleSelectedThumb} />
       </div>
     </div>
   );
