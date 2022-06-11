@@ -6,11 +6,11 @@ import styles from "./Carousel.module.css";
 
 const Carousel = (props) => {
 
-    const coverInd = props.coverIndex;
-    console.log(`coverIndex is ${coverInd}`);
+    const coverIndex = props.coverIndex;
+    console.log(`coverIndex is ${coverIndex}`);
 
     const [state, setState] = useState({
-        currentIndex: coverInd,
+        currentIndex: 0,
         translate: 'translate(0px)',
         transition: '0.5s'
     })
@@ -21,30 +21,13 @@ const Carousel = (props) => {
     /**
      * New function for incoming coverIndex that isn't 0
      */
-    const prevIndex = useRef();
-
-    useEffect(() => {
-
-        prevIndex.current = currentIndex;
-
-        if (currentIndex !== 0) {
-            switch (currentIndex) {
-                case currentIndex > prevIndex.current:
-                    console.log('currentIndex is larger than previous index');
-                    setState({ ...state, currentIndex: currentIndex});
-                    break;
-                case currentIndex < prevIndex.current:
-                    console.log('currentIndex is smaller than previous index');
-                    setState({ ...state, currentIndex: currentIndex});
-                break;
-            default: console.log('currentIndex is still 0');        
-            }
-        }
-    }, [currentIndex]);
-
+    const prevIndex = useRef();    
+    console.log(`currentIndex is ${currentIndex}`);
+    console.log(`prevIndex is ${prevIndex.current}`);
 
     // function to move to next slide, or first slide if last slide has been reached
     const moveContentLeft = () => {
+        console.log("moveContentLeft has been called");
         if (currentIndex === newCovers.length - 1) {
             return (setState({
                 ...state,
@@ -74,6 +57,64 @@ const Carousel = (props) => {
             translate: `translate(${(currentIndex - 1) * -296}px)`
         })
     }
+
+    // thumbnail-driven function to move slide to previous slide
+    const moveLeftOne = (coverIndex) => {
+        if (currentIndex === newCovers.length - 1) {
+            return (setState({
+                ...state,
+                translate: 'translate(0px)',
+                currentIndex: coverIndex
+            }))
+        } else {
+            setState({
+                ...state,
+                currentIndex: coverIndex,
+                translate: `translate(${(coverIndex) * -296}px)`
+            })
+        }
+    }
+
+    // thumbnail-driven function to move to next slide
+    const moveRightOne = (coverIndex) => {
+        console.log("moveContentLeft has been called");
+        if (currentIndex === 0) {
+            return (setState({
+                ...state,
+                translate: `translate(${(newCovers.length - 1) * -296}px)`,
+                currentIndex: coverIndex
+            }))
+        } else {
+            setState({
+                ...state,
+                currentIndex: coverIndex,
+                translate: `translate(${(coverIndex) * -296}px)`
+            })
+        }
+    }
+
+    /**
+     * UseEffect to trigger movement of Carousel based on thumbnail state
+     */
+    useEffect(() => {
+        if (currentIndex > coverIndex) {
+            console.log(`currentIndex (${currentIndex}) is greater than coverIndex (${coverIndex}) passed in`);
+            setState({
+                ...state,
+                currentIndex: coverIndex,
+            })
+            moveLeftOne(coverIndex);
+        } else if (currentIndex < coverIndex) {
+            console.log(`currentIndex (${currentIndex}) is less than coverIndex (${coverIndex}) passed in`);
+            setState({
+                ...state,
+                currentIndex: coverIndex,
+            })
+            moveRightOne(coverIndex);
+        } else {
+            console.log("the index has not changed");
+        }
+    }, [coverIndex]);
 
     return (
         <div className="whole-carousel">
