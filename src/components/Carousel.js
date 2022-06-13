@@ -18,6 +18,7 @@ const Carousel = (props) => {
     const coversWidth = (newCovers.length * 296).toString() + 'px';
 
     // function to move to next slide, or first slide if last slide has been reached
+
     const moveContentLeft = () => {
         if (Number(currentIndex) === newCovers.length - 1) {
             return (setState({
@@ -29,13 +30,13 @@ const Carousel = (props) => {
         setState({
             ...state,
             currentIndex: Number(currentIndex) + 1,
-            translate: `translate(${(currentIndex + 1) * -296}px)`
+            translate: `translate(${(Number(currentIndex) + 1) * -296}px)`
         })
     }
 
     // function to move slide to previous, unless first slide has been reached
     const moveContentRight = () => {
-        if (currentIndex == 0) {
+        if (currentIndex === 0) {
             return (setState({
                 ...state,
                 translate: `translate(${(newCovers.length - 1) * -296}px)`,
@@ -44,18 +45,22 @@ const Carousel = (props) => {
         }
         setState({
             ...state,
-            translate: `translate(${Number(currentIndex - 1) * -296}px)`,
+            translate: `translate(${(Number(currentIndex) - 1) * -296}px)`,
             currentIndex: currentIndex - 1
         })
+        console.log(`currentIndex is type ${typeof(currentIndex)}`);
     }
 
     // thumbnail-driven function to move slide to previous slide
     const moveLeftOne = (coverIndex) => {
         setState({
             ...state,
-            translate: `translate(${Number(coverIndex) * -296}px)`,
-            currentIndex: Number(coverIndex)
-        })    
+            translate: `translate(${(coverIndex) * -296}px)`,
+            currentIndex: coverIndex
+            /* 
+                update carousel based on new current Index...
+            **/
+        })
     }
 
     // thumbnail-driven function to move to next slide
