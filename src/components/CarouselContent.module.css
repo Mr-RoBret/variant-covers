@@ -9,3 +9,8 @@
     height: 250px;
     width: auto;
 }
+
+.slideThumbnail:hover {
+    outline: 1px solid rgb(201, 244, 174);
+    outline-offset: -4px;
+}
