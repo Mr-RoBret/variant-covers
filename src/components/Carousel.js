@@ -1,11 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import CarouselContent from "./CarouselContent";
 import CarouselButton from '../UI/CarouselButton';
 import Card from '../UI/Card';
 import styles from "./Carousel.module.css";
+import { FirstRender } from '../util/FirstRender';
 
 const Carousel = (props) => {
 
+    const firstRender = FirstRender;
     const coverIndex = props.coverIndex;
 
     const [state, setState] = useState({
@@ -48,7 +50,6 @@ const Carousel = (props) => {
             translate: `translate(${(Number(currentIndex) - 1) * -296}px)`,
             currentIndex: currentIndex - 1
         })
-        console.log(`currentIndex is type ${typeof(currentIndex)}`);
     }
 
     // thumbnail-driven function to move slide to previous slide

@@ -9,6 +9,7 @@
     height: 250px;
     width: auto;
     opacity: 80%;
+    cursor: pointer;
 }
 
 .slideThumbnail:hover {
