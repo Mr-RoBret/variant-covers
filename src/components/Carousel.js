@@ -54,8 +54,8 @@ const Carousel = (props) => {
     const moveLeftOne = (coverIndex) => {
         setState({
             ...state,
-            translate: `translate(${(coverIndex) * -296}px)`,
-            currentIndex: coverIndex
+            translate: `translate(${Number(coverIndex) * -296}px)`,
+            currentIndex: Number(coverIndex)
         })
     }
 

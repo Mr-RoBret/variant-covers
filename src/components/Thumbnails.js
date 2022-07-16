@@ -4,6 +4,7 @@ const Thumbnails = (props) => {
     const thumbnailCovers = props.covers;
 
     const handleSelectedThumb = (event) => {
+        console.log(event.currentTarget.alt);
         props.onThumbSelect(event.currentTarget.alt);
     }
 

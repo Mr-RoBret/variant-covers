@@ -77,6 +77,7 @@ const App = () => {
   */
 
   useEffect(() => {
+    console.log(firstRender);
 
     if (!firstRender) {
       
@@ -104,7 +105,9 @@ const App = () => {
       async function getVariantCovers(item) {
         const response = await fetch(item);
         const data = await response.json();
+
         console.log('async #1 called');
+
         return formatImageName(data);
       }
       
@@ -146,6 +149,8 @@ const App = () => {
   }
 
   const updateThumbIndex = (index) => {
+    index = Number(index);
+    console.log(`index is ${index} and type is ${typeof(index)}`);
     setThumbIndex(index);
   }
 
