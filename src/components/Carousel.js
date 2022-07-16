@@ -3,11 +3,8 @@ import CarouselContent from "./CarouselContent";
 import CarouselButton from '../UI/CarouselButton';
 import Card from '../UI/Card';
 import styles from "./Carousel.module.css";
-import { FirstRender } from '../util/FirstRender';
 
 const Carousel = (props) => {
-
-    const firstRender = FirstRender;
     const coverIndex = props.coverIndex;
 
     const [state, setState] = useState({
@@ -20,8 +17,8 @@ const Carousel = (props) => {
     const coversWidth = (newCovers.length * 296).toString() + 'px';
 
     // function to move to next slide, or first slide if last slide has been reached
-
     const moveContentLeft = () => {
+        
         if (Number(currentIndex) === newCovers.length - 1) {
             return (setState({
                 ...state,
@@ -29,27 +26,28 @@ const Carousel = (props) => {
                 currentIndex: 0
             }))
         }
-        setState({
+        return (setState({
             ...state,
             currentIndex: Number(currentIndex) + 1,
             translate: `translate(${(Number(currentIndex) + 1) * -296}px)`
-        })
+        }))
     }
 
     // function to move slide to previous, unless first slide has been reached
     const moveContentRight = () => {
-        if (currentIndex === 0) {
+        if (Number(currentIndex) === 0) {
             return (setState({
                 ...state,
                 translate: `translate(${(newCovers.length - 1) * -296}px)`,
                 currentIndex: newCovers.length - 1
             }))
         }
-        setState({
-            ...state,
-            translate: `translate(${(Number(currentIndex) - 1) * -296}px)`,
-            currentIndex: currentIndex - 1
-        })
+        return (setState({
+                ...state,
+                translate: `translate(${(Number(currentIndex) - 1) * -296}px)`,
+                currentIndex: Number(currentIndex) - 1
+            })
+        )
     }
 
     // thumbnail-driven function to move slide to previous slide
@@ -58,9 +56,6 @@ const Carousel = (props) => {
             ...state,
             translate: `translate(${(coverIndex) * -296}px)`,
             currentIndex: coverIndex
-            /* 
-                update carousel based on new current Index...
-            **/
         })
     }
 
@@ -74,8 +69,8 @@ const Carousel = (props) => {
     }
 
     /**
-     * UseEffect to trigger movement of Carousel based on thumbnail state
-     */
+    * UseEffect to trigger movement of Carousel based on thumbnail state
+    */
     useEffect(() => {
         if (currentIndex > coverIndex) {
             moveRightOne(coverIndex);
@@ -85,6 +80,8 @@ const Carousel = (props) => {
             console.log("the index has not changed");
         }
     }, [coverIndex]);
+
+    props.onChange(coverIndex);
 
     return (
         <div className="whole-carousel">

@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-// import SubmitButton from "../UI/SubmitButton";
 import DropDownOptions from "../UI/DropDownOptions";
 import styles from './Header.module.css';
 import md5 from 'md5';
@@ -11,9 +10,8 @@ const Header = (props) => {
     const itemsArr = useRef([]);
     
     /** 
-     ********************************* UseEffect #1 *********************************
-     * fetches latest title info and turns them into React-readable object.
-     * then sends titles to dropdown, which, upon a selection, hands the info up to 
+     * useEffect fetches latest title info and turns into React-readable object.
+     * Then sends titles to dropdown, which, upon a selection, hands the info up to 
      * App, so its variants can be selected
      */
     
@@ -91,7 +89,6 @@ const Header = (props) => {
                 <h2 className={styles.subTitle}>Select a title to see its variants:</h2>
                 <DropDownOptions options={newTitles} onChange={handleSelectedTitle} />
             </div>
-            {/* <SubmitButton onSelected={handleSelectedTitle}/> */}
         </div>
     );
 };

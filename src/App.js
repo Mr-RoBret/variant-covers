@@ -6,13 +6,8 @@ import './App.css';
 import Thumbnails from './components/Thumbnails';
 import md5 from 'md5';
 
-/**
- * App Component
- */
-
 const App = () => {
 
-  // declare useState variables
   const [initialTitleID, setInitialTitleID] = useState(null);
   const [newTitleID, setNewTitleID] = useState(null);
   const [variantIDs, setVariantIDs] = useState([]);
@@ -28,20 +23,22 @@ const App = () => {
   const firstRender = FirstRender();
 
   /** 
-   ********************************* UseEffect #2 *********************************
-   * this side effect will occur upon selection of single title from dropdown 
-   * list of this week's issues.
-   */
+   * this side effect occurs upon selection of single title (newTitleID) 
+   * from dropdown list of this week's issues.
+  */
   useEffect(() => {
 
+    setThumbIndex(0);
+
     if (!firstRender) {
-      // get IDs of variants
+      // 4. get IDs of variants
       const getIDs = (cover) => {
         const coverID = cover.resourceURI.split('/');
         return coverID[coverID.length-1];
       }
       
-      // get Variants from response
+      // 3. get Variants from response and set variantIDs (state);
+      // this will trigger next useEffect (below).
       const getVariantIDs = (res) => {  
         // create new array from mapping fetched variants to getIDs(resoureURI).
         let newIDs = res.data.results[0].variants.map((cover) => getIDs(cover));
@@ -49,7 +46,7 @@ const App = () => {
         setVariantIDs(newIDs);
       }
   
-      // function to construct API call url with either initial ID or new ID
+      // 2. function to construct API call url with either initial ID or new ID
       const constructRequestURL = (titleID) => {
         
         const requestVariants = `https://gateway.marvel.com:443/v1/public/comics/${titleID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;
@@ -57,13 +54,15 @@ const App = () => {
         const fetchData = async() => {
           const data = await fetch(requestVariants);
           const json = await data.json();
+          console.log('async #2 called');
           getVariantIDs(json);
         }
         
         fetchData()
         .catch(console.error);;
       }
-  
+
+      // 1. if there is a newTitleID returned, call constructRequest function
       if (newTitleID == null) {
         setNewTitleID(initialTitleID);
       } else {
@@ -74,16 +73,14 @@ const App = () => {
   }, [newTitleID, initialTitleID]);
 
   /** 
-   ********************************* UseEffect #3 *********************************
-   * runs when list of variant IDs is obtained from UseEffect #2 and variantCovers
-   * state changes.
-   */
+   * runs when list of variant IDs is obtained variantIDs state changes.
+  */
 
   useEffect(() => {
 
     if (!firstRender) {
       
-      // formats image name and extension and returns to parseData
+      // 5. Formats image name and extension and returns
       const formatImageName = (data) => {
         const fileName = data.data.results[0].thumbnail.path;
         const fileExtension = data.data.results[0].thumbnail.extension;
@@ -92,33 +89,33 @@ const App = () => {
         return imageAndArtist;
       };
   
-      //function to dynamically replace comic ID# with ID passed in
+      // 2. function to dynamically replace comic ID# with ID passed in
       const requestVariantCovers = ((individualVariantID) => {
         return (`https://gateway.marvel.com:443/v1/public/comics/${individualVariantID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`);
       });
   
-      /**
-       * Takes array of variant comic ID#s (['100813', '100772', '92209'], in this
-       * case) and maps to new array of request urls. 
-       * */
+      // 1. Takes array of variant comic ID#s and maps to new array of request urls
+      // (via calling requestVariantCovers function on each item)
       const variantURLs = variantIDs.map((item) => {
         return (requestVariantCovers(item));
       });
       
-      /**
-       * For each url, fetch data and format as json. Then push to
-       * array 'returnedVars'. 
-       * */ 
+      // 4. Async function that passes data to formatting function and returns result
       async function getVariantCovers(item) {
         const response = await fetch(item);
         const data = await response.json();
+        console.log('async #1 called');
         return formatImageName(data);
       }
       
+      // 3. Takes array of request urls and passes to async function
+      // (getVariantCovers) for formatting; returns array of file names
       const returnedCovers = variantURLs.map((item) => {
         return getVariantCovers(item)
       });
-  
+      
+      // 5. Once promise (returnedCovers) has been fulfilled, pushes items to
+      // itemsArray and sets variantCovers to itemsArray
       Promise.allSettled(returnedCovers).then((items) => {
         const itemsArray = [];
         let index = 0;
@@ -132,6 +129,8 @@ const App = () => {
 
   }, [variantIDs]);
 
+  // component handlers
+
   const handleInitialTitle = (titleID) => {
     const titleIdString = titleID.toString();
     setInitialTitleID(titleIdString);
@@ -143,7 +142,11 @@ const App = () => {
   }
 
   const handleSelectedThumb = (index) => {
-      setThumbIndex(index);
+    setThumbIndex(index);
+  }
+
+  const updateThumbIndex = (index) => {
+    setThumbIndex(index);
   }
 
   return (
@@ -151,7 +154,7 @@ const App = () => {
       <div>
         <Header onChange={handleSelectedTitle} onLoad={handleInitialTitle} />
         <div>
-          <Carousel covers={variantCovers} coverIndex={thumbIndex}/>
+          <Carousel covers={variantCovers} coverIndex={thumbIndex} onChange={updateThumbIndex} />
         </div>
       </div>
       <div className="thumbnail-grid">
