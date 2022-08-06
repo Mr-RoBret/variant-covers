@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Carousel from './components/Carousel';
 import Header from './components/Header';
 import { FirstRender } from './util/FirstRender';
