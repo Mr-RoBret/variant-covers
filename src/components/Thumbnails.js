@@ -1,5 +1,7 @@
 import styles from "./CarouselContent.module.css";
 
+console.log("Thumbnails Renders");
+
 const Thumbnails = (props) => {
     const thumbnailCovers = props.covers;
 

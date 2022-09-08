@@ -16,6 +16,8 @@ const Carousel = (props) => {
     const newCovers = props.covers;
     const coversWidth = (newCovers.length * 296).toString() + 'px';
 
+    console.log("Carousel Renders");
+
     // function to move to next slide, or first slide if last slide has been reached
     const moveContentLeft = () => {
         

@@ -22,6 +22,8 @@ const App = () => {
   const hash = md5(message);
   const firstRender = FirstRender();
 
+  console.log("App Renders");
+
   /** 
    * this side effect occurs upon selection of single title (newTitleID) 
    * from dropdown list of this week's issues.
