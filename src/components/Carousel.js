@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import CarouselContent from "./CarouselContent";
 import CarouselButton from '../UI/CarouselButton';
 import Card from '../UI/Card';
 import styles from "./Carousel.module.css";
+import IndexContext from '../store/index-context';
 
 const Carousel = (props) => {
-    const coverIndex = props.coverIndex;
+    // const coverIndex = props.coverIndex;
+    const ctx = useContext(IndexContext);
 
     const [state, setState] = useState({
         currentIndex: 0,
@@ -21,7 +23,7 @@ const Carousel = (props) => {
     // function to move to next slide, or first slide if last slide has been reached
     const moveContentLeft = () => {
         
-        if (Number(currentIndex) === newCovers.length - 1) {
+        if (Number(ctx.currentIndex) === newCovers.length - 1) {
             return (setState({
                 ...state,
                 translate: 'translate(0px)',
@@ -37,7 +39,7 @@ const Carousel = (props) => {
 
     // function to move slide to previous, unless first slide has been reached
     const moveContentRight = () => {
-        if (Number(currentIndex) === 0) {
+        if (Number(ctx.currentIndex) === 0) {
             return (setState({
                 ...state,
                 translate: `translate(${(newCovers.length - 1) * -296}px)`,
@@ -74,16 +76,16 @@ const Carousel = (props) => {
     * UseEffect to trigger movement of Carousel based on thumbnail state
     */
     useEffect(() => {
-        if (currentIndex > coverIndex) {
-            moveRightOne(coverIndex);
-        } else if (currentIndex < coverIndex) {
-            moveLeftOne(coverIndex);
+        if (currentIndex > ctx.currentIndex) {
+            moveRightOne(ctx.currentIndex);
+        } else if (currentIndex < ctx.currentIndex) {
+            moveLeftOne(ctx.currentIndex);
         } else {
             console.log("the index has not changed");
         }
-    }, [coverIndex]);
+    }, [currentIndex]);
 
-    props.onChange(coverIndex);
+    // props.onChange(coverIndex);
 
     return (
         <div className="whole-carousel">

@@ -5,6 +5,7 @@ import { FirstRender } from './util/FirstRender';
 import './App.css';
 import Thumbnails from './components/Thumbnails';
 import md5 from 'md5';
+import IndexContext from './store/index-context';
 
 const App = () => {
 
@@ -157,17 +158,17 @@ const App = () => {
   }
 
   return (
-    <div>
+    <IndexContext.Provider value={{currentIndex: thumbIndex}}>
       <div>
         <Header onChange={handleSelectedTitle} onLoad={handleInitialTitle} />
         <div>
-          <Carousel covers={variantCovers} coverIndex={thumbIndex} onChange={updateThumbIndex} />
+          <Carousel covers={variantCovers} onChange={updateThumbIndex} />
         </div>
       </div>
       <div className="thumbnail-grid">
         <Thumbnails covers={variantCovers} onThumbSelect={handleSelectedThumb} />
       </div>
-    </div>
+    </IndexContext.Provider>
   );
 }
 
