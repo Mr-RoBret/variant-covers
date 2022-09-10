@@ -148,27 +148,32 @@ const App = () => {
   }
 
   const handleSelectedThumb = (index) => {
-    setThumbIndex(index);
+    let newIndex = Number(index);
+    console.log(`newIndex is ${newIndex} and is type ${typeof(newIndex)}`);
+    setThumbIndex(newIndex);
+    console.log(`thumbIndex is ${thumbIndex}`);
   }
-
-  const updateThumbIndex = (index) => {
-    index = Number(index);
-    console.log(`index is ${index} and type is ${typeof(index)}`);
-    setThumbIndex(index);
-  }
+  
+  // const updateThumbIndex = (index) => {
+  //   index = Number(index);
+  //   console.log(`index is ${index} and type is ${typeof(index)}`);
+  //   setThumbIndex(index);
+  // }
 
   return (
-    <IndexContext.Provider value={{currentIndex: thumbIndex}}>
+    <div>
       <div>
         <Header onChange={handleSelectedTitle} onLoad={handleInitialTitle} />
         <div>
-          <Carousel covers={variantCovers} onChange={updateThumbIndex} />
+          <IndexContext.Provider value={{currentIndex: thumbIndex}}>
+            <Carousel covers={variantCovers} />
+          </IndexContext.Provider>
         </div>
       </div>
       <div className="thumbnail-grid">
         <Thumbnails covers={variantCovers} onThumbSelect={handleSelectedThumb} />
       </div>
-    </IndexContext.Provider>
+    </div>
   );
 }
 

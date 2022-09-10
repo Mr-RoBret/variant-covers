@@ -8,13 +8,14 @@ import IndexContext from '../store/index-context';
 const Carousel = (props) => {
     // const coverIndex = props.coverIndex;
     const ctx = useContext(IndexContext);
+    console.log(`at beginning of Carousel render, ctx.currentIndex is ${ctx.currentIndex}`);
 
     const [state, setState] = useState({
-        currentIndex: 0,
         translate: 'translate(0px)',
-        transition: '0.5s'
+        transition: '0.5s',
+        localIndex: 0
     })
-    const { currentIndex, translate, transition } = state;
+    const { translate, transition, localIndex } = state;
     const newCovers = props.covers;
     const coversWidth = (newCovers.length * 296).toString() + 'px';
 
@@ -27,76 +28,46 @@ const Carousel = (props) => {
             return (setState({
                 ...state,
                 translate: 'translate(0px)',
-                currentIndex: 0
+                localIndex: 0
             }))
         }
         return (setState({
             ...state,
-            currentIndex: Number(currentIndex) + 1,
-            translate: `translate(${(Number(currentIndex) + 1) * -296}px)`
+            localIndex: Number(localIndex) + 1,
+            translate: `translate(${(Number(ctx.currentIndex) + 1) * -296}px)`
         }))
     }
 
     // function to move slide to previous, unless first slide has been reached
     const moveContentRight = () => {
+        
         if (Number(ctx.currentIndex) === 0) {
             return (setState({
                 ...state,
                 translate: `translate(${(newCovers.length - 1) * -296}px)`,
-                currentIndex: newCovers.length - 1
+                localIndex: newCovers.length - 1
             }))
         }
         return (setState({
                 ...state,
-                translate: `translate(${(Number(currentIndex) - 1) * -296}px)`,
-                currentIndex: Number(currentIndex) - 1
+                translate: `translate(${(Number(ctx.currentIndex) - 1) * -296}px)`,
+                localIndex: Number(localIndex) - 1
             })
         )
     }
-
-    // thumbnail-driven function to move slide to previous slide
-    const moveLeftOne = (coverIndex) => {
-        setState({
-            ...state,
-            translate: `translate(${Number(coverIndex) * -296}px)`,
-            currentIndex: Number(coverIndex)
-        })
-    }
-
-    // thumbnail-driven function to move to next slide
-    const moveRightOne = (coverIndex) => {
-        setState({
-            ...state,
-            currentIndex: Number(coverIndex),
-            translate: `translate(${Number(coverIndex) * -296}px)`
-        })
-    }
-
-    /**
-    * UseEffect to trigger movement of Carousel based on thumbnail state
-    */
-    useEffect(() => {
-        if (currentIndex > ctx.currentIndex) {
-            moveRightOne(ctx.currentIndex);
-        } else if (currentIndex < ctx.currentIndex) {
-            moveLeftOne(ctx.currentIndex);
-        } else {
-            console.log("the index has not changed");
-        }
-    }, [currentIndex]);
-
-    // props.onChange(coverIndex);
+        
+    ctx.currentIndex = localIndex;
 
     return (
         <div className="whole-carousel">
-            <CarouselButton buttonDirection={'buttonLeft'} onClick={moveContentRight}/>
-                <Card>
-                    <div className={styles.content} style={{height: '700px', width: coversWidth, transform: translate, transition: transition}}>
-                        <CarouselContent covers={newCovers} width={coversWidth} />
-                    </div>
-                </Card>
-            <CarouselButton buttonDirection={'buttonRight'} onClick={moveContentLeft} />
-        </div>
+                <CarouselButton buttonDirection={'buttonLeft'} onClick={moveContentRight}/>
+                    <Card>
+                        <div className={styles.content} style={{height: '700px', width: coversWidth, transform: translate, transition: transition}}>
+                            <CarouselContent covers={newCovers} width={coversWidth} />
+                        </div>
+                    </Card>
+                <CarouselButton buttonDirection={'buttonRight'} onClick={moveContentLeft} />
+            </div>
     );
 };
 
