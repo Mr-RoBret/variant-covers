@@ -165,7 +165,10 @@ const App = () => {
       <div>
         <Header onChange={handleSelectedTitle} onLoad={handleInitialTitle} />
         <div>
-          <IndexContext.Provider value={{currentIndex: thumbIndex}}>
+          <IndexContext.Provider value={{
+                currentIndex: thumbIndex,
+                onThumbSelect: handleSelectedThumb,
+              }}>
             <Carousel covers={variantCovers} />
           </IndexContext.Provider>
         </div>

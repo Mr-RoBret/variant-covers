@@ -13,7 +13,7 @@ const Carousel = (props) => {
     const [state, setState] = useState({
         translate: 'translate(0px)',
         transition: '0.5s',
-        localIndex: 0
+        localIndex: ctx.currentIndex
     })
     const { translate, transition, localIndex } = state;
     const newCovers = props.covers;
@@ -56,7 +56,7 @@ const Carousel = (props) => {
         )
     }
         
-    ctx.currentIndex = localIndex;
+    ctx.onThumbSelect(localIndex);
 
     return (
         <div className="whole-carousel">
