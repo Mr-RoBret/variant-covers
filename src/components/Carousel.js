@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, Fragment } from 'react';
 import CarouselContent from "./CarouselContent";
 import CarouselButton from '../UI/CarouselButton';
 import Card from '../UI/Card';
 import styles from "./Carousel.module.css";
 import IndexContext from '../store/index-context';
+import Thumbnails from './Thumbnails';
 
 const Carousel = (props) => {
     // const coverIndex = props.coverIndex;
+    // const [thumbIndex, setThumbIndex] = useState(0);
     const ctx = useContext(IndexContext);
     console.log(`at beginning of Carousel render, ctx.currentIndex is ${ctx.currentIndex}`);
 
@@ -55,11 +57,23 @@ const Carousel = (props) => {
             })
         )
     }
+
+    const handleSelectedThumb = (index) => {
+        // setThumbIndex(Number(index));
+        if (index > localIndex) {
+            moveContentLeft();
+        } else if (index < localIndex) {
+            moveContentRight();
+        } else {
+            console.log('no change in index.');
+        }
+    }
         
-    ctx.onThumbSelect(localIndex);
+    ctx.currentIndex = localIndex;
 
     return (
-        <div className="whole-carousel">
+        <Fragment>
+            <div className="whole-carousel">
                 <CarouselButton buttonDirection={'buttonLeft'} onClick={moveContentRight}/>
                     <Card>
                         <div className={styles.content} style={{height: '700px', width: coversWidth, transform: translate, transition: transition}}>
@@ -68,6 +82,18 @@ const Carousel = (props) => {
                     </Card>
                 <CarouselButton buttonDirection={'buttonRight'} onClick={moveContentLeft} />
             </div>
+            <div>
+                <IndexContext.Provider value={{
+                    currentIndex: localIndex,
+                    onThumbSelect: handleSelectedThumb,
+                }}>
+                    <div className="thumbnail-grid">
+                        <Thumbnails covers={newCovers} onThumbSelect={handleSelectedThumb} />
+                    </div>
+                </IndexContext.Provider>
+            </div>
+
+        </Fragment>
     );
 };
 

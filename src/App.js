@@ -3,7 +3,6 @@ import Carousel from './components/Carousel';
 import Header from './components/Header';
 import { FirstRender } from './util/FirstRender';
 import './App.css';
-import Thumbnails from './components/Thumbnails';
 import md5 from 'md5';
 import IndexContext from './store/index-context';
 
@@ -13,6 +12,8 @@ const App = () => {
   const [newTitleID, setNewTitleID] = useState(null);
   const [variantIDs, setVariantIDs] = useState([]);
   const [variantCovers, setVariantCovers] = useState([]);
+  
+  const ctx = IndexContext;
   const [thumbIndex, setThumbIndex] = useState(0);
 
   const privateKey = process.env.REACT_APP_API_SECRET;
@@ -32,6 +33,7 @@ const App = () => {
   useEffect(() => {
 
     setThumbIndex(0);
+    ctx.currentIndex = thumbIndex;
 
     if (!firstRender) {
       // 4. get IDs of variants
@@ -147,34 +149,17 @@ const App = () => {
     setNewTitleID(titleID); // setting to previous render's variables
   }
 
-  const handleSelectedThumb = (index) => {
-    let newIndex = Number(index);
-    console.log(`newIndex is ${newIndex} and is type ${typeof(newIndex)}`);
-    setThumbIndex(newIndex);
-    console.log(`thumbIndex is ${thumbIndex}`);
-  }
-  
-  // const updateThumbIndex = (index) => {
-  //   index = Number(index);
-  //   console.log(`index is ${index} and type is ${typeof(index)}`);
-  //   setThumbIndex(index);
-  // }
-
   return (
     <div>
       <div>
         <Header onChange={handleSelectedTitle} onLoad={handleInitialTitle} />
         <div>
-          <IndexContext.Provider value={{
-                currentIndex: thumbIndex,
-                onThumbSelect: handleSelectedThumb,
-              }}>
-            <Carousel covers={variantCovers} />
-          </IndexContext.Provider>
+            <IndexContext.Provider value={{
+                  currentIndex: thumbIndex,
+                }}>
+              <Carousel covers={variantCovers} />
+            </IndexContext.Provider>
         </div>
-      </div>
-      <div className="thumbnail-grid">
-        <Thumbnails covers={variantCovers} onThumbSelect={handleSelectedThumb} />
       </div>
     </div>
   );
