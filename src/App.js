@@ -12,10 +12,7 @@ const App = () => {
   const [newTitleID, setNewTitleID] = useState(null);
   const [variantIDs, setVariantIDs] = useState([]);
   const [variantCovers, setVariantCovers] = useState([]);
-  
-  const ctx = IndexContext;
-  const [thumbIndex, setThumbIndex] = useState(0);
-
+ 
   const privateKey = process.env.REACT_APP_API_SECRET;
   const publicKey = process.env.REACT_APP_API_PUBLIC;
 
@@ -31,9 +28,6 @@ const App = () => {
    * from dropdown list of this week's issues.
   */
   useEffect(() => {
-
-    setThumbIndex(0);
-    ctx.currentIndex = thumbIndex;
 
     if (!firstRender) {
       // 4. get IDs of variants
@@ -138,7 +132,6 @@ const App = () => {
   }, [variantIDs]);
 
   // component handlers
-
   const handleInitialTitle = (titleID) => {
     const titleIdString = titleID.toString();
     setInitialTitleID(titleIdString);
@@ -155,7 +148,7 @@ const App = () => {
         <Header onChange={handleSelectedTitle} onLoad={handleInitialTitle} />
         <div>
             <IndexContext.Provider value={{
-                  currentIndex: thumbIndex,
+                  currentIndex: 0,
                 }}>
               <Carousel covers={variantCovers} />
             </IndexContext.Provider>

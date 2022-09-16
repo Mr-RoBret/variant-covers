@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, Fragment } from 'react';
+import React, { useState, useContext, Fragment } from 'react';
 import CarouselContent from "./CarouselContent";
 import CarouselButton from '../UI/CarouselButton';
 import Card from '../UI/Card';
@@ -7,10 +7,8 @@ import IndexContext from '../store/index-context';
 import Thumbnails from './Thumbnails';
 
 const Carousel = (props) => {
-    // const coverIndex = props.coverIndex;
-    // const [thumbIndex, setThumbIndex] = useState(0);
+
     const ctx = useContext(IndexContext);
-    console.log(`at beginning of Carousel render, ctx.currentIndex is ${ctx.currentIndex}`);
 
     const [state, setState] = useState({
         translate: 'translate(0px)',
@@ -18,6 +16,7 @@ const Carousel = (props) => {
         localIndex: ctx.currentIndex
     })
     const { translate, transition, localIndex } = state;
+
     const newCovers = props.covers;
     const coversWidth = (newCovers.length * 296).toString() + 'px';
 
@@ -59,14 +58,11 @@ const Carousel = (props) => {
     }
 
     const handleSelectedThumb = (index) => {
-        // setThumbIndex(Number(index));
-        if (index > localIndex) {
-            moveContentLeft();
-        } else if (index < localIndex) {
-            moveContentRight();
-        } else {
-            console.log('no change in index.');
-        }
+        setState({
+            ...state,
+            translate: `translate(${(Number(index)) * -296}px)`,
+            localIndex: index
+        })
     }
         
     ctx.currentIndex = localIndex;
@@ -92,7 +88,6 @@ const Carousel = (props) => {
                     </div>
                 </IndexContext.Provider>
             </div>
-
         </Fragment>
     );
 };
