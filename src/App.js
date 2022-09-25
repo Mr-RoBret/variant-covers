@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Carousel from './components/Carousel';
 import Header from './components/Header';
 import { FirstRender } from './util/FirstRender';
@@ -8,10 +8,12 @@ import IndexContext from './store/index-context';
 
 const App = () => {
 
+  // const ctx = React.createContext(IndexContext)
   const [initialTitleID, setInitialTitleID] = useState(null);
   const [newTitleID, setNewTitleID] = useState(null);
   const [variantIDs, setVariantIDs] = useState([]);
   const [variantCovers, setVariantCovers] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
  
   const privateKey = process.env.REACT_APP_API_SECRET;
   const publicKey = process.env.REACT_APP_API_PUBLIC;
@@ -140,6 +142,7 @@ const App = () => {
   // handle selected option from Header/Dropdown
   const handleSelectedTitle = (titleObj, titleID) => {
     setNewTitleID(titleID); // setting to previous render's variables
+    setCurrentIndex(0);
   }
 
   return (
@@ -148,7 +151,7 @@ const App = () => {
         <Header onChange={handleSelectedTitle} onLoad={handleInitialTitle} />
         <div>
             <IndexContext.Provider value={{
-                  currentIndex: 0,
+                  currentIndex: currentIndex,
                 }}>
               <Carousel covers={variantCovers} />
             </IndexContext.Provider>

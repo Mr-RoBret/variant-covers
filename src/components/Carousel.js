@@ -1,4 +1,4 @@
-import React, { useState, useContext, Fragment } from 'react';
+import React, { useState, useContext, useEffect, Fragment } from 'react';
 import CarouselContent from "./CarouselContent";
 import CarouselButton from '../UI/CarouselButton';
 import Card from '../UI/Card';
@@ -9,11 +9,13 @@ import Thumbnails from './Thumbnails';
 const Carousel = (props) => {
 
     const ctx = useContext(IndexContext);
+    // console.log(`ctx.currentIndex is ${ctx.currentIndex}`);
+    // console.log(`ctx.currentIndex is type ${typeof(ctx.currentIndex)}`);
 
     const [state, setState] = useState({
         translate: 'translate(0px)',
         transition: '0.5s',
-        localIndex: ctx.currentIndex
+        localIndex: Number(ctx.currentIndex)
     })
     const { translate, transition, localIndex } = state;
 
@@ -21,11 +23,12 @@ const Carousel = (props) => {
     const coversWidth = (newCovers.length * 296).toString() + 'px';
 
     console.log("Carousel Renders");
+    // ctx.currentIndex = localIndex;
 
     // function to move to next slide, or first slide if last slide has been reached
     const moveContentLeft = () => {
-        
-        if (Number(ctx.currentIndex) === newCovers.length - 1) {
+
+        if (Number(ctx.currentIndex) >= newCovers.length - 1) {
             return (setState({
                 ...state,
                 translate: 'translate(0px)',
@@ -42,7 +45,7 @@ const Carousel = (props) => {
     // function to move slide to previous, unless first slide has been reached
     const moveContentRight = () => {
         
-        if (Number(ctx.currentIndex) === 0) {
+        if (Number(ctx.currentIndex) <= 0) {
             return (setState({
                 ...state,
                 translate: `translate(${(newCovers.length - 1) * -296}px)`,
@@ -65,7 +68,17 @@ const Carousel = (props) => {
         })
     }
         
+    // useEffect(() => { 
+    //     console.log(`setting localIndex to zero.`);
+    //     ctx.currentIndex = 0;
+    //     setState({
+    //         ...state,
+    //         localIndex: ctx.currentIndex
+    //     })
+    // }, [ctx]);
+
     ctx.currentIndex = localIndex;
+    console.log(`ctx.currentIndex is ${ctx.currentIndex}`);
 
     return (
         <Fragment>
