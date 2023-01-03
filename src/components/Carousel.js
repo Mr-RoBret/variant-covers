@@ -84,8 +84,8 @@ const Carousel = (props) => {
                     </Card>
                 <CarouselButton buttonDirection={'buttonRight'} onClick={moveContentLeft} />
             </div>
-            <div className="artist-info">
-                <p>{newCovers[0] ? newCovers[localIndex].artist : 'loading...'}</p>
+            <div className={styles.artistInfo}>
+                <p>{newCovers[0] ? 'Cover artist: ' + newCovers[localIndex].artist : 'loading...'}</p>
             </div>
             <div>
                 <IndexContext.Provider value={{
