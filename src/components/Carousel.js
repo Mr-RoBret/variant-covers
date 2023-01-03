@@ -18,6 +18,8 @@ const Carousel = (props) => {
     const { translate, transition, localIndex } = state;
 
     const newCovers = props.covers;
+    console.log(newCovers);
+
     const coversWidth = (newCovers.length * 296).toString() + 'px';
 
     // function to move to next slide, or first slide if last slide has been reached
@@ -81,6 +83,9 @@ const Carousel = (props) => {
                         </div>
                     </Card>
                 <CarouselButton buttonDirection={'buttonRight'} onClick={moveContentLeft} />
+            </div>
+            <div className="artist-info">
+                <p>{newCovers[0] ? newCovers[localIndex].artist : 'loading...'}</p>
             </div>
             <div>
                 <IndexContext.Provider value={{
