@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/variant-covers/static/css/main.4959d93e.css",
-    "main.js": "/variant-covers/static/js/main.4418637f.js",
+    "main.css": "/variant-covers/static/css/main.fdfc1305.css",
+    "main.js": "/variant-covers/static/js/main.de73a245.js",
     "index.html": "/variant-covers/index.html",
-    "main.4959d93e.css.map": "/variant-covers/static/css/main.4959d93e.css.map",
-    "main.4418637f.js.map": "/variant-covers/static/js/main.4418637f.js.map"
+    "main.fdfc1305.css.map": "/variant-covers/static/css/main.fdfc1305.css.map",
+    "main.de73a245.js.map": "/variant-covers/static/js/main.de73a245.js.map"
   },
   "entrypoints": [
-    "static/css/main.4959d93e.css",
-    "static/js/main.4418637f.js"
+    "static/css/main.fdfc1305.css",
+    "static/js/main.de73a245.js"
   ]
 }
