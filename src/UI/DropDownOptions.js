@@ -5,7 +5,7 @@ const DropDownOptions = (props) => {
     const itemTitles = props.options;
 
     const handleSelection = (event) => {
-        console.log(`from DropDownOptions: event.target.value is ${event.target.value}`);
+        // console.log(`from DropDownOptions: event.target.value is ${event.target.value}`);
         props.onChange(event.target.value);
     };
 

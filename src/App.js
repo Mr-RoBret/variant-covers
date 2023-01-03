@@ -23,8 +23,6 @@ const App = () => {
   const hash = md5(message);
   const firstRender = FirstRender();
 
-  console.log("App Renders");
-
   /** 
    * this side effect occurs upon selection of single title (newTitleID) 
    * from dropdown list of this week's issues.
@@ -55,7 +53,6 @@ const App = () => {
         const fetchData = async() => {
           const data = await fetch(requestVariants);
           const json = await data.json();
-          console.log('async #2 called');
           getVariantIDs(json);
         }
         
@@ -78,7 +75,7 @@ const App = () => {
   */
 
   useEffect(() => {
-    console.log(firstRender);
+    // console.log(firstRender);
 
     if (!firstRender) {
       
@@ -106,8 +103,6 @@ const App = () => {
       async function getVariantCovers(item) {
         const response = await fetch(item);
         const data = await response.json();
-
-        console.log('async #1 called');
 
         return formatImageName(data);
       }
@@ -142,7 +137,7 @@ const App = () => {
   // handle selected option from Header/Dropdown
   const handleSelectedTitle = (titleObj, titleID) => {
     setNewTitleID(titleID); // setting to previous render's variables
-    setCurrentIndex(0);
+    // setCurrentIndex(0);
   }
 
   return (

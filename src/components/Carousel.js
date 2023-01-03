@@ -9,8 +9,6 @@ import Thumbnails from './Thumbnails';
 const Carousel = (props) => {
 
     const ctx = useContext(IndexContext);
-    // console.log(`ctx.currentIndex is ${ctx.currentIndex}`);
-    // console.log(`ctx.currentIndex is type ${typeof(ctx.currentIndex)}`);
 
     const [state, setState] = useState({
         translate: 'translate(0px)',
@@ -21,9 +19,6 @@ const Carousel = (props) => {
 
     const newCovers = props.covers;
     const coversWidth = (newCovers.length * 296).toString() + 'px';
-
-    console.log("Carousel Renders");
-    // ctx.currentIndex = localIndex;
 
     // function to move to next slide, or first slide if last slide has been reached
     const moveContentLeft = () => {
@@ -68,17 +63,13 @@ const Carousel = (props) => {
         })
     }
         
-    // useEffect(() => { 
-    //     console.log(`setting localIndex to zero.`);
-    //     ctx.currentIndex = 0;
-    //     setState({
-    //         ...state,
-    //         localIndex: ctx.currentIndex
-    //     })
-    // }, [ctx]);
+    // resets thumbnail/carousel to zero upon selection of new title
+    useEffect(() => { 
+        handleSelectedThumb(0)  
+    }, [ctx]);
 
+    // updates context variable for rest of app
     ctx.currentIndex = localIndex;
-    console.log(`ctx.currentIndex is ${ctx.currentIndex}`);
 
     return (
         <Fragment>

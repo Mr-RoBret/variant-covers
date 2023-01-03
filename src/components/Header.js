@@ -44,7 +44,7 @@ const Header = (props) => {
             }
 
         setNewTitles(titlesArr);
-        console.log(`newTitles, after extracting from itemsArr, are: ${titlesArr}.`);
+        // console.log(`newTitles, after extracting from itemsArr, are: ${titlesArr}.`);
         // console.log(`initialTitleID is ${initialTitleID.current}`);
         props.onLoad(initialTitleID.current);
         }
