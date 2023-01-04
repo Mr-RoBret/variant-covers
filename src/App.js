@@ -55,7 +55,6 @@ const App = () => {
           const json = await data.json();
           getVariantIDs(json);
         }
-        
         fetchData()
         .catch(console.error);;
       }
@@ -76,44 +75,56 @@ const App = () => {
   */
 
   useEffect(() => {
-    // console.log(firstRender);
-    
     const getArtistInfo = (creators) => {
       let artistIndex = null;
       if (creators.items.find(item => item.role === 'penciler (cover)')) {
           artistIndex = creators.items.findIndex(item => item.role === 'penciler (cover)');
-          console.log(artistIndex);
           return creators.items[artistIndex].name;
       }
       else if (creators.items.find(item => item.role === 'painter (cover)')) {
           artistIndex = creators.items.findIndex(item => item.role === 'painter (cover)');
-          console.log(artistIndex);
           return creators.items[artistIndex].name;
       }
       else if (creators.items.find(item => item.role === 'colorist (cover)')) {
           artistIndex = creators.items.findIndex(item => item.role === 'colorist (cover)');
-          console.log(artistIndex);
           return creators.items[artistIndex].name;
       } else {
         return "artist unavailable";
       }
-      // return creators.items[artistIndex].name;
     }
 
     if (!firstRender) {
+
+      // 6. Gets image dimensions (to be used to size individual cards)
+      const getImageWidth = (url) => {
+        const img = new Image();
+        img.src = url;
+        img.onload = function() {
+          // console.log('returned img.naturalWidth is ' + img.naturalWidth);
+        }
+        return img.naturalWidth;
+      }
+      const getImageHeight = (url) => {
+        const img = new Image();
+        img.src = url;
+        img.onload = function() {
+          // console.log('returned img.naturalHeight is ' + img.naturalHeight);
+        }
+        return img.naturalHeight;
+      }
       
       // 5. Formats image name and extension and returns
       const formatImageName = (data) => {
         const fileName = data.data.results[0].thumbnail.path;
         const fileExtension = data.data.results[0].thumbnail.extension;
-
         /** get artist name if creators.items[item].role === "penciler (cover)" */
-        // const artistName = data.data.results[0].creators.items[0].name;
-        // const artistName = data.data.results[0].creators.items.find(item => (item.role === 'penciler (cover)') || (item.role === 'painter (cover)') || (item.role === 'colorist (cover)'));
         const artistName = getArtistInfo(data.data.results[0].creators);
-        console.log(artistName);
-
-        const imageAndArtist = [fileName + '.' + fileExtension, artistName]
+        const imageFileName = fileName + '.' + fileExtension;
+        
+        const returnedWidth = getImageWidth(imageFileName);
+        const returnedHeight = getImageHeight(imageFileName);
+        
+        const imageAndArtist = [imageFileName, artistName, returnedWidth, returnedHeight]
         return imageAndArtist;
       };
   
@@ -149,10 +160,7 @@ const App = () => {
         let index = 0;
         for (let item of items) {
 
-          /** 
-           * extract correct artist value (from around line 88 above) 
-           */
-          itemsArray.push({key: index, value: item.value[0], artist: item.value[1]});
+          itemsArray.push({key: index, value: item.value[0], artist: item.value[1], width: item.value[2], height: item.value[3]});
           index++;
         }
         setVariantCovers(itemsArray);

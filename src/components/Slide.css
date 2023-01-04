@@ -1,6 +1,7 @@
 .cover-slide {
   display: flex;
   flex-direction: column;
-  height: 450px;
-  width: 296px;
+  justify-content: center;
+  height: auto;
+  width: 477px;
 }

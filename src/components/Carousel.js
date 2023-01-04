@@ -8,6 +8,7 @@ import Thumbnails from './Thumbnails';
 
 const Carousel = (props) => {
 
+    const coverWidth = 477;
     const ctx = useContext(IndexContext);
 
     const [state, setState] = useState({
@@ -20,7 +21,7 @@ const Carousel = (props) => {
     const newCovers = props.covers;
     console.log(newCovers);
 
-    const coversWidth = (newCovers.length * 296).toString() + 'px';
+    const coversWidth = (newCovers.length * Number(coverWidth)).toString() + 'px';
 
     // function to move to next slide, or first slide if last slide has been reached
     const moveContentLeft = () => {
@@ -35,7 +36,7 @@ const Carousel = (props) => {
         return (setState({
             ...state,
             localIndex: Number(localIndex) + 1,
-            translate: `translate(${(Number(ctx.currentIndex) + 1) * -296}px)`
+            translate: `translate(${(Number(ctx.currentIndex) + 1) * -Number(coverWidth)}px)`
         }))
     }
 
@@ -45,13 +46,13 @@ const Carousel = (props) => {
         if (Number(ctx.currentIndex) <= 0) {
             return (setState({
                 ...state,
-                translate: `translate(${(newCovers.length - 1) * -296}px)`,
+                translate: `translate(${(newCovers.length - 1) * -Number(coverWidth)}px)`,
                 localIndex: newCovers.length - 1
             }))
         }
         return (setState({
                 ...state,
-                translate: `translate(${(Number(ctx.currentIndex) - 1) * -296}px)`,
+                translate: `translate(${(Number(ctx.currentIndex) - 1) * -Number(coverWidth)}px)`,
                 localIndex: Number(localIndex) - 1
             })
         )
@@ -60,7 +61,7 @@ const Carousel = (props) => {
     const handleSelectedThumb = (index) => {
         setState({
             ...state,
-            translate: `translate(${(Number(index)) * -296}px)`,
+            translate: `translate(${(Number(index)) * -Number(coverWidth)}px)`,
             localIndex: index
         })
     }
@@ -78,7 +79,7 @@ const Carousel = (props) => {
             <div className="whole-carousel">
                 <CarouselButton buttonDirection={'buttonLeft'} onClick={moveContentRight}/>
                     <Card>
-                        <div className={styles.content} style={{height: '700px', width: coversWidth, transform: translate, transition: transition}}>
+                        <div className="content" style={{display: 'flex', height: 'auto', width: coversWidth, transform: translate, transition: transition}}>
                             <CarouselContent covers={newCovers} width={coversWidth} />
                         </div>
                     </Card>
