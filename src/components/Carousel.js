@@ -21,7 +21,14 @@ const Carousel = (props) => {
     const newCovers = props.covers;
     console.log(newCovers);
 
-    const coversWidth = (newCovers.length * Number(coverWidth)).toString() + 'px';
+    // const coversWidth = (newCovers.length * Number(coverWidth)).toString() + 'px';
+    const getCoversWidth = (newCovers) => {
+        let coversWidth = 0;
+        for (let item of newCovers) {
+            coversWidth += item[2].value;
+        }
+        return coversWidth.toString() + 'px';
+    }
 
     // function to move to next slide, or first slide if last slide has been reached
     const moveContentLeft = () => {
@@ -73,14 +80,16 @@ const Carousel = (props) => {
 
     // updates context variable for rest of app
     ctx.currentIndex = localIndex;
+    console.log(newCovers);
 
     return (
         <Fragment>
             <div className="whole-carousel">
                 <CarouselButton buttonDirection={'buttonLeft'} onClick={moveContentRight}/>
+                    {/* <Card width={newCovers[localIndex].width}> */}
                     <Card>
-                        <div className="content" style={{display: 'flex', height: 'auto', width: coversWidth, transform: translate, transition: transition}}>
-                            <CarouselContent covers={newCovers} width={coversWidth} />
+                        <div className="content" style={{display: 'flex', height: 'auto', width: getCoversWidth, transform: translate, transition: transition}}>
+                            <CarouselContent covers={newCovers} width={getCoversWidth} />
                         </div>
                     </Card>
                 <CarouselButton buttonDirection={'buttonRight'} onClick={moveContentLeft} />
