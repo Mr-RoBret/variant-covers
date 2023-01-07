@@ -6,7 +6,7 @@ const CarouselContent = (props) => {
 
     return (
         newCovers.map((image) => 
-            <Slide className={styles.slide} key={image.index} src={image.value} />
+            <Slide className={styles.slide} key={image.index} src={image.value} style={{width: props.width}}/>
         )
     );
 }

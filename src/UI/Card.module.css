@@ -1,7 +1,7 @@
 .card {
   display: flex;
   flex-direction: row;
-  width: 477px;
+  /* width: 477px; */
   height: fit-content;
   /* background-color: rgb(202, 205, 208);
   box-shadow: 0 2px 4px rgb(0 0 0 / 50%); */
