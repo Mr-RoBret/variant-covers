@@ -1,8 +1,8 @@
 .card {
   display: flex;
   flex-direction: row;
-  /* width: 477px; */
-  height: fit-content;
+  /* width: auto; */
+  height: auto;
   /* background-color: rgb(202, 205, 208);
   box-shadow: 0 2px 4px rgb(0 0 0 / 50%); */
   justify-content: left;

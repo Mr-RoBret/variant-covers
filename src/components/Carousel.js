@@ -8,7 +8,7 @@ import Thumbnails from './Thumbnails';
 
 const Carousel = (props) => {
 
-    const coverWidth = 477;
+    const coverWidth = 553;
     const ctx = useContext(IndexContext);
 
     const [state, setState] = useState({
@@ -86,10 +86,10 @@ const Carousel = (props) => {
         <Fragment>
             <div className="whole-carousel">
                 <CarouselButton buttonDirection={'buttonLeft'} onClick={moveContentRight}/>
-                    {/* <Card width={newCovers[localIndex].width}> */}
+                    {/* <Card width={coverWidth + 'px'}> */}
                     <Card>
-                        <div className="content" style={{display: 'flex', height: 'auto', width: getCoversWidth, transform: translate, transition: transition}}>
-                            <CarouselContent covers={newCovers} width={getCoversWidth} />
+                        <div className="content" style={{display: 'flex', height: 'auto', width: coverWidth + 'px', transform: translate, transition: transition}}>
+                            <CarouselContent covers={newCovers} width={coverWidth + 'px'} />
                         </div>
                     </Card>
                 <CarouselButton buttonDirection={'buttonRight'} onClick={moveContentLeft} />

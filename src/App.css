@@ -10,7 +10,8 @@
     display: flex;
     flex-direction: row;
     align-content: space-around;
-    width: 50%;
+    min-width: 50%;
+    max-width: 55%;
     margin: auto;
 }
 
@@ -29,7 +30,7 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .whole-carousel {
-        width: auto;
+        min-width: 50%;
         height: 75%;
     }
 
@@ -38,7 +39,7 @@
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
     .whole-carousel {
-        width: 90%;
+        min-width: 50%;
         height: 75%;
     }
 }
@@ -46,14 +47,14 @@
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
     .whole-carousel {
-        width: 50%;
+       min-width: 50%;
     }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
     .whole-carousel {
-        width: 50%;
+        min-width: 50%;
     }
 }
 
