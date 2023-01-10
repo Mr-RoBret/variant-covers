@@ -88,7 +88,7 @@ const Carousel = (props) => {
                 <CarouselButton buttonDirection={'buttonLeft'} onClick={moveContentRight}/>
                     {/* <Card width={coverWidth + 'px'}> */}
                     <Card>
-                        <div className="content" style={{display: 'flex', height: 'auto', width: coverWidth + 'px', transform: translate, transition: transition}}>
+                        <div className="content" style={{display: 'flex', height: 'auto', width: '553px', transform: translate, transition: transition}}>
                             <CarouselContent covers={newCovers} width={coverWidth + 'px'} />
                         </div>
                     </Card>
