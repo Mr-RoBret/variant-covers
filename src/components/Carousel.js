@@ -80,7 +80,7 @@ const Carousel = (props) => {
             <div className="whole-carousel">
                 <CarouselButton buttonDirection={'buttonLeft'} onClick={moveContentRight}/>
                     <Card>
-                        <div className={styles.content} style={{height: '700px', width: coversWidth, transform: translate, transition: transition}}>
+                        <div className={styles.content} style={{height: 'auto', width: coversWidth, transform: translate, transition: transition}}>
                             <CarouselContent covers={newCovers} width={coversWidth} />
                         </div>
                     </Card>
