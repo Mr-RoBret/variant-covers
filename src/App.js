@@ -14,6 +14,7 @@ const App = () => {
   const [variantIDs, setVariantIDs] = useState([]);
   const [variantCovers, setVariantCovers] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [coverWidth, setCoverWidth] = useState(window.innerWidth);
  
   const privateKey = process.env.REACT_APP_API_SECRET;
   const publicKey = process.env.REACT_APP_API_PUBLIC;
@@ -23,7 +24,9 @@ const App = () => {
   const hash = md5(message);
   const firstRender = FirstRender();
 
-  const vw = window.innerWidth;
+  window.onresize = () => {
+    setCoverWidth(window.innerWidth);
+  }
 
   /** 
    * this side effect occurs upon selection of single title (newTitleID) 
@@ -184,7 +187,7 @@ const App = () => {
             <IndexContext.Provider value={{
                   currentIndex: currentIndex,
                 }}>
-              <Carousel covers={variantCovers} vw={vw} />
+              <Carousel covers={variantCovers} vw={coverWidth} />
             </IndexContext.Provider>
         </div>
       </div>

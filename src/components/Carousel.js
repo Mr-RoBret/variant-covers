@@ -19,13 +19,8 @@ const Carousel = (props) => {
 
     const newCovers = props.covers;
     console.log(newCovers);
-    let coverWidth = 0;
-
-    if (props.vw >= 550) {
-        coverWidth = 450;
-    } else {
-        coverWidth = 296;
-    }
+    
+    let coverWidth = (props.vw >= 550 ? 450 : 296);
 
     const coversWidth = (newCovers.length * coverWidth).toString() + 'px';
 
