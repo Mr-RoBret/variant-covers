@@ -86,7 +86,7 @@ const Header = (props) => {
                 <h1 className={styles.mainTitle}>The New Variants</h1>
             </div>
             <div className={styles.selection}>
-                <h2 className={styles.subTitle}>Select a title to see its variants:</h2>
+                <h2 className={styles.subTitle}>Select a title from this weeks releases to see its variants:</h2>
                 <DropDownOptions options={newTitles} onChange={handleSelectedTitle} />
             </div>
         </div>
