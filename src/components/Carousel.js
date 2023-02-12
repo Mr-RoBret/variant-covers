@@ -19,8 +19,15 @@ const Carousel = (props) => {
 
     const newCovers = props.covers;
     console.log(newCovers);
+    let coverWidth = 0;
 
-    const coversWidth = (newCovers.length * 296).toString() + 'px';
+    if (props.vw >= 550) {
+        coverWidth = 450;
+    } else {
+        coverWidth = 296;
+    }
+
+    const coversWidth = (newCovers.length * coverWidth).toString() + 'px';
 
     // function to move to next slide, or first slide if last slide has been reached
     const moveContentLeft = () => {
@@ -35,7 +42,7 @@ const Carousel = (props) => {
         return (setState({
             ...state,
             localIndex: Number(localIndex) + 1,
-            translate: `translate(${(Number(ctx.currentIndex) + 1) * -296}px)`
+            translate: `translate(${(Number(ctx.currentIndex) + 1) * -coverWidth}px)`
         }))
     }
 
@@ -45,13 +52,13 @@ const Carousel = (props) => {
         if (Number(ctx.currentIndex) <= 0) {
             return (setState({
                 ...state,
-                translate: `translate(${(newCovers.length - 1) * -296}px)`,
+                translate: `translate(${(newCovers.length - 1) * -coverWidth}px)`,
                 localIndex: newCovers.length - 1
             }))
         }
         return (setState({
                 ...state,
-                translate: `translate(${(Number(ctx.currentIndex) - 1) * -296}px)`,
+                translate: `translate(${(Number(ctx.currentIndex) - 1) * -coverWidth}px)`,
                 localIndex: Number(localIndex) - 1
             })
         )
@@ -60,7 +67,7 @@ const Carousel = (props) => {
     const handleSelectedThumb = (index) => {
         setState({
             ...state,
-            translate: `translate(${(Number(index)) * -296}px)`,
+            translate: `translate(${(Number(index)) * -coverWidth}px)`,
             localIndex: index
         })
     }

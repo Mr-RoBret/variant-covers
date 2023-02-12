@@ -23,6 +23,8 @@ const App = () => {
   const hash = md5(message);
   const firstRender = FirstRender();
 
+  const vw = window.innerWidth;
+
   /** 
    * this side effect occurs upon selection of single title (newTitleID) 
    * from dropdown list of this week's issues.
@@ -182,7 +184,7 @@ const App = () => {
             <IndexContext.Provider value={{
                   currentIndex: currentIndex,
                 }}>
-              <Carousel covers={variantCovers} />
+              <Carousel covers={variantCovers} vw={vw} />
             </IndexContext.Provider>
         </div>
       </div>
