@@ -8,11 +8,11 @@ const CarouselButton = (props) => {
 
     if (props.buttonDirection === 'buttonLeft') {
         return (
-            <p className={styles.buttonText} onClick={handleClick}>{'<'}</p>
+            <div className={styles.buttonText} onClick={handleClick}>{'<'}</div>
         );
     }
     return (
-        <p className={styles.buttonText} onClick={handleClick}>{'>'}</p>
+        <div className={styles.buttonText} onClick={handleClick}>{'>'}</div>
     ); 
 }
 

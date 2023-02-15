@@ -78,13 +78,17 @@ const Carousel = (props) => {
     return (
         <Fragment>
             <div className="whole-carousel">
-                <CarouselButton buttonDirection={'buttonLeft'} onClick={moveContentRight}/>
+                <div className="buttonContainer">
+                    <CarouselButton buttonDirection={'buttonLeft'} onClick={moveContentRight}/>
+                </div>
                     <Card>
                         <div className={styles.content} style={{height: 'auto', width: coversWidth, transform: translate, transition: transition}}>
                             <CarouselContent covers={newCovers} width={coversWidth} />
                         </div>
                     </Card>
-                <CarouselButton buttonDirection={'buttonRight'} onClick={moveContentLeft} />
+                <div className="buttonContainer">
+                    <CarouselButton buttonDirection={'buttonRight'} onClick={moveContentLeft} />
+                </div>
             </div>
             <div className={styles.artistInfo}>
                 <p>{newCovers[0] ? 'Cover artist: ' + newCovers[localIndex].artist : 'loading...'}</p>

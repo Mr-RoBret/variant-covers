@@ -5,7 +5,7 @@
   width: 296px;
 }
 
-@media screen and (min-width: 550px) {
+@media screen and (min-width: 480px) {
   .cover-slide {
     width: 450px;
     height: auto;

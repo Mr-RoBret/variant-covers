@@ -6,13 +6,6 @@
   transform: translate(0px);
 }
 
-/* .whole-carousel {
-  display: flex;
-  flex-direction: row;
-  align-content: space-around;
-  margin: auto;
-} */
-
 .artistInfo {
   display: flex;
   flex-direction: column;
