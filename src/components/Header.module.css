@@ -21,6 +21,7 @@
   height: auto;
   margin-top: .25em;
   margin-bottom: -4px;
+  margin-right: .5em;
 }
 
 /* .headerLine {
@@ -79,6 +80,7 @@
   .headerLogo img {
     width: 350px;
     height: auto;
+    margin-right: 0;
   }
 
   /* .headerLine {
