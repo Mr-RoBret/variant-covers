@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import DropDownOptions from "../UI/DropDownOptions";
 import styles from './Header.module.css';
 import md5 from 'md5';
+import logo from "../images/title_logo.png";
 
 const Header = (props) => {
 
@@ -82,8 +83,11 @@ const Header = (props) => {
     return (  
         <div className={styles.header}>
             <div className={styles.headerElements}>
-                <div className={styles.headerLine}></div>
-                <h1 className={styles.mainTitle}>The New Variants</h1>
+                {/* <div className={styles.headerLine}></div> */}
+                {/* <h1 className={styles.mainTitle}>The New Variants</h1> */}
+                <div className={styles.headerLogo}>
+                    <img src={logo}  alt="the new variants logo"></img>
+                </div>
             </div>
             <div className={styles.selection}>
                 <h2 className={styles.subTitle}>Select a title from this weeks releases to see its variants:</h2>

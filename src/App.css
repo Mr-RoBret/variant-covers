@@ -14,11 +14,24 @@
     margin: 0px auto 0px;
 }
 
-.buttonContainer {
+.buttonContainerRight {
     display: flex;
+    background-color: #dbdbdb;
     flex-direction: column;
     justify-content: space-around;
+    padding: 0 .5em;
     box-shadow: 0 2px 4px rgb(0 0 0 / 50%);
+    border-radius: 0 10px 10px 0;
+}  
+
+.buttonContainerLeft {
+    display: flex;
+    background-color: #dbdbdb;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0 .5em;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 50%);
+    border-radius: 10px 0 0 10px;
   }  
 
 .thumbnail-grid {

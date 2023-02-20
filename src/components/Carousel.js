@@ -78,7 +78,7 @@ const Carousel = (props) => {
     return (
         <Fragment>
             <div className="whole-carousel">
-                <div className="buttonContainer">
+                <div className="buttonContainerLeft">
                     <CarouselButton buttonDirection={'buttonLeft'} onClick={moveContentRight}/>
                 </div>
                     <Card>
@@ -86,7 +86,7 @@ const Carousel = (props) => {
                             <CarouselContent covers={newCovers} width={coversWidth} />
                         </div>
                     </Card>
-                <div className="buttonContainer">
+                <div className="buttonContainerRight">
                     <CarouselButton buttonDirection={'buttonRight'} onClick={moveContentLeft} />
                 </div>
             </div>
