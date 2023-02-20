@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/variant-covers/static/css/main.fdfc1305.css",
-    "main.js": "/variant-covers/static/js/main.de73a245.js",
+    "main.css": "/variant-covers/static/css/main.b2f1a611.css",
+    "main.js": "/variant-covers/static/js/main.2a66f471.js",
+    "static/media/title_logo.png": "/variant-covers/static/media/title_logo.be086a7832821ff88a36.png",
     "index.html": "/variant-covers/index.html",
-    "main.fdfc1305.css.map": "/variant-covers/static/css/main.fdfc1305.css.map",
-    "main.de73a245.js.map": "/variant-covers/static/js/main.de73a245.js.map"
+    "main.b2f1a611.css.map": "/variant-covers/static/css/main.b2f1a611.css.map",
+    "main.2a66f471.js.map": "/variant-covers/static/js/main.2a66f471.js.map"
   },
   "entrypoints": [
-    "static/css/main.fdfc1305.css",
-    "static/js/main.de73a245.js"
+    "static/css/main.b2f1a611.css",
+    "static/js/main.2a66f471.js"
   ]
 }
