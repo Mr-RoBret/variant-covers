@@ -1,0 +1,12 @@
+.marvel-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: monospace;
+    padding-right: 1em;
+    background: #3b3c4e;
+}
+
+.marvel-footer p {
+    color: white;
+}

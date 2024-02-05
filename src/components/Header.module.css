@@ -44,14 +44,15 @@
 .subTitle {
   text-align: center;
   margin: 15px 15px;
-  color: azure;
+  color: #ece9f9;
+  font-weight: 100;
 }
 
 .selection {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(41, 68, 74);
+  background-color: #3b3c4e;
 }
 
 .dropDown {
@@ -99,21 +100,21 @@
     font-size: 2.5em;
     margin: 10px 15px 10px 20px;
   } */
-  
+
   .subTitle {
     text-align: center;
     font-size: 1.25em;
     margin: 15px 5px;
-    color: azure;
+    color: #ece9f9;
   }
-  
+
   .selection {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: rgb(41, 68, 74);
+    background-color: #3b3c4e;
   }
-  
+
   .dropDown {
     padding: 10px auto 15px;
     margin: 0 auto 15px auto;
@@ -137,6 +138,7 @@
     font-size: 3em;
     padding: 4px 20px 0px;
   }
+
   .dropDown {
     width: 30%;
   }
@@ -148,6 +150,7 @@
     font-size: 3em;
     padding: 4px 25px 0px;
   }
+
   .dropDown {
     width: 20%;
   }

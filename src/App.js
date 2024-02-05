@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Carousel from './components/Carousel';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import { FirstRender } from './util/FirstRender';
 import './App.css';
 import md5 from 'md5';
@@ -190,6 +191,7 @@ const App = () => {
             <Carousel covers={variantCovers} vw={coverWidth} />
           </IndexContext.Provider>
         </div>
+        <Footer />
       </div>
     </div>
   );
