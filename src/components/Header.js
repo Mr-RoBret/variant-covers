@@ -24,17 +24,13 @@ const Header = (props) => {
         const currentTimeStamp = Date.now().toString();
 
         const currentDate = new Date().toISOString().split('T')[0];
-        const conversDate = (new Date().toUTCString());
-        const prevMonthDate = new Date(conversDate);
-        prevMonthDate.setMonth(prevMonthDate.getMonth() - 1);
-        const prevDate = prevMonthDate.toISOString().split('T')[0];
+        // Calculate the number of milliseconds in two weeks
+        const twoWeeksInMilliseconds = 14 * 24 * 60 * 60 * 1000;
 
-        console.log(currentDate);
-        console.log(prevDate);
-
+        // Subtract two weeks from the current date
+        const twoWeeksAgo = new Date(currentTimeStamp - twoWeeksInMilliseconds);
+        const prevDate = twoWeeksAgo.toISOString().split('T')[0];
         const dateRange = `${prevDate}, ${currentDate}`;
-        console.log(dateRange);
-        console.log(typeof (dateRange));
 
         const message = currentTimeStamp + privateKey + publicKey;
         const hash = md5(message);

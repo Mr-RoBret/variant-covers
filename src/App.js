@@ -70,7 +70,7 @@ const App = () => {
       if (newTitleID == null) {
         setNewTitleID(initialTitleID);
       } else {
-        console.log(newTitleID);
+        // console.log(newTitleID);
         constructRequestURL(newTitleID);
       }
     }
@@ -88,17 +88,17 @@ const App = () => {
       let artistIndex = null;
       if (creators.items.find(item => item.role === 'penciler (cover)')) {
         artistIndex = creators.items.findIndex(item => item.role === 'penciler (cover)');
-        console.log(artistIndex);
+        // console.log(artistIndex);
         return creators.items[artistIndex].name;
       }
       else if (creators.items.find(item => item.role === 'painter (cover)')) {
         artistIndex = creators.items.findIndex(item => item.role === 'painter (cover)');
-        console.log(artistIndex);
+        // console.log(artistIndex);
         return creators.items[artistIndex].name;
       }
       else if (creators.items.find(item => item.role === 'colorist (cover)')) {
         artistIndex = creators.items.findIndex(item => item.role === 'colorist (cover)');
-        console.log(artistIndex);
+        // console.log(artistIndex);
         return creators.items[artistIndex].name;
       } else {
         return "artist unavailable";
@@ -117,7 +117,7 @@ const App = () => {
         // const artistName = data.data.results[0].creators.items[0].name;
         // const artistName = data.data.results[0].creators.items.find(item => (item.role === 'penciler (cover)') || (item.role === 'painter (cover)') || (item.role === 'colorist (cover)'));
         const artistName = getArtistInfo(data.data.results[0].creators);
-        console.log(artistName);
+        // console.log(artistName);
 
         const imageAndArtist = [fileName + '.' + fileExtension, artistName]
         return imageAndArtist;
@@ -162,7 +162,7 @@ const App = () => {
           index++;
         }
         setVariantCovers(itemsArray);
-        console.log(itemsArray);
+        // console.log(itemsArray);
       });
     }
 

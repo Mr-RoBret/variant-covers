@@ -18,8 +18,8 @@ const Carousel = (props) => {
     const { translate, transition, localIndex } = state;
 
     const newCovers = props.covers;
-    console.log(newCovers);
-    
+    // console.log(newCovers);
+
     let coverWidth = (props.vw >= 550 ? 450 : 296);
 
     const coversWidth = (newCovers.length * coverWidth).toString() + 'px';
@@ -43,7 +43,7 @@ const Carousel = (props) => {
 
     // function to move slide to previous, unless first slide has been reached
     const moveContentRight = () => {
-        
+
         if (Number(ctx.currentIndex) <= 0) {
             return (setState({
                 ...state,
@@ -52,10 +52,10 @@ const Carousel = (props) => {
             }))
         }
         return (setState({
-                ...state,
-                translate: `translate(${(Number(ctx.currentIndex) - 1) * -coverWidth}px)`,
-                localIndex: Number(localIndex) - 1
-            })
+            ...state,
+            translate: `translate(${(Number(ctx.currentIndex) - 1) * -coverWidth}px)`,
+            localIndex: Number(localIndex) - 1
+        })
         )
     }
 
@@ -66,10 +66,10 @@ const Carousel = (props) => {
             localIndex: index
         })
     }
-        
+
     // resets thumbnail/carousel to zero upon selection of new title
-    useEffect(() => { 
-        handleSelectedThumb(0)  
+    useEffect(() => {
+        handleSelectedThumb(0)
     }, [ctx]);
 
     // updates context variable for rest of app
@@ -79,13 +79,13 @@ const Carousel = (props) => {
         <Fragment>
             <div className="whole-carousel">
                 <div className="buttonContainerLeft">
-                    <CarouselButton buttonDirection={'buttonLeft'} onClick={moveContentRight}/>
+                    <CarouselButton buttonDirection={'buttonLeft'} onClick={moveContentRight} />
                 </div>
-                    <Card>
-                        <div className={styles.content} style={{height: 'auto', width: coversWidth, transform: translate, transition: transition}}>
-                            <CarouselContent covers={newCovers} width={coversWidth} />
-                        </div>
-                    </Card>
+                <Card>
+                    <div className={styles.content} style={{ height: 'auto', width: coversWidth, transform: translate, transition: transition }}>
+                        <CarouselContent covers={newCovers} width={coversWidth} />
+                    </div>
+                </Card>
                 <div className="buttonContainerRight">
                     <CarouselButton buttonDirection={'buttonRight'} onClick={moveContentLeft} />
                 </div>
