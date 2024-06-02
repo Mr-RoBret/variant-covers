@@ -2,7 +2,7 @@
   "homepage": "https://mr-robret.github.io/variant-covers",
   "name": "frontend",
   "version": "0.1.0",
-  "prox": "http://localhost:3000",
+  "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -40,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }

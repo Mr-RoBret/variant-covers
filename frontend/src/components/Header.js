@@ -61,7 +61,9 @@ const Header = (props) => {
         }
 
         // ** initial request URL **
-        // const requestTitles = `https://gateway.marvel.com:443/v1/public/comics?&ts=${currentTimeStamp}&format=comic&noVariants=false&dateDescriptor=thisMonth&orderBy=title&limit=100&apikey=${publicKey}&hash=${hash}`;
+
+        /** UPDATE TO DB PROCESS */
+        /** Replace this call with api endpoint that queries database for titles instead */
         const requestTitles = `https://gateway.marvel.com:443/v1/public/comics?&ts=${currentTimeStamp}&format=comic&noVariants=false&dateRange=${dateRange}&orderBy=title&limit=100&apikey=${publicKey}&hash=${hash}`;
 
         // fetch list of titles from last week and send data to parseData function
@@ -94,8 +96,6 @@ const Header = (props) => {
     return (
         <div className={styles.header}>
             <div className={styles.headerElements}>
-                {/* <div className={styles.headerLine}></div> */}
-                {/* <h1 className={styles.mainTitle}>The New Variants</h1> */}
                 <div className={styles.headerLogo}>
                     <img src={logo} alt="the new variants logo"></img>
                 </div>

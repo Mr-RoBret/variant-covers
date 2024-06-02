@@ -54,6 +54,10 @@ const App = () => {
       // 2. function to construct API call url with either initial ID or new ID
       const constructRequestURL = (titleID) => {
 
+        /** REPLACE */
+        /** Replace this with query to database, and move this request to function 
+         * that runs only if time conditions have been met 
+        */
         const requestVariants = `https://gateway.marvel.com:443/v1/public/comics/${titleID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;
 
         const fetchData = async () => {
@@ -78,11 +82,10 @@ const App = () => {
   }, [newTitleID, initialTitleID]);
 
   /** 
-   * runs when list of variant IDs is obtained variantIDs state changes.
+   * runs when list of variant IDs is obtained or variantIDs state changes.
   */
 
   useEffect(() => {
-    // console.log(firstRender);
 
     const getArtistInfo = (creators) => {
       let artistIndex = null;
@@ -114,15 +117,15 @@ const App = () => {
         const fileExtension = data.data.results[0].thumbnail.extension;
 
         /** get artist name if creators.items[item].role === "penciler (cover)" */
-        // const artistName = data.data.results[0].creators.items[0].name;
-        // const artistName = data.data.results[0].creators.items.find(item => (item.role === 'penciler (cover)') || (item.role === 'painter (cover)') || (item.role === 'colorist (cover)'));
         const artistName = getArtistInfo(data.data.results[0].creators);
-        // console.log(artistName);
-
         const imageAndArtist = [fileName + '.' + fileExtension, artistName]
         return imageAndArtist;
       };
 
+      /** REPLACE */
+      /** Replace this with query to database, and move this request to function 
+       * that runs only if time conditions have been met 
+      */
       // 2. function to dynamically replace comic ID# with ID passed in
       const requestVariantCovers = ((individualVariantID) => {
         return (`https://gateway.marvel.com:443/v1/public/comics/${individualVariantID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`);
@@ -177,7 +180,6 @@ const App = () => {
   // handle selected option from Header/Dropdown
   const handleSelectedTitle = (titleObj, titleID) => {
     setNewTitleID(titleID); // setting to previous render's variables
-    // setCurrentIndex(0);
   }
 
   return (
