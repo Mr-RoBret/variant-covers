@@ -58,16 +58,18 @@ const App = () => {
         /** Replace this with query to database, and move this request to function 
          * that runs only if time conditions have been met 
         */
-        const requestVariants = `https://gateway.marvel.com:443/v1/public/comics/${titleID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;
+        // const requestVariants = `https://gateway.marvel.com:443/v1/public/comics/${titleID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`;
+        const requestVariants = `http://localhost:5000/variants/${titleID}`;
 
         const fetchData = async () => {
           const data = await fetch(requestVariants);
           const json = await data.json();
+          console.log(json);
           getVariantIDs(json);
         }
 
         fetchData()
-          .catch(console.error);;
+        // .catch(console.error);
       }
 
       // 1. if there is a newTitleID returned, call constructRequest function

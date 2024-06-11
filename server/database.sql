@@ -7,3 +7,5 @@ CREATE TABLE comics(
     comic_id SERIAL PRIMARY KEY,
     comic_title VARCHAR(255)
 );
+
+psql -U variantcovers 

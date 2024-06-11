@@ -1,7 +1,7 @@
 import styles from '../components/Header.module.css';
 
 const DropDownOptions = (props) => {
-    
+
     const itemTitles = props.options;
 
     const handleSelection = (event) => {
@@ -13,10 +13,10 @@ const DropDownOptions = (props) => {
         <select className={styles.dropDown} onChange={handleSelection}>
             {itemTitles.map((option, index) => (
                 <option className={styles.option} key={index} >
-                    {option}    
+                    {option}
                 </option>
             ))}
-        </select> 
+        </select>
     );
 };
 
