@@ -8,4 +8,11 @@ CREATE TABLE comics(
     comic_title VARCHAR(255)
 );
 
+CREATE TABLE variants(
+    comic_id INTEGER,
+    comic_title VARCHAR(255),
+    thumbnail_url VARCHAR(255),
+    cover_artist VARCHAR(255),
+);
+
 psql -U variantcovers 

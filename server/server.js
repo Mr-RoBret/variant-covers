@@ -1,8 +1,10 @@
 require('dotenv').config({ path: __dirname + '/.env' });
 
 const express = require('express');
+const schedule = require('node-schedule');
 const pool = require(__dirname + '/config/db.config.js');
 const cors = require('cors');
+const md5 = require('md5');
 // const proxy = require('http-proxy-middleware');
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -13,17 +15,9 @@ app.use(cors({
     origin: 'http://localhost:3000' // Replace with allowed origin
 }));
 
-// const proxyMiddleware = proxy({
-//     target: `http://localhost:${PORT}`,
-//     changeOrigin: true,
-// });
-// app.use('/comics', proxyMiddleware);
-
 app.use(express.json());
 
-
 /** route functions */
-
 // get all comics
 const getComics = async (req, res) => {
 
@@ -94,6 +88,187 @@ const deleteVariants = async (req, res) => {
     }
 }
 
+const queryMarvelAPI = () => {
+    console.log('Querying external API...');
+    // Every 24 hours, call Marvel API to refresh database with new data
+    // get new list of comics and parse into array of only comics with variants
+    const privateKey = process.env.REACT_APP_API_SECRET;
+    const publicKey = process.env.REACT_APP_API_PUBLIC;
+
+    // create API fetch request params
+    const currentTimeStamp = Date.now().toString();
+    const currentDate = new Date().toISOString().split('T')[0];
+
+    // Calculate the number of milliseconds in two weeks
+    const twoWeeksInMilliseconds = 14 * 24 * 60 * 60 * 1000;
+
+    // Subtract two weeks from the current date
+    const twoWeeksAgo = new Date(currentTimeStamp - twoWeeksInMilliseconds);
+    const prevDate = twoWeeksAgo.toISOString().split('T')[0];
+    const dateRange = `${prevDate}, ${currentDate}`;
+    const message = currentTimeStamp + privateKey + publicKey;
+    const hash = md5(message);
+
+    // refreshDB takes API data and maps week's titles into array of titles,
+    // then, for each title, queries DB for variant data and sends data to "variants" table
+    const refreshDB = async (response) => {
+        // console.log(response);
+        const comicsWithVariantsOnly = Array.from(response.data.results);
+        const newArray = comicsWithVariantsOnly.filter((item) => item.variants.length > 1);
+        // console.log(newArray);
+
+        for (let i in newArray) {
+
+            try {
+                const id = (newArray[i]['id']);;
+                const title = newArray[i]['title'];
+
+                await fetch('http://localhost:5000/comics', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        comic_id: id,
+                        comic_title: title
+                    })
+                });
+
+                // await then? Get list of variant IDs for each comic title (getVariantIDs),
+                // process data, and push to db
+
+            } catch (err) {
+                console.error(err.message);
+            }
+        }
+
+    }
+
+
+    // for each comic_id i in newArray,
+    // get list of variants, build query for each, and get variant data
+    // then, post data to "variants" table
+    const populateVariants = (res) => {
+
+        // Every 24 hours, call Marvel API to refresh database with new data
+        // get new list of comics and parse into array of only comics with variants
+        const privateKey = process.env.REACT_APP_API_SECRET;
+        const publicKey = process.env.REACT_APP_API_PUBLIC;
+
+        // create API fetch request params
+        const currentTimeStamp = Date.now().toString();
+        const currentDate = new Date().toISOString().split('T')[0];
+        // Calculate the number of milliseconds in two weeks
+        const twoWeeksInMilliseconds = 14 * 24 * 60 * 60 * 1000;
+        // Subtract two weeks from the current date
+        const twoWeeksAgo = new Date(currentTimeStamp - twoWeeksInMilliseconds);
+        const prevDate = twoWeeksAgo.toISOString().split('T')[0];
+        const dateRange = `${prevDate}, ${currentDate}`;
+        const message = currentTimeStamp + privateKey + publicKey;
+        const hash = md5(message);
+
+        // 2. get IDs of variants
+        const getIDs = (cover) => {
+            const coverID = cover.resourceURI.split('/');
+            return coverID[coverID.length - 1];
+        }
+
+        // 1. get Variants from response 
+
+        // create new array from mapping fetched variants to getIDs(resoureURI).
+        let newIDs = data.results[0].variants.map((cover) => getIDs(cover));
+        // newIDs.push(newTitleID);
+        const variantIDs = newIDs;
+
+
+        // 5. Formats image name and extension and returns
+        const formatImageName = (data) => {
+            const fileName = data.data.results[0].thumbnail.path;
+            const fileExtension = data.data.results[0].thumbnail.extension;
+
+            /** get artist name if creators.items[item].role === "penciler (cover)" */
+            const artistName = getArtistInfo(data.data.results[0].creators);
+            const imageAndArtist = [fileName + '.' + fileExtension, artistName]
+            return imageAndArtist;
+        };
+
+        // 2. function to dynamically replace comic ID# with ID passed in and build individual
+        // variant request
+        const requestVariantCovers = ((individualVariantID) => {
+            return (`https://gateway.marvel.com:443/v1/public/comics/${individualVariantID}?&ts=${currentTimeStamp}&apikey=${publicKey}&hash=${hash}`);
+        });
+
+        // 1. Takes array of variant comic ID#s and maps to new array of request urls
+        // (via calling requestVariantCovers function on each item)
+        const variantURLs = variantIDs.map((item) => {
+            return (requestVariantCovers(item));
+        });
+
+        // 4. Async function that passes data to formatting function and returns result
+        async function getVariantCovers(item) {
+            const response = await fetch(item);
+            const data = await response.json();
+
+            return formatImageName(data);
+        }
+
+        // 3. Takes array of request urls and passes to async function
+        // (getVariantCovers) for formatting; returns array of file names
+        const returnedCovers = variantURLs.map((item) => {
+            return getVariantCovers(item)
+        });
+
+        // 5. Once promise (returnedCovers) has been fulfilled, pushes items to
+        // itemsArray and sets variantCovers to itemsArray
+        Promise.allSettled(returnedCovers).then((items) => {
+            const itemsArray = [];
+            let index = 0;
+            console.log(returnedCovers);
+            for (let item of items) {
+
+                /** 
+                 * extract correct artist value (from around line 88 above) 
+                 */
+                itemsArray.unshift({ key: index, value: item.value[0], artist: item.value[1] });
+                index++;
+            }
+            console.log(itemsArray);
+            // push data to database table "variants"
+            setVariantCovers(itemsArray);
+        });
+
+
+        // function to get Artist info and return
+        const getArtistInfo = (creators) => {
+            let artistIndex = null;
+            if (creators.items.find(item => item.role === 'penciler (cover)')) {
+                artistIndex = creators.items.findIndex(item => item.role === 'penciler (cover)');
+                // console.log(artistIndex);
+                return creators.items[artistIndex].name;
+            }
+            else if (creators.items.find(item => item.role === 'painter (cover)')) {
+                artistIndex = creators.items.findIndex(item => item.role === 'painter (cover)');
+                // console.log(artistIndex);
+                return creators.items[artistIndex].name;
+            }
+            else if (creators.items.find(item => item.role === 'colorist (cover)')) {
+                artistIndex = creators.items.findIndex(item => item.role === 'colorist (cover)');
+                // console.log(artistIndex);
+                return creators.items[artistIndex].name;
+            } else {
+                return "artist unavailable";
+            }
+            // return creators.items[artistIndex].name;
+        }
+    }
+    const requestTitles = `https://gateway.marvel.com:443/v1/public/comics?&ts=${currentTimeStamp}&format=comic&noVariants=false&dateRange=${dateRange}&orderBy=title&limit=100&apikey=${publicKey}&hash=${hash}`;
+
+    fetch(requestTitles)
+        .then(response => response.json())
+        // .then(console.log(response))
+        .then(data => refreshDB(data))
+        .then(data => populateVariants(data));
+
+}
+
 /** actual routes */
 
 // get comics
@@ -111,7 +286,16 @@ app.delete('/comics/:comic_id', deleteComic);
 // delete all variants of a comic
 app.delete('/variants/:comic_id', deleteVariants);
 
+const job = schedule.scheduleJob('0 0 * * *', queryMarvelAPI);
+// const job = schedule.scheduleJob('* * * * *', queryMarvelAPI);
 
 app.listen(PORT, () => {
     console.log('server has started on port 5000');
 });
+
+
+// const proxyMiddleware = proxy({
+//     target: `http://localhost:${PORT}`,
+//     changeOrigin: true,
+// });
+// app.use('/comics', proxyMiddleware);
