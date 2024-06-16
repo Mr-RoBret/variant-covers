@@ -11,8 +11,12 @@ CREATE TABLE comics(
 CREATE TABLE variants(
     comic_id INTEGER,
     comic_title VARCHAR(255),
-    thumbnail_url VARCHAR(255),
-    cover_artist VARCHAR(255),
+    image_url VARCHAR(255),
+    image_artst VARCHAR(255),
+    CONSTRAINT fk_comics
+        FOREIGN KEY(comic_id)
+            REFERENCES comics(comic_id)
+            ON DELETE CASCADE
 );
 
 psql -U variantcovers 
