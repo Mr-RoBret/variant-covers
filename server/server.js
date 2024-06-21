@@ -33,14 +33,12 @@ const getComics = async (req, res) => {
 const getVariants = async (req, res) => {
     try {
         const { comic_id } = req.params;
-        const getVariant = await pool.query(
-            "SELECT * FROM variants WHERE comic_id = $1;",
-            [comic_id], (error, variants) => {
-                if (error) {
-                    throw error
-                }
-                res.status(200).json(variants.rows)
-            });
+        // console.log(`comic_id is ${comic_id}`);
+        const selectVariant = await pool.query(
+            "SELECT image_url, image_artist, comic_id FROM variants WHERE comic_id = $1;",
+            [comic_id],
+        );
+        res.json(selectVariant);
     } catch (err) {
         console.error(err.message);
     }
@@ -339,6 +337,7 @@ app.get('/comics', getComics);
 app.post('/comics', addComic);
 
 // get variants
+// app.get('/variants/:comic_id', getVariants);
 app.get('/variants/:comic_id', getVariants);
 
 // add variants
@@ -352,8 +351,8 @@ app.delete('/variants/:comic_id', deleteVariants);
 
 app.delete('/comics', deleteAllComics);
 
-// const job = schedule.scheduleJob('0 0 * * *', queryMarvelAPI);
-const job = schedule.scheduleJob('* * * * *', queryMarvelAPI);
+const job = schedule.scheduleJob('0 0 * * *', queryMarvelAPI);
+// const job = schedule.scheduleJob('* * * * *', queryMarvelAPI);
 
 app.listen(PORT, () => {
     console.log('server has started on port 5000');
