@@ -88,29 +88,17 @@ const deleteComic = async (req, res) => {
 
 // delete all variants of comic
 const deleteVariants = async (req, res) => {
+    // remove current list of comics
     try {
-        const { comic_id } = req.params;
         const deleteAllVariants = await pool.query(
-            "DELETE FROM variants WHERE comic_id = $1;",
-            [comic_id]
+            "DELETE FROM variants WHERE comic_id IS NOT NULL;"
         );
-        res.json("variants deleted");
+        res.json(deleteAllVariants);
     } catch (err) {
         console.error(err.message);
     }
 }
 
-// delete all comics from table 'comics'
-const deleteAllComics = async (req, res) => {
-    // try {
-    //     const deleteAllComics = await pool.query(
-    //         "TRUNCATE TABLE comics"
-    //     );
-    //     res.json("all comics deleted");
-    // } catch (err) {
-    //     console.error(err.message);
-    // }
-}
 
 const queryMarvelAPI = async () => {
     console.log('Querying external API...');
@@ -143,7 +131,7 @@ const queryMarvelAPI = async () => {
         // for each comic_id i in newArray,
         // get list of variants, build query for each, and get variant data
         // then, post data to "variants" table
-        const populateVariants = (newArrItem) => {
+        const populateVariants = (newArrItem) => { // single title from comics table
             // console.log(newArrItem);
             // Every 24 hours, call Marvel API to refresh responsebase with new data
             // get new list of comics and parse into array of only comics with variants
@@ -166,18 +154,27 @@ const queryMarvelAPI = async () => {
             // 2. get IDs of variants
             const getIDs = (cover) => {
                 const coverID = cover.resourceURI.split('/');
+                // console.log(`coverID is ${coverID[coverID.length - 1]}`);
                 return coverID[coverID.length - 1];
             }
 
             // 1. get Variants from response 
             // create new array from mapping fetched variants to getIDs(resoureURI).
-            let newIDs = newArrItem.variants.map((cover) => getIDs(cover));
-            // newIDs.push(newTitleID);
-            const variantIDs = newIDs;
+            const getVariantIDs = (newArrItem) => {
+
+                // console.log(`cover is ${cover}`);
+                let newIDs = newArrItem.variants.map((cover) => getIDs(cover));
+
+                // newIDs.push(newTitleID);
+                // console.log(`newIDs is ${newIDs}`);
+                return newIDs;
+            }
 
 
             // 5. Formats image name and extension and returns
-            const formatImageName = (data) => {
+            const formatImageName = async (data) => {
+                // console.log(`data at line 184 is ${data.data[0]}`);
+
                 const fileName = data.data.results[0].thumbnail.path;
                 const fileExtension = data.data.results[0].thumbnail.extension;
 
@@ -195,8 +192,10 @@ const queryMarvelAPI = async () => {
 
             // 1. Takes array of variant comic ID#s and maps to new array of request urls
             // (via calling requestVariantCovers function on each item)
-            const variantURLs = variantIDs.map((item) => {
-                return (requestVariantCovers(item));
+            const variantURLs = getVariantIDs(newArrItem).map((item) => {
+                const returnedCovers = requestVariantCovers(item);
+                // console.log(`covers returned from requestVariantCovers is ${returnedCovers}`);
+                return returnedCovers;
             });
 
             // 4. Async function that passes data to formatting function and returns result
@@ -204,12 +203,13 @@ const queryMarvelAPI = async () => {
                 const response = await fetch(item);
                 const data = await response.json();
 
-                return formatImageName(data);
+                return await formatImageName(data);
             }
 
             // 3. Takes array of request urls and passes to async function
             // (getVariantCovers) for formatting; returns array of file names
             const returnedCovers = variantURLs.map((item) => {
+                // console.log(`item is now ${item}`);
                 return getVariantCovers(item)
             });
 
@@ -220,8 +220,9 @@ const queryMarvelAPI = async () => {
                 let index = 0;
                 // console.log(returnedCovers);
                 for (let item of items) {
+                    console.log(item);
                     // extract correct artist value (from around line 88 above) 
-                    itemsArray.unshift({ key: index, value: item.value[0], artist: item.value[1] });
+                    itemsArray.push({ key: index, value: item.value[0], artist: item.value[1] });
                     // add to database
                     try {
                         const id = newArrItem['id'];
@@ -246,7 +247,7 @@ const queryMarvelAPI = async () => {
                     }
                     index++;
                 }
-                console.log(itemsArray);
+                // console.log(itemsArray);
 
                 // push data to database table "variants"
                 // setVariantCovers(itemsArray);
@@ -278,7 +279,7 @@ const queryMarvelAPI = async () => {
             const deleteAllComics = await pool.query(
                 "DELETE FROM comics WHERE comic_id IS NOT NULL;"
             );
-            // res.json("all comics deleted");
+            res.json(deleteAllComics);
         } catch (err) {
             console.error(err.message);
         }
@@ -299,8 +300,6 @@ const queryMarvelAPI = async () => {
                 });
 
                 populateVariants(newArray[i]);
-                // await then? Get list of variant IDs for each comic title (getVariantIDs),
-                // process data, and push to db
 
             } catch (err) {
                 console.error(err.message);
@@ -347,9 +346,7 @@ app.post('/variants/:comic_id', addVariants);
 app.delete('/comics/:comic_id', deleteComic);
 
 // delete all variants of a comic
-app.delete('/variants/:comic_id', deleteVariants);
-
-app.delete('/comics', deleteAllComics);
+app.delete('/variants', deleteVariants);
 
 const job = schedule.scheduleJob('0 0 * * *', queryMarvelAPI);
 // const job = schedule.scheduleJob('* * * * *', queryMarvelAPI);

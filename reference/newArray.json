@@ -1,1265 +1,276 @@
-[
-    {
-      id: 113841,
-      digitalId: 66998,
-      title: 'Avengers (2023) #15',
-      issueNumber: 15,
-      variantDescription: '',
-      description: "BLOOD HUNT TIE-IN: A BLOODY BRAWL ON A VAMPIRE-INFESTED HELICARRIER!  Captain America's ad hoc team of Avengers old and new must face a foe commanding an army of vampires… …IN THE SKY! With a group of decidedly earthbound heroes!   Don't miss this action-packed, bloody tale of heroism and hemoglobin!",
-      modified: '2024-04-30T09: 57: 00-0400',
-      isbn: '',
-      upc: '75960620426701511',
-      diamondCode: '',
-      ean: '',
-      issn: '',
-      format: 'Comic',
-      pageCount: 32,
-      textObjects: [],
-      resourceURI: 'http: //gateway.marvel.com/v1/public/comics/113841',
-      urls: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      series: {
-        resourceURI: 'http: //gateway.marvel.com/v1/public/series/34716',
-        name: 'Avengers (2023 - Present)'
+{
+    id: 118746,
+    digitalId: 67054,
+    title: 'Venomverse Reborn (2024) #1',
+    issueNumber: 1,
+    variantDescription: '',
+    description: "THE DARKEST WEB IS RESPUN! Dive back into the darkness as the Venomverse is reborn, with stories of symbiotes from all across the Multiverse! First, Benjamin Percy and Brian Level spin a tale of the murder of the Earth's Mightiest Heroes by one of their own…but who? Then Christos Gage drags Venom from Insomniac Games' Marvel's Spider-Man 2 across the Venomverse to take on Knull! And all the while, Al Ewing and Danilo S. Beyruth set the stage for the tales spinning out of the ongoing VENOM series!",
+    modified: '2024-04-30T12: 17: 03-0400',
+    isbn: '',
+    upc: '75960620993400111',
+    diamondCode: '',
+    ean: '',
+    issn: '',
+    format: 'Comic',
+    pageCount: 32,
+    textObjects: [],
+    resourceURI: 'http: //gateway.marvel.com/v1/public/comics/118746',
+    urls: [
+        {
+        type: 'detail',
+        url: 'http: //marvel.com/comics/issue/118746/venomverse_reborn_2024_1?utm_campaign=apiRef&utm_source=8b985aedc4e35073e7b539df04cf3a31'
         },
-      variants: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      collections: [],
-      collectedIssues: [],
-      dates: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      prices: [
-            [Object
-            ]
-        ],
-      thumbnail: {
-        path: 'http: //i.annihil.us/u/prod/marvel/i/mg/9/c0/66634e2bebc87',
-        extension: 'jpg'
+        {
+        type: 'purchase',
+        url: 'http: //comicstore.marvel.com/Venomverse-Reborn-1/digital-comic/67054?utm_campaign=apiRef&utm_source=8b985aedc4e35073e7b539df04cf3a31'
         },
-      images: [
-            [Object
-            ]
-        ],
-      creators: {
-        available: 7,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113841/creators',
-        items: [Array
-            ],
-        returned: 7
-        },
-      characters: {
-        available: 4,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113841/characters',
-        items: [Array
-            ],
-        returned: 4
-        },
-      stories: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113841/stories',
-        items: [Array
-            ],
-        returned: 2
-        },
-      events: {
-        available: 0,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113841/events',
-        items: [],
-        returned: 0
+        {
+        type: 'reader',
+        url: 'http: //marvel.com/digitalcomics/view.htm?iid=67054&utm_campaign=apiRef&utm_source=8b985aedc4e35073e7b539df04cf3a31'
         }
+    ],
+    series: {
+      resourceURI: 'http: //gateway.marvel.com/v1/public/series/41653',
+      name: 'Venomverse Reborn (2024 - Present)'
     },
-    {
-      id: 113013,
-      digitalId: 66592,
-      title: 'Blood Hunt (2024) #3',
-      issueNumber: 3,
-      variantDescription: '',
-      description: 'NIGHT HAS FALLEN. WILL THE SUN RISE AGAIN? As the heroes rally at the Sanctum Sanctorum, they must first deal with a threat close to their hearts! And while they raise the torch of defiance, the new lord of the vampires enacts his dreaded scheme!',
-      modified: '2024-04-30T10: 03: 04-0400',
-      isbn: '',
-      upc: '759606208051000311',
-      diamondCode: '',
-      ean: '',
-      issn: '',
-      format: 'Comic',
-      pageCount: 32,
-      textObjects: [],
-      resourceURI: 'http: //gateway.marvel.com/v1/public/comics/113013',
-      urls: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      series: {
-        resourceURI: 'http: //gateway.marvel.com/v1/public/series/38820',
-        name: 'Blood Hunt (2024 - Present)'
+    variants: [
+        {
+        resourceURI: 'http: //gateway.marvel.com/v1/public/comics/119587',
+        name: 'Venomverse Reborn (2024) #1 (Variant)'
         },
-      variants: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      collections: [],
-      collectedIssues: [],
-      dates: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      prices: [
-            [Object
-            ]
-        ],
-      thumbnail: {
-        path: 'http: //i.annihil.us/u/prod/marvel/i/mg/6/70/66634e37df2b0',
-        extension: 'jpg'
+        {
+        resourceURI: 'http: //gateway.marvel.com/v1/public/comics/119588',
+        name: 'Venomverse Reborn (2024) #1 (Variant)'
         },
-      images: [
-            [Object
-            ]
-        ],
-      creators: {
-        available: 5,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113013/creators',
-        items: [Array
-            ],
-        returned: 5
+        {
+        resourceURI: 'http: //gateway.marvel.com/v1/public/comics/119589',
+        name: 'Venomverse Reborn (2024) #1 (Variant)'
         },
-      characters: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113013/characters',
-        items: [Array
-            ],
-        returned: 2
+        {
+        resourceURI: 'http: //gateway.marvel.com/v1/public/comics/119590',
+        name: 'Venomverse Reborn (2024) #1 (Variant)'
         },
-      stories: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113013/stories',
-        items: [Array
-            ],
-        returned: 2
-        },
-      events: {
-        available: 0,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113013/events',
-        items: [],
-        returned: 0
+        {
+        resourceURI: 'http: //gateway.marvel.com/v1/public/comics/119591',
+        name: 'Venomverse Reborn (2024) #1 (Variant)'
         }
-    },
-    {
-      id: 114908,
-      digitalId: 67009,
-      title: 'Deadpool (2024) #3',
-      issueNumber: 3,
-      variantDescription: '',
-      description: "DEADPOOL VS. CROSSBONES! Deadpool and Taskmaster may be mercs for hire, but someone has hired Crossbones to hunt them down. Plus, Deadpool gets a new hire he is not expecting. Meanwhile Death Grip gets a valuable key to Deadpool's mortality!",
-      modified: '2024-04-30T10: 33: 05-0400',
-      isbn: '',
-      upc: '75960620897500311',
-      diamondCode: '',
-      ean: '',
-      issn: '',
-      format: 'Comic',
-      pageCount: 32,
-      textObjects: [],
-      resourceURI: 'http: //gateway.marvel.com/v1/public/comics/114908',
-      urls: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      series: {
-        resourceURI: 'http: //gateway.marvel.com/v1/public/series/39284',
-        name: 'Deadpool (2024 - Present)'
+    ],
+    collections: [],
+    collectedIssues: [],
+    dates: [
+        { type: 'onsaleDate', date: '2024-06-19T00: 00: 00-0400'
         },
-      variants: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      collections: [],
-      collectedIssues: [],
-      dates: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      prices: [
-            [Object
-            ]
-        ],
-      thumbnail: {
-        path: 'http: //i.annihil.us/u/prod/marvel/i/mg/9/f0/66634e4ce8db6',
-        extension: 'jpg'
+        { type: 'focDate', date: '2024-05-20T00: 00: 00-0400'
         },
-      images: [
-            [Object
-            ]
-        ],
-      creators: {
-        available: 6,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/114908/creators',
-        items: [Array
-            ],
-        returned: 6
+        { type: 'unlimitedDate', date: '2024-06-07T00: 00: 00-0400'
         },
-      characters: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/114908/characters',
-        items: [Array
-            ],
-        returned: 2
-        },
-      stories: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/114908/stories',
-        items: [Array
-            ],
-        returned: 2
-        },
-      events: {
-        available: 0,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/114908/events',
-        items: [],
-        returned: 0
+        { type: 'digitalPurchaseDate', date: '2024-06-07T00: 00: 00-0400'
         }
-    },
-    {
-      id: 108485,
-      digitalId: 67010,
-      title: 'Deadpool & Wolverine: Wwiii (2024) #2',
-      issueNumber: 2,
-      variantDescription: '',
-      description: "SURVIVAL OF THE FITTEST! WOLVERINE and DEADPOOL, caught in a snowy wasteland, with no hope of survival - except each other!  If they can fight off the ENHANCED FORCES of THOSE WHO WATCH, only one battle remains - LOGAN VS. WADE WILSON!  And it can only end - IN DEATH! You'll have to read it to believe it!  And: The story behind the DELTA revealed!",
-      modified: '2024-04-30T10: 34: 50-0400',
-      isbn: '',
-      upc: '75960620648300211',
-      diamondCode: '',
-      ean: '',
-      issn: '',
-      format: 'Comic',
-      pageCount: 40,
-      textObjects: [],
-      resourceURI: 'http: //gateway.marvel.com/v1/public/comics/108485',
-      urls: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      series: {
-        resourceURI: 'http: //gateway.marvel.com/v1/public/series/37288',
-        name: 'Deadpool & Wolverine: Wwiii (2024 - Present)'
-        },
-      variants: [
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      collections: [],
-      collectedIssues: [],
-      dates: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      prices: [
-            [Object
-            ]
-        ],
-      thumbnail: {
-        path: 'http: //i.annihil.us/u/prod/marvel/i/mg/1/70/66634e65874f4',
-        extension: 'jpg'
-        },
-      images: [
-            [Object
-            ]
-        ],
-      creators: {
-        available: 5,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/108485/creators',
-        items: [Array
-            ],
-        returned: 5
-        },
-      characters: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/108485/characters',
-        items: [Array
-            ],
-        returned: 2
-        },
-      stories: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/108485/stories',
-        items: [Array
-            ],
-        returned: 2
-        },
-      events: {
-        available: 0,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/108485/events',
-        items: [],
-        returned: 0
+    ],
+    prices: [
+        { type: 'printPrice', price: 4.99
         }
+    ],
+    thumbnail: {
+      path: 'http: //i.annihil.us/u/prod/marvel/i/mg/4/90/66634e8ea8668',
+      extension: 'jpg'
     },
-    {
-      id: 110805,
-      digitalId: 67014,
-      title: 'Fantastic Four (2022) #21',
-      issueNumber: 21,
-      variantDescription: '',
-      description: "BLOOD HUNT TIE-IN: FORMULATING A CURE? Reed and Alicia are in New York for a day trip to an art museum, when suddenly the skies turn black with darkforce energy and vampires attack, everywhere, all at once! It's Reed Richards versus the world as he tries to save everyone he can - AND come up with a cure for vampirism! But vampires are magic, illogical, impossible. Can Reed come up with a cure? And even if he can't, how is he going to keep all the survivors alive and safe? And can Sue, Ben, and Johnny, all alone in Arizona, keep their families safe? It's a BLOOD HUNT tie-in you won't want to miss as the Fantastic Four take on a world overrun with VAMPIRES!",
-      modified: '2024-04-30T10: 40: 36-0400',
-      isbn: '',
-      upc: '75960620289802111',
-      diamondCode: '',
-      ean: '',
-      issn: '',
-      format: 'Comic',
-      pageCount: 32,
-      textObjects: [],
-      resourceURI: 'http: //gateway.marvel.com/v1/public/comics/110805',
-      urls: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      series: {
-        resourceURI: 'http: //gateway.marvel.com/v1/public/series/34035',
-        name: 'Fantastic Four (2022 - Present)'
-        },
-      variants: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      collections: [],
-      collectedIssues: [],
-      dates: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      prices: [
-            [Object
-            ]
-        ],
-      thumbnail: {
-        path: 'http: //i.annihil.us/u/prod/marvel/i/mg/d/03/66634e59a0186',
+    images: [
+        {
+        path: 'http: //i.annihil.us/u/prod/marvel/i/mg/4/90/66634e8ea8668',
         extension: 'jpg'
-        },
-      images: [
-            [Object
-            ]
-        ],
-      creators: {
-        available: 5,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/110805/creators',
-        items: [Array
-            ],
-        returned: 5
-        },
-      characters: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/110805/characters',
-        items: [Array
-            ],
-        returned: 2
-        },
-      stories: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/110805/stories',
-        items: [Array
-            ],
-        returned: 2
-        },
-      events: {
-        available: 0,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/110805/events',
-        items: [],
-        returned: 0
         }
+    ],
+    creators: {
+      available: 11,
+      collectionURI: 'http: //gateway.marvel.com/v1/public/comics/118746/creators',
+      items: [
+            [Object
+            ],
+            [Object
+            ],
+            [Object
+            ],
+            [Object
+            ],
+            [Object
+            ],
+            [Object
+            ],
+            [Object
+            ],
+            [Object
+            ],
+            [Object
+            ],
+            [Object
+            ],
+            [Object
+            ]
+        ],
+      returned: 11
     },
-    {
-      id: 103965,
-      digitalId: 66609,
-      title: 'G.O.D.S. (2023) #8',
-      issueNumber: 8,
-      variantDescription: '',
-      description: "If you could go back and erase the biggest mistake you've ever made, would you? Of course you would. So let's do that. And let the pieces fall where they may.",
-      modified: '2024-01-24T10: 16: 34-0500',
-      isbn: '',
-      upc: '75960620497700811',
-      diamondCode: '',
-      ean: '',
-      issn: '',
-      format: 'Comic',
-      pageCount: 32,
-      textObjects: [],
-      resourceURI: 'http: //gateway.marvel.com/v1/public/comics/103965',
-      urls: [
-            [Object
-            ],
+    characters: {
+      available: 0,
+      collectionURI: 'http: //gateway.marvel.com/v1/public/comics/118746/characters',
+      items: [],
+      returned: 0
+    },
+    stories: {
+      available: 2,
+      collectionURI: 'http: //gateway.marvel.com/v1/public/comics/118746/stories',
+      items: [
             [Object
             ],
             [Object
             ]
         ],
-      series: {
-        resourceURI: 'http: //gateway.marvel.com/v1/public/series/35717',
-        name: 'G.O.D.S. (2023 - Present)'
+      returned: 2
+    },
+    events: {
+      available: 0,
+      collectionURI: 'http: //gateway.marvel.com/v1/public/comics/118746/events',
+      items: [],
+      returned: 0
+    }
+}
+  cover is [object Object
+]
+  coverID is 119587
+  cover is [object Object
+]
+  coverID is 119588
+  cover is [object Object
+]
+  coverID is 119589
+  cover is [object Object
+]
+  coverID is 119590
+  cover is [object Object
+]
+  coverID is 119591
+  {
+    id: 113671,
+    digitalId: 67063,
+    title: 'X-Men: Heir of Apocalypse (2024) #1',
+    issueNumber: 1,
+    variantDescription: '',
+    description: "For centuries, Apocalypse tested the mutants of Earth to guarantee that only the strong would survive. Now, as he takes his throne on Arakko, another must rise in his place and ensure the mutants of Earth do not grow weak in his absence! Twelve mutants chosen from the X-Men's greatest heroes - and villains - will compete for the honor, but only one can become...the HEIR OF APOCALYPSE!",
+    modified: '2024-04-30T12: 56: 32-0400',
+    isbn: '',
+    upc: '75960620852400111',
+    diamondCode: '',
+    ean: '',
+    issn: '',
+    format: 'Comic',
+    pageCount: 40,
+    textObjects: [],
+    resourceURI: 'http: //gateway.marvel.com/v1/public/comics/113671',
+    urls: [
+        {
+        type: 'detail',
+        url: 'http: //marvel.com/comics/issue/113671/x-men_heir_of_apocalypse_2024_1?utm_campaign=apiRef&utm_source=8b985aedc4e35073e7b539df04cf3a31'
         },
-      variants: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      collections: [],
-      collectedIssues: [],
-      dates: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      prices: [
-            [Object
-            ]
-        ],
-      thumbnail: {
-        path: 'http: //i.annihil.us/u/prod/marvel/i/mg/3/40/66634e50b900e',
-        extension: 'jpg'
+        {
+        type: 'purchase',
+        url: 'http: //comicstore.marvel.com/X-Men-Heir-of-Apocalypse-1/digital-comic/67063?utm_campaign=apiRef&utm_source=8b985aedc4e35073e7b539df04cf3a31'
         },
-      images: [
-            [Object
-            ]
-        ],
-      creators: {
-        available: 7,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/103965/creators',
-        items: [Array
-            ],
-        returned: 7
-        },
-      characters: {
-        available: 0,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/103965/characters',
-        items: [],
-        returned: 0
-        },
-      stories: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/103965/stories',
-        items: [Array
-            ],
-        returned: 2
-        },
-      events: {
-        available: 0,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/103965/events',
-        items: [],
-        returned: 0
+        {
+        type: 'reader',
+        url: 'http: //marvel.com/digitalcomics/view.htm?iid=67063&utm_campaign=apiRef&utm_source=8b985aedc4e35073e7b539df04cf3a31'
         }
+    ],
+    series: {
+      resourceURI: 'http: //gateway.marvel.com/v1/public/series/39009',
+      name: 'X-Men: Heir of Apocalypse (2024 - Present)'
     },
-    {
-      id: 109664,
-      digitalId: 67021,
-      title: 'Incredible Hulk (2023) #13',
-      issueNumber: 13,
-      variantDescription: '',
-      description: "After smashing into STRANGE ACADEMY to save Charlie's life, DOCTOR VOODOO has sent the souls of both Hulk AND Banner into an exorcist's soul cage, where some of the most terrifying beings on Earth have been condemned for eternity. There they'll seek Charlie's last chance for survival: SUMUNGARU THE FLESH-WEAVER, one of the most evil sorcerers to ever live. Even if Hulk doesn't murder Banner first and even if they survive the encounter with Sumungaru, can Hulk and Banner convince such an evil creature to save Charlie? And what will it ask in return? One chapter ends, another begins in this pivotal issue!",
-      modified: '2024-04-30T10: 51: 59-0400',
-      isbn: '',
-      upc: '75960620663601311',
-      diamondCode: '',
-      ean: '',
-      issn: '',
-      format: 'Comic',
-      pageCount: 32,
-      textObjects: [],
-      resourceURI: 'http: //gateway.marvel.com/v1/public/comics/109664',
-      urls: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      series: {
-        resourceURI: 'http: //gateway.marvel.com/v1/public/series/37422',
-        name: 'Incredible Hulk (2023 - Present)'
+    variants: [
+        {
+        resourceURI: 'http: //gateway.marvel.com/v1/public/comics/118776',
+        name: 'X-Men: Heir of Apocalypse (2024) #1 (Variant)'
         },
-      variants: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      collections: [],
-      collectedIssues: [],
-      dates: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      prices: [
-            [Object
-            ]
-        ],
-      thumbnail: {
-        path: 'http: //i.annihil.us/u/prod/marvel/i/mg/6/d0/66634e76b70ce',
-        extension: 'jpg'
+        {
+        resourceURI: 'http: //gateway.marvel.com/v1/public/comics/118777',
+        name: 'X-Men: Heir of Apocalypse (2024) #1 (Variant)'
         },
-      images: [
-            [Object
-            ]
-        ],
-      creators: {
-        available: 5,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/109664/creators',
-        items: [Array
-            ],
-        returned: 5
-        },
-      characters: {
-        available: 1,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/109664/characters',
-        items: [Array
-            ],
-        returned: 1
-        },
-      stories: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/109664/stories',
-        items: [Array
-            ],
-        returned: 2
-        },
-      events: {
-        available: 0,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/109664/events',
-        items: [],
-        returned: 0
+        {
+        resourceURI: 'http: //gateway.marvel.com/v1/public/comics/118778',
+        name: 'X-Men: Heir of Apocalypse (2024) #1 (Variant)'
         }
-    },
-    {
-      id: 112074,
-      digitalId: 67027,
-      title: 'Miles Morales: Spider-Man (2022) #21',
-      issueNumber: 21,
-      variantDescription: '',
-      description: "BLOOD HUNT TIE-IN: THE ENDLESS NIGHT! Endless hordes of bloodsucking vampires ravage the Earth beneath pitch-black skies of Earth's last night! But vampire-slayer BLADE has a plan, and his only hope for victory rests with MILES MORALES! But Blade's mission comes with a cost - one SPIDER-MAN may be unwilling to pay!",
-      modified: '2024-04-30T11: 00: 38-0400',
-      isbn: '',
-      upc: '759606204831002111',
-      diamondCode: '',
-      ean: '',
-      issn: '',
-      format: 'Comic',
-      pageCount: 32,
-      textObjects: [],
-      resourceURI: 'http: //gateway.marvel.com/v1/public/comics/112074',
-      urls: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      series: {
-        resourceURI: 'http: //gateway.marvel.com/v1/public/series/35645',
-        name: 'Miles Morales: Spider-Man (2022 - 2023)'
+    ],
+    collections: [],
+    collectedIssues: [],
+    dates: [
+        { type: 'onsaleDate', date: '2024-06-12T00: 00: 00-0400'
         },
-      variants: [
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      collections: [],
-      collectedIssues: [],
-      dates: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      prices: [
-            [Object
-            ]
-        ],
-      thumbnail: {
-        path: 'http: //i.annihil.us/u/prod/marvel/i/mg/4/40/66634e4e8927b',
-        extension: 'jpg'
+        { type: 'focDate', date: '2024-05-13T00: 00: 00-0400'
         },
-      images: [
-            [Object
-            ]
-        ],
-      creators: {
-        available: 7,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/112074/creators',
-        items: [Array
-            ],
-        returned: 7
+        { type: 'unlimitedDate', date: '2024-05-29T00: 00: 00-0400'
         },
-      characters: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/112074/characters',
-        items: [Array
-            ],
-        returned: 2
-        },
-      stories: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/112074/stories',
-        items: [Array
-            ],
-        returned: 2
-        },
-      events: {
-        available: 0,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/112074/events',
-        items: [],
-        returned: 0
+        { type: 'digitalPurchaseDate', date: '2024-05-29T00: 00: 00-0400'
         }
-    },
-    {
-      id: 113195,
-      digitalId: 66629,
-      title: 'Scarlet Witch (2024) #1',
-      issueNumber: 1,
-      variantDescription: '',
-      description: "STEVE ORLANDO'S SCARLET WITCH RUN REIGNITES!  The Scarlet Witch has carved out a haven for herself in upstate New York, but it's all about to go up in flames. Wanda's newfound peace has drawn the wrath of a primal force unlike anything she's ever faced before, and it won't stop until it razes Wanda's world to the ground. It's a clash of titans as Wanda and her allies fight for all she holds dear! What happens when an unstoppable force meets the end of all things? When pure chaos meets pure destruction? Wanda's about to find out - if she survives long enough. Jacopo Camagni (X-MEN: RED, Nomen Omen) joins writer Steve Orlando for an explosive new chapter of Scarlet Witch's story!",
-      modified: '2024-04-30T11: 45: 20-0400',
-      isbn: '',
-      upc: '75960620828900111',
-      diamondCode: '',
-      ean: '',
-      issn: '',
-      format: 'Comic',
-      pageCount: 40,
-      textObjects: [],
-      resourceURI: 'http: //gateway.marvel.com/v1/public/comics/113195',
-      urls: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      series: {
-        resourceURI: 'http: //gateway.marvel.com/v1/public/series/38862',
-        name: 'Scarlet Witch (2024 - Present)'
-        },
-      variants: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      collections: [],
-      collectedIssues: [],
-      dates: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      prices: [
-            [Object
-            ]
-        ],
-      thumbnail: {
-        path: 'http: //i.annihil.us/u/prod/marvel/i/mg/9/80/66634e4bb9fb0',
-        extension: 'jpg'
-        },
-      images: [
-            [Object
-            ]
-        ],
-      creators: {
-        available: 6,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113195/creators',
-        items: [Array
-            ],
-        returned: 6
-        },
-      characters: {
-        available: 1,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113195/characters',
-        items: [Array
-            ],
-        returned: 1
-        },
-      stories: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113195/stories',
-        items: [Array
-            ],
-        returned: 2
-        },
-      events: {
-        available: 0,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113195/events',
-        items: [],
-        returned: 0
+    ],
+    prices: [
+        { type: 'printPrice', price: 4.99
         }
+    ],
+    thumbnail: {
+      path: 'http: //i.annihil.us/u/prod/marvel/i/mg/4/03/66634e2421a47',
+      extension: 'jpg'
     },
-    {
-      id: 112237,
-      digitalId: 67030,
-      title: 'Spider-Boy (2023) #8',
-      issueNumber: 8,
-      variantDescription: '',
-      description: "INTRODUCING PUZZLE MAN!  Bailey is so close to reuniting with someone from his past! Who might actually remember him!  But to get there, he has to make his way through the perilous puzzles, menacing mazes and brutal brainteasers of Marvel's newest villain.  Trust us, this is anything but fun and games!",
-      modified: '2024-04-30T11: 50: 11-0400',
-      isbn: '',
-      upc: '75960620785500811',
-      diamondCode: '',
-      ean: '',
-      issn: '',
-      format: 'Comic',
-      pageCount: 32,
-      textObjects: [],
-      resourceURI: 'http: //gateway.marvel.com/v1/public/comics/112237',
-      urls: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      series: {
-        resourceURI: 'http: //gateway.marvel.com/v1/public/series/38659',
-        name: 'Spider-Boy (2023 - Present)'
-        },
-      variants: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      collections: [],
-      collectedIssues: [],
-      dates: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      prices: [
-            [Object
-            ]
-        ],
-      thumbnail: {
-        path: 'http: //i.annihil.us/u/prod/marvel/i/mg/e/a0/66634e7855648',
-        extension: 'jpg'
-        },
-      images: [
-            [Object
-            ]
-        ],
-      creators: {
-        available: 8,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/112237/creators',
-        items: [Array
-            ],
-        returned: 8
-        },
-      characters: {
-        available: 1,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/112237/characters',
-        items: [Array
-            ],
-        returned: 1
-        },
-      stories: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/112237/stories',
-        items: [Array
-            ],
-        returned: 2
-        },
-      events: {
-        available: 0,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/112237/events',
-        items: [],
-        returned: 0
-        }
-    },
-    {
-      id: 113179,
-      digitalId: 67032,
-      title: 'Spider-Man: Shadow of the Green Goblin (2024) #3',
-      issueNumber: 3,
-      variantDescription: '',
-      description: "WHO STALKS THE OSBORNS?! The biggest mistake of NORMAN OSBORN's life is back to haunt him…and it ain't who you think! Is PETER PARKER ready for a rematch with Proto-Goblin?  Ready or not: IT'S ROUND TWO!",
-      modified: '2024-04-30T11: 51: 54-0400',
-      isbn: '',
-      upc: '75960620832600311',
-      diamondCode: '',
-      ean: '',
-      issn: '',
-      format: 'Comic',
-      pageCount: 32,
-      textObjects: [],
-      resourceURI: 'http: //gateway.marvel.com/v1/public/comics/113179',
-      urls: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      series: {
-        resourceURI: 'http: //gateway.marvel.com/v1/public/series/38858',
-        name: 'Spider-Man: Shadow of the Green Goblin (2024 - Present)'
-        },
-      variants: [
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      collections: [],
-      collectedIssues: [],
-      dates: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      prices: [
-            [Object
-            ]
-        ],
-      thumbnail: {
-        path: 'http: //i.annihil.us/u/prod/marvel/i/mg/d/20/66634e6412024',
-        extension: 'jpg'
-        },
-      images: [
-            [Object
-            ]
-        ],
-      creators: {
-        available: 7,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113179/creators',
-        items: [Array
-            ],
-        returned: 7
-        },
-      characters: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113179/characters',
-        items: [Array
-            ],
-        returned: 2
-        },
-      stories: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113179/stories',
-        items: [Array
-            ],
-        returned: 2
-        },
-      events: {
-        available: 0,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113179/events',
-        items: [],
-        returned: 0
-        }
-    },
-    {
-      id: 109810,
-      digitalId: 67037,
-      title: 'Star Wars: Darth Vader (2020) #47',
-      issueNumber: 47,
-      variantDescription: '',
-      description: "THE RAZING OF EXEGOL CONTINUES! DARTH VADER and the SCHISM IMPERIAL launch their boldest challenge to the power of PALPATINE with an assault on EXEGOL, the home of the EMPEROR'S greatest secrets and treasures! But if sheer brute force can't overcome the defenses of the SITH CITADEL, what terrifying new resources will the DARK LORD draw upon? Also: CAPTAIN ENRIC PRYDE faces his greatest test!",
-      modified: '2024-02-17T09: 20: 05-0500',
-      isbn: '',
-      upc: '75960609601504711',
-      diamondCode: '',
-      ean: '',
-      issn: '',
-      format: 'Comic',
-      pageCount: 32,
-      textObjects: [],
-      resourceURI: 'http: //gateway.marvel.com/v1/public/comics/109810',
-      urls: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      series: {
-        resourceURI: 'http: //gateway.marvel.com/v1/public/series/28376',
-        name: 'Star Wars: Darth Vader (2020 - Present)'
-        },
-      variants: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      collections: [],
-      collectedIssues: [],
-      dates: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      prices: [
-            [Object
-            ]
-        ],
-      thumbnail: {
-        path: 'http: //i.annihil.us/u/prod/marvel/i/mg/4/30/66634e3d99c08',
-        extension: 'jpg'
-        },
-      images: [
-            [Object
-            ]
-        ],
-      creators: {
-        available: 7,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/109810/creators',
-        items: [Array
-            ],
-        returned: 7
-        },
-      characters: {
-        available: 0,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/109810/characters',
-        items: [],
-        returned: 0
-        },
-      stories: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/109810/stories',
-        items: [Array
-            ],
-        returned: 2
-        },
-      events: {
-        available: 0,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/109810/events',
-        items: [],
-        returned: 0
-        }
-    },
-    {
-      id: 113000,
-      digitalId: 67048,
-      title: 'Ultimate X-Men (2024) #4',
-      issueNumber: 4,
-      variantDescription: '',
-      description: "NEW MUTANTS! Hisako and Mei's classmate, Nico Minoru, has figured out that these two girls possess unusual abilities… But they're not the only ones! Hisako's world gets a whole lot bigger in ULTIMATE X-MEN #4!",
-      modified: '2024-02-17T09: 21: 58-0500',
-      isbn: '',
-      upc: '75960620798500411',
-      diamondCode: '',
-      ean: '',
-      issn: '',
-      format: 'Comic',
-      pageCount: 32,
-      textObjects: [],
-      resourceURI: 'http: //gateway.marvel.com/v1/public/comics/113000',
-      urls: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      series: {
-        resourceURI: 'http: //gateway.marvel.com/v1/public/series/38817',
-        name: 'Ultimate X-Men (2024 - Present)'
-        },
-      variants: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      collections: [],
-      collectedIssues: [],
-      dates: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      prices: [
-            [Object
-            ]
-        ],
-      thumbnail: {
-        path: 'http: //i.annihil.us/u/prod/marvel/i/mg/3/80/66574166de1d0',
-        extension: 'jpg'
-        },
-      images: [
-            [Object
-            ]
-        ],
-      creators: {
-        available: 3,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113000/creators',
-        items: [Array
-            ],
-        returned: 3
-        },
-      characters: {
-        available: 0,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113000/characters',
-        items: [],
-        returned: 0
-        },
-      stories: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113000/stories',
-        items: [Array
-            ],
-        returned: 2
-        },
-      events: {
-        available: 0,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113000/events',
-        items: [],
-        returned: 0
-        }
-    },
-    {
-      id: 113671,
-      digitalId: 67063,
-      title: 'X-Men: Heir of Apocalypse (2024) #1',
-      issueNumber: 1,
-      variantDescription: '',
-      description: "For centuries, Apocalypse tested the mutants of Earth to guarantee that only the strong would survive. Now, as he takes his throne on Arakko, another must rise in his place and ensure the mutants of Earth do not grow weak in his absence! Twelve mutants chosen from the X-Men's greatest heroes - and villains - will compete for the honor, but only one can become...the HEIR OF APOCALYPSE!",
-      modified: '2024-04-30T12: 56: 32-0400',
-      isbn: '',
-      upc: '75960620852400111',
-      diamondCode: '',
-      ean: '',
-      issn: '',
-      format: 'Comic',
-      pageCount: 40,
-      textObjects: [],
-      resourceURI: 'http: //gateway.marvel.com/v1/public/comics/113671',
-      urls: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      series: {
-        resourceURI: 'http: //gateway.marvel.com/v1/public/series/39009',
-        name: 'X-Men: Heir of Apocalypse (2024 - Present)'
-        },
-      variants: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      collections: [],
-      collectedIssues: [],
-      dates: [
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ],
-            [Object
-            ]
-        ],
-      prices: [
-            [Object
-            ]
-        ],
-      thumbnail: {
+    images: [
+        {
         path: 'http: //i.annihil.us/u/prod/marvel/i/mg/4/03/66634e2421a47',
         extension: 'jpg'
-        },
-      images: [
+        }
+    ],
+    creators: {
+      available: 7,
+      collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113671/creators',
+      items: [
+            [Object
+            ],
+            [Object
+            ],
+            [Object
+            ],
+            [Object
+            ],
+            [Object
+            ],
+            [Object
+            ],
             [Object
             ]
         ],
-      creators: {
-        available: 7,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113671/creators',
-        items: [Array
+      returned: 7
+    },
+    characters: {
+      available: 2,
+      collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113671/characters',
+      items: [
+            [Object
             ],
-        returned: 7
-        },
-      characters: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113671/characters',
-        items: [Array
+            [Object
+            ]
+        ],
+      returned: 2
+    },
+    stories: {
+      available: 2,
+      collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113671/stories',
+      items: [
+            [Object
             ],
-        returned: 2
-        },
-      stories: {
-        available: 2,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113671/stories',
-        items: [Array
-            ],
-        returned: 2
-        },
-      events: {
-        available: 0,
-        collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113671/events',
-        items: [],
-        returned: 0
-        }
+            [Object
+            ]
+        ],
+      returned: 2
+    },
+    events: {
+      available: 0,
+      collectionURI: 'http: //gateway.marvel.com/v1/public/comics/113671/events',
+      items: [],
+      returned: 0
     }
-]
+}

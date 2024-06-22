@@ -33,14 +33,21 @@ const App = () => {
 
       /** BUILD DATA FOR SENDING TO CAROUSEL */
       const setVariants = (variantObj) => {
-        console.log(`variantObj.rows are: ${variantObj.rows}`);
+        console.log(variantObj);
         const itemsArray = [];
         let index = 0;
-
+        const variantArr = variantObj.rows;
         // const variantArr = Array.from(variantObj);
-        for (let item of variantObj.rows) {
-          // itemsArray.unshift({ key: index, value: item.value[0], artist: item.value[1] });
-          itemsArray.unshift({ key: index, value: item[0], artist: item[1] });
+        for (let row of variantArr) {
+          // if (Array.isArray(row)) {
+          // row.forEach(obj => {
+          console.log(row['image_url']);
+          console.log(row['image_artist']);
+          // });
+          // }
+          // console.log(`item of variantArr is ${item[0]}`);
+          // // itemsArray.unshift({ key: index, value: item.value[0], artist: item.value[1] });
+          // itemsArray.unshift({ key: index, value: item[0], artist: item[1] });
           index++;
         }
 
@@ -48,12 +55,23 @@ const App = () => {
         setVariantCovers(itemsArray);
       }
 
+      // remove current list of variants
+      const removeVariants = `http://localhost:5000/variants`;
+      try {
+        await fetch(removeVariants,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+          })
+      } catch (error) {
+        console.error(error.message);
+      }
+
+      // get new list of variants
       const requestVariants = `http://localhost:5000/variants/${titleID}`; // results in an array of variant 'rows'
-      // ex.
       try {
         await fetch(requestVariants)
           .then(response => response.json())
-          // .then(data => console.log(data))
           .then(data => setVariants(data))
 
       } catch (error) {
@@ -72,34 +90,6 @@ const App = () => {
 
   }, [newTitleID, initialTitleID]);
 
-  // useEffect(() => {
-  // 3. Takes array of request urls and passes to async function
-  // (getVariantCovers) for formatting; returns array of file names
-  // const returnedCovers = variantURLs.map((item) => {
-  //   return getVariantCovers(item)
-  // });
-
-  // 5. Once promise (returnedCovers) has been fulfilled, pushes items to
-  // itemsArray and sets variantCovers to itemsArray
-
-  //   const itemsArray = [];
-  //   let index = 0;
-  //   for (let item of variantIDs) {
-
-  //     /** 
-  //      * extract correct artist value (from around line 88 above) 
-  //      */
-  //     // itemsArray.unshift({ key: index, value: item.value[0], artist: item.value[1] });
-  //     itemsArray.unshift({ key: index, value: item });
-  //     index++;
-  //   }
-  //   console.log(itemsArray);
-  //   setVariantCovers(itemsArray);
-  //   // console.log(itemsArray);
-
-
-
-  // }, [variantIDs]);
 
   // component handlers
   const handleInitialTitle = (titleID) => {
@@ -109,8 +99,6 @@ const App = () => {
 
   // handle selected option from Header/Dropdown
   const handleSelectedTitle = (titleObj, titleID) => {
-    console.log(`titleID is ${titleID}`);
-    console.log(`titleObj is ${titleObj}`);
     setNewTitleID(titleID); // setting to previous render's variables
   }
 
