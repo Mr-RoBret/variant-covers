@@ -16,11 +16,8 @@ const Header = (props) => {
 
         // parseData takes comics table data and maps week's titles into array of titles
         const parseData = (response) => {
-            // console.log(response);
-            // console.log(`response is ${response[0].comic_title}`);
             const comicsWithVariantsOnly = Array.from(response);
             itemsArr.current = itemsArr.current.concat(comicsWithVariantsOnly.map((item) => {
-                // console.log(`item.comic_id is ${item.comic_id} and item.comic_title is ${item.comic_title}`);
                 return { id: item.comic_id, title: item.comic_title };
             }
             ));
@@ -33,7 +30,6 @@ const Header = (props) => {
             }
 
             setNewTitles(titlesArr);
-            // console.log(`initialTitleID is ${initialTitleID}`);
             props.onLoad(initialTitleID.current);
         }
 
@@ -58,7 +54,6 @@ const Header = (props) => {
         let currentTitleID = '';
 
         for (let item in itemsArr.current) {
-            // console.log(itemsArr.current[item].id);
             if (itemsArr.current[item].title === newTitle) {
                 const id = JSON.stringify(itemsArr.current[item].id);
                 const title = itemsArr.current[item].title;
@@ -68,7 +63,6 @@ const Header = (props) => {
             }
         };
         props.onChange(currentTitleObj, currentTitleID);
-        // props.onChange(currentTitleID);
 
     };
 

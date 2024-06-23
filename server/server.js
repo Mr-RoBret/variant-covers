@@ -33,7 +33,6 @@ const getComics = async (req, res) => {
 const getVariants = async (req, res) => {
     try {
         const { comic_id } = req.params;
-        // console.log(`comic_id is ${comic_id}`);
         const selectVariant = await pool.query(
             "SELECT image_url, image_artist, comic_id FROM variants WHERE comic_id = $1;",
             [comic_id],
@@ -87,7 +86,7 @@ const deleteComic = async (req, res) => {
 }
 
 // delete all variants of comic
-const deleteVariants = async (req, res) => {
+const deleteVariants = async (res) => {
     // remove current list of comics
     try {
         const deleteAllVariants = await pool.query(
@@ -98,7 +97,6 @@ const deleteVariants = async (req, res) => {
         console.error(err.message);
     }
 }
-
 
 const queryMarvelAPI = async () => {
     console.log('Querying external API...');
@@ -126,13 +124,12 @@ const queryMarvelAPI = async () => {
     const refreshDB = async (response) => {
         const comicsWithVariantsOnly = Array.from(response.data.results);
         const newArray = comicsWithVariantsOnly.filter((item) => item.variants.length > 1);
-        // console.log(newArray);
 
         // for each comic_id i in newArray,
         // get list of variants, build query for each, and get variant data
         // then, post data to "variants" table
         const populateVariants = (newArrItem) => { // single title from comics table
-            // console.log(newArrItem);
+
             // Every 24 hours, call Marvel API to refresh responsebase with new data
             // get new list of comics and parse into array of only comics with variants
             const privateKey = process.env.REACT_APP_API_SECRET;
@@ -154,7 +151,6 @@ const queryMarvelAPI = async () => {
             // 2. get IDs of variants
             const getIDs = (cover) => {
                 const coverID = cover.resourceURI.split('/');
-                // console.log(`coverID is ${coverID[coverID.length - 1]}`);
                 return coverID[coverID.length - 1];
             }
 
@@ -162,18 +158,13 @@ const queryMarvelAPI = async () => {
             // create new array from mapping fetched variants to getIDs(resoureURI).
             const getVariantIDs = (newArrItem) => {
 
-                // console.log(`cover is ${cover}`);
                 let newIDs = newArrItem.variants.map((cover) => getIDs(cover));
 
-                // newIDs.push(newTitleID);
-                // console.log(`newIDs is ${newIDs}`);
                 return newIDs;
             }
 
-
             // 5. Formats image name and extension and returns
             const formatImageName = async (data) => {
-                // console.log(`data at line 184 is ${data.data[0]}`);
 
                 const fileName = data.data.results[0].thumbnail.path;
                 const fileExtension = data.data.results[0].thumbnail.extension;
@@ -194,7 +185,6 @@ const queryMarvelAPI = async () => {
             // (via calling requestVariantCovers function on each item)
             const variantURLs = getVariantIDs(newArrItem).map((item) => {
                 const returnedCovers = requestVariantCovers(item);
-                // console.log(`covers returned from requestVariantCovers is ${returnedCovers}`);
                 return returnedCovers;
             });
 
@@ -209,7 +199,6 @@ const queryMarvelAPI = async () => {
             // 3. Takes array of request urls and passes to async function
             // (getVariantCovers) for formatting; returns array of file names
             const returnedCovers = variantURLs.map((item) => {
-                // console.log(`item is now ${item}`);
                 return getVariantCovers(item)
             });
 
@@ -218,9 +207,7 @@ const queryMarvelAPI = async () => {
             Promise.allSettled(returnedCovers).then((items) => {
                 const itemsArray = [];
                 let index = 0;
-                // console.log(returnedCovers);
                 for (let item of items) {
-                    console.log(item);
                     // extract correct artist value (from around line 88 above) 
                     itemsArray.push({ key: index, value: item.value[0], artist: item.value[1] });
                     // add to database
@@ -247,12 +234,7 @@ const queryMarvelAPI = async () => {
                     }
                     index++;
                 }
-                // console.log(itemsArray);
-
-                // push data to database table "variants"
-                // setVariantCovers(itemsArray);
             });
-
 
             // function to get Artist info and return
             const getArtistInfo = (creators) => {
@@ -306,19 +288,13 @@ const queryMarvelAPI = async () => {
             }
         }
 
-        // console.log(newArray);
-        // populateVariants(newArray);
-
     }
-
-
 
     const requestTitles = `https://gateway.marvel.com:443/v1/public/comics?&ts=${currentTimeStamp}&format=comic&noVariants=false&dateRange=${dateRange}&orderBy=title&limit=100&apikey=${publicKey}&hash=${hash}`;
 
     try {
         await fetch(requestTitles)
             .then(response => response.json())
-            // .then(console.log(response))
             .then(data => refreshDB(data))
 
     } catch (error) {

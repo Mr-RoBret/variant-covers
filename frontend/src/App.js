@@ -10,11 +10,9 @@ const App = () => {
 
   const [initialTitleID, setInitialTitleID] = useState(null);
   const [newTitleID, setNewTitleID] = useState(null);
-  const [variantIDs, setVariantIDs] = useState([]);
   const [variantCovers, setVariantCovers] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [coverWidth, setCoverWidth] = useState(window.innerWidth);
-  const [returnedCoversData, setReturnedCoversData] = useState([]);
 
   window.onresize = () => {
     setCoverWidth(window.innerWidth);
@@ -32,39 +30,22 @@ const App = () => {
     const constructRequestURL = async (titleID) => {
 
       /** BUILD DATA FOR SENDING TO CAROUSEL */
-      const setVariants = (variantObj) => {
-        console.log(variantObj);
+      const setVariants = async (variantObj) => {
+        console.log(`variantObj is ${variantObj.rows}`);
         const itemsArray = [];
         let index = 0;
         const variantArr = variantObj.rows;
-        // const variantArr = Array.from(variantObj);
+
         for (let row of variantArr) {
-          // if (Array.isArray(row)) {
-          // row.forEach(obj => {
-          console.log(row['image_url']);
-          console.log(row['image_artist']);
-          // });
-          // }
-          // console.log(`item of variantArr is ${item[0]}`);
-          // // itemsArray.unshift({ key: index, value: item.value[0], artist: item.value[1] });
-          // itemsArray.unshift({ key: index, value: item[0], artist: item[1] });
+
+          console.log(row);
+          itemsArray.unshift({ key: index, value: row['image_url'], artist: row['image_artist'] });
           index++;
         }
-
         console.log(itemsArray);
-        setVariantCovers(itemsArray);
-      }
 
-      // remove current list of variants
-      const removeVariants = `http://localhost:5000/variants`;
-      try {
-        await fetch(removeVariants,
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' }
-          })
-      } catch (error) {
-        console.error(error.message);
+        // console.log(itemsArray);
+        setVariantCovers(itemsArray);
       }
 
       // get new list of variants
