@@ -19,4 +19,5 @@ CREATE TABLE variants(
             ON DELETE CASCADE
 );
 
-psql -U variantcovers 
+psql -U variantcovers;
+psql -U bfarley -d variantcovers; 

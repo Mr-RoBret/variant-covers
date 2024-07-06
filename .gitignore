@@ -27,3 +27,6 @@ yarn-error.log*
 /connections
 backend.php
 database.sql
+postgres key.pem
+server/database.sql
+variantcovers.sql
