@@ -35,7 +35,7 @@ const Header = (props) => {
 
         // ** Loads comic titles **
 
-        const requestTitles = `http://localhost:5000/comics`;
+        const requestTitles = `${process.env.REACT_APP_API_URL}/comics`;
 
         // fetch list of titles from last week and send data to parseData function
         fetch(requestTitles)

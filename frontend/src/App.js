@@ -49,7 +49,7 @@ const App = () => {
       }
 
       // get new list of variants
-      const requestVariants = `http://localhost:5000/variants/${titleID}`; // results in an array of variant 'rows'
+      const requestVariants = `${process.env.REACT_APP_API_URL}/variants/${titleID}`; // results in an array of variant 'rows'
       try {
         await fetch(requestVariants)
           .then(response => response.json())

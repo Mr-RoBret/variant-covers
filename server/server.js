@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 // app.use(cors());
 // Enable CORS for specific routes
 app.use(cors({
-    origin: 'http://localhost:3000' // Replace with allowed origin
+    origin: `${process.env.PGHOST}` // Replace with allowed origin
 }));
 
 app.use(express.json());
@@ -102,8 +102,8 @@ const queryMarvelAPI = async () => {
     console.log('Querying external API...');
     // Every 24 hours, call Marvel API to refresh database with new data
     // get new list of comics and parse into array of only comics with variants
-    const privateKey = process.env.REACT_APP_API_SECRET;
-    const publicKey = process.env.REACT_APP_API_PUBLIC;
+    const privateKey = process.env.API_SECRET;
+    const publicKey = process.env.API_PUBLIC;
 
     // create API fetch request params
     const currentTimeStamp = Date.now().toString();
@@ -132,8 +132,8 @@ const queryMarvelAPI = async () => {
 
             // Every 24 hours, call Marvel API to refresh responsebase with new data
             // get new list of comics and parse into array of only comics with variants
-            const privateKey = process.env.REACT_APP_API_SECRET;
-            const publicKey = process.env.REACT_APP_API_PUBLIC;
+            const privateKey = process.env.API_SECRET;
+            const publicKey = process.env.API_PUBLIC;
 
             // create API fetch request params
             const currentTimeStamp = Date.now().toString();
@@ -217,7 +217,7 @@ const queryMarvelAPI = async () => {
                         const url = itemsArray[index].value;
                         const artist = itemsArray[index].artist;
 
-                        const requestURL = `http://localhost:5000/variants/${id}`
+                        const requestURL = `${process.env.PGHOST}/variants/${id}`
                         fetch(requestURL, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -272,7 +272,7 @@ const queryMarvelAPI = async () => {
                 const id = (newArray[i]['id']);;
                 const title = newArray[i]['title'];
 
-                await fetch('http://localhost:5000/comics', {
+                await fetch(`${process.env.PGHOST}/comics`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
